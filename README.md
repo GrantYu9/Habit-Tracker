@@ -3,7 +3,16 @@
 ## Abstract
 
 ### What Will It Do?
+
+#### In Paragraph Form
+
+This habit tracker will be able to support a large amount of habits, each with a vast amount of customization such as descriptions, tags, the choice to make it a building or breaking habit, a variety of units such as steps, mL, or hours, and colours to distinguish between habits. Users will be able to view habits individually, as a selection, or all of them at once, both as normal habits and in heatmaps. Normally, habits will look like a bar, where users can interact with them such as setting the habit, incrementing them, decrementing them, restting them, so on and so forth. The user may also view habist as a heatmap, with varying amounts of past time, such as the past month, past week, or yesterday; all view models will include the present day. This will provide an opportunity for the user to freely choose how they with to build or break habits, without concerns on matters that should be trivial, such as, limited habits, unsupported niches of habits, or inability to view progress.
+
+#### In List Form
+
 - Can track a large amount of habits. The upper limit will probably be 100 to prevent performance issues.
+- Tags and folders will be provided to organise habits.
+- A search function will allow one to quickly search for a habit.
 - One can choose to build a habit or break a habit.
 - Will support a variety of ways to view time and habits, such as past month, past week, and yesterday, all including today. There will be calendars for each habit and a centralized tab to view the calendars of certain habits.
 - Multiple units will be supported. For example, number of steps  to take in a day, mL of water to drink, number of hours studying, number of sweets avoided, so on and so forth.
@@ -20,5 +29,5 @@ I picked this idea because all the habit trackers I have tried thus far have not
 ## User Stories
 
 ### Phase 0
-- !!!
-
+- As a user, I want to be able to have the choice between viewing a single habit, a selection of habits, or viewing all my habits, either as my home page or when iteracting with the program, both as habits where I can interact with them and as heatmaps to view progress.
+- As a user, I want to be able to neatly make a large amount of habits, using folders and tags 
