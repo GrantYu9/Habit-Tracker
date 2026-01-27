@@ -30,4 +30,7 @@ I picked this idea because all the habit trackers I have tried thus far have not
 
 ### Phase 0
 - As a user, I want to be able to have the choice between viewing a single habit, a selection of habits, or viewing all my habits, either as my home page or when iteracting with the program, both as habits where I can interact with them and as heatmaps to view progress.
-- As a user, I want to be able to neatly make a large amount of habits, using folders and tags 
+- As a user, I want to be able to neatly make a large amount of habits, using folders and tags, and quickly search for a habit.
+- As a user, I want to be able to create any type of habit, involving any amount of units, any amount of steps, building habits and breaking habits, and over any duration of time.
+- As a user, I want to be able to make a home page and pages based on time, that allow me to view certain habits when I load the application, and when a certain time of day rolls around.
+
