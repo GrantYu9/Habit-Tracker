@@ -1,5 +1,6 @@
-package model.ViewingPerspectives;
+package model.Habit.ViewingPerspectives;
 
+// !!!
 public class Bar {
     // standard interaction
 }
