@@ -1,29 +1,65 @@
 package model.Habit.Behaviour;
 
 /*
-!!!
+A habit that increments in positive integer steps towards a goal
  */
 public class BuildHabit extends Habit {
-    private ProgressType progressType;
-    private enum ProgressType {
-        UNDERDONE,
-        DONE,
-        OVERLOADED
-    }
     /*
+    REQUIRES:
     !!!
+    0 < increment amount <= goal
+    goal > 0
+    unit has at least one alphabetical character
+    EFFECTS:
+    Instatiates a habit such that
+        !!!
      */
-    public void buildHabit() {
+    public BuildHabit(int incrementAmount, int goal, String unit) {
+        super(incrementAmount, goal, unit);
         // !!!
     }
 
+    @Override
     /*
-    public abstract void calculateProgressPercentage(int progressPercentage);
-    public abstract void addToHistory(int progressPercentage);
-
-    public abstract void setGoal(int goal);
-    public abstract void setAmount(int amount);
+    MODIFIES:
+    this
+    EFFECTS:
+    increases this.currentAmount by this.incrementAmount
+    if currentAmount == goal, progressType = DONE
+    if currentAmount > goal, progressType > OVERDONE
+        calculateOverloadAmount()
+        does not calculateProgressPercentage()
+    calculateProgressPercentage()
      */
-    
-    // !!!
+    public void progressByIncrement() {
+        // !!!
+    }
+
+    @Override
+    /*
+    !!!
+     */
+    public void calculateProgressPercentage(int currentAmount, int goal) {
+        // !!!
+    }
+
+    @Override
+    /*
+    !!!
+     */
+    public void calculateOverloadAmount(int currentAmount, int goal) {
+        // !!!
+    }
+
+    @Override
+    // REQUIRES: currentAmount > 0
+    public void setCurrentAmount(int currentAmount) {
+        // !!!
+    }
+
+    @Override
+    // REQUIRES: goal > 0
+    public void setGoal(int goal) {
+        // !!!
+    }
 }
