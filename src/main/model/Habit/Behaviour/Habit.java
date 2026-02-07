@@ -1,8 +1,5 @@
 package model.Habit.Behaviour;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /*
 An abstract class for BuildHabit and BreakHabit
 Features basic getters and setters
@@ -30,24 +27,24 @@ public abstract class Habit {
     unit has at least one alphabetical character
     EFFECTS:
     Instantiates a habit such that
+        this.currentAmount = startingAmount
         this.goal = goal
         this.startingAmount = startingAmount
         this.stepAmount = stepAmount
         this.unit = unit
             With surrounding whitespace trimmed
 
-        currentAmount = 0
         overloadAmount = 0
         progressPercentage = 0
         progressType = UNDERDONE
         viewMode = BAR
     */
-    public Habit() {
+    public Habit(int goal, int startingAmount, int stepAmount, String unit) {
         // !!!
     }
 
     public abstract int calculateOverloadAmount(int currentAmount, int goal);
-    public abstract int calculateProgressPercentage(int currentAmount, int goal);
+    public abstract int calculateProgressPercentage(int startingAmount, int currentAmount, int goal);
     public abstract void progressByStepAmount();
 
     public abstract void setCurrentAmount(int currentAmount);
