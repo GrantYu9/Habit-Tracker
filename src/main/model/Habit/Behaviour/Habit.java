@@ -14,13 +14,8 @@ public abstract class Habit {
     private int goal; // A goal amount
     private int overloadAmount; // How much a habit is overloaded
     private int progressPercentage; // Amount of progress made towards a goal
+    private int startingAmount; // The starting amount a user sets
 
-    private ProgressType progressType; // Progress relative to the goal
-    private enum ProgressType {
-        UNDERDONE, // User has yet to reach their goal
-        DONE, // User has reached their goal
-        OVERLOADED // User is going above and beyond their goal
-    }
     private ViewMode viewMode; // How one can view the habit
     private enum ViewMode {
         BAR, // The default way to view a habit and how one can interact with it
@@ -34,6 +29,7 @@ public abstract class Habit {
     Instantiates a habit such that
         this.incrementAmount = incrementAmount
         this.goal = goal
+        this.startingAmount = startingAmount
         this.unit = unit
             With surrounding whitespace trimmed
 
@@ -42,18 +38,20 @@ public abstract class Habit {
         progressPercentage = 0
         progressType = UNDERDONE
         viewMode = BAR
-        history = new ArrayList<>()
     */
-    public Habit(int incrementAmount, int goal, String unit) {
+    public Habit() {
         // !!!
     }
 
     public abstract void progressByIncrement();
-    public abstract void calculateProgressPercentage(int currentAmount, int goal);
-    public abstract void calculateOverloadAmount(int currentAmount, int goal);
+    public abstract int calculateOverloadAmount(int currentAmount, int goal);
+    public abstract int calculateProgressPercentage(int currentAmount, int goal);
 
     public abstract void setCurrentAmount(int currentAmount);
-    public abstract void setGoal(int goal);
+
+    public void setGoal(int goal) {
+        this.goal = goal;
+    }
 
     public void setOverloadAmount(int overloadAmount) {
         this.overloadAmount = overloadAmount;
@@ -63,8 +61,8 @@ public abstract class Habit {
         this.progressPercentage = progressPercentage;
     }
 
-    public void setProgressType(ProgressType progressType) {
-        this.progressType = progressType;
+    public void setStartingAmount(int startingAmount) {
+        this.startingAmount = startingAmount;
     }
 
     public void setViewMode(ViewMode viewMode) {
@@ -91,14 +89,14 @@ public abstract class Habit {
         return this.overloadAmount;
     }
 
+    public int getStartingAmount() {
+        return this.startingAmount;
+    }
+
     public int getProgressPercentage() {
         return this.progressPercentage;
     }
-
-    public ProgressType getProgressType() {
-        return this.progressType;
-    }
-
+    
     public ViewMode getViewMode() {
         return this.viewMode;
     }
