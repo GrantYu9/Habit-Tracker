@@ -1,4 +1,4 @@
-package model.Habit.Behaviour;
+package model.habit;
 
 /*
 An abstract class for BuildHabit and BreakHabit
@@ -18,28 +18,43 @@ public abstract class Habit {
         BAR, // The default way to view a habit and how one can interact with it
         HEATMAP // The heatmap to view history
     }
+    private ProgressType progressType; // Progress relative to the goal
+    /*
+    Warning: The behaviour of this enum is different between the derived classes.
+    As such, please read the documentation that will be provided.
+    The documentation will be located near the tops of each derived class, where the
+    variables would be declared.
+     */
+    private enum ProgressType {
+        UNDERDONE,
+        DONE,
+        OVERLOADED
+    }
 
+    private String title; // A title for the habit
     private String unit; // Type of units. E.g. mL or steps
 
     /*
     REQUIRES:
     0 < stepAmount <= |goal|
-    unit has at least one alphabetical character
+    title has at least one character
+    unit has at least one character
     EFFECTS:
     Instantiates a habit such that
         this.currentAmount = startingAmount
         this.goal = goal
         this.startingAmount = startingAmount
         this.stepAmount = stepAmount
+        this.title = title
+            With surrounding whitespace trimmed
         this.unit = unit
             With surrounding whitespace trimmed
 
         overloadAmount = 0
         progressPercentage = 0
-        progressType = UNDERDONE
         viewMode = BAR
     */
-    public Habit(int goal, int startingAmount, int stepAmount, String unit) {
+    public Habit(int goal, int startingAmount, int stepAmount, String title, String unit) {
         // !!!
     }
 
@@ -48,10 +63,23 @@ public abstract class Habit {
     public abstract void progressByStepAmount();
 
     public abstract void setCurrentAmount(int currentAmount);
+    
 
     // REQUIRES: incrementAmount > 0
     public void setStepAmount(int incrementAmount) {
         this.stepAmount = incrementAmount;
+    }
+
+    // REQUIRES: title has at least one character
+    // EFFECTS: this.title = title, with surrounding whitespace trimmed
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    // REQUIRES: unit has at least one character
+    // EFFECTS: this.unit = unit, with surrounding whitespace trimmed
+    public void setUnit(String unit) {
+        this.unit = unit;
     }
 
     public void setGoal(int goal) {
@@ -74,8 +102,8 @@ public abstract class Habit {
         this.viewMode = viewMode;
     }
 
-    public void setUnit(String unit) {
-        this.unit = unit;
+    public void setProgressType(ProgressType progressType) {
+        this.progressType = progressType;
     }
     
     public int getCurrentAmount() {
@@ -106,7 +134,15 @@ public abstract class Habit {
         return this.viewMode;
     }
 
+    public String getTitle() {
+        return this.title;
+    }
+
     public String getUnit() {
         return this.unit;
+    }
+
+    public ProgressType getProgressType() {
+        return this.progressType;
     }
 }

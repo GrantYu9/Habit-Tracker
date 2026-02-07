@@ -1,4 +1,4 @@
-package model.Organization;
+package model.organization;
 
 // !!!
 public class Folder {

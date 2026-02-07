@@ -1,4 +1,4 @@
-package model.Habit.ViewingPerspectives;
+package ui.viewingperspectives;
 
 // !!!
 public class Bar {

@@ -1,8 +1,8 @@
-package model.Organization.Pages;
+package model.organization.pages;
 
 import java.util.ArrayList;
 
-import model.Habit.Behaviour.Habit;
+import model.habit.Habit;
 
 // !!!
 public class CustomPage {

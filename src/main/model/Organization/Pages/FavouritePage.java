@@ -1,4 +1,4 @@
-package model.Organization.Pages;
+package model.organization.pages;
 
 // !!!
 public class FavouritePage {
