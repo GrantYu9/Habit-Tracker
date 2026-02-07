@@ -1,18 +1,22 @@
 package model.Habit.Behaviour;
 
 /*
-!!!
+A habit that advances in negative integer steps towards a goal
  */
 public class HabitDecrement extends Habit{
     private ProgressType progressType; // Progress relative to the goal
     private enum ProgressType {
-        UNDERDONE, // !!!
-        DONE, // !!!
-        OVERLOADED // !!!
+        UNDERDONE, // currentAmount > goal
+        DONE, // currentAmount == goal
+        OVERLOADED // currentAmount < goal
     }
    
     /*
-    !!!
+    REQUIRES:
+    Inherits requirements of parent class
+    currentAmount > goal
+    EFFECTS:
+    Instantiates a habit in accordance with the Habit abstract class constructor
      */
     public HabitDecrement() {
         super();
@@ -23,13 +27,13 @@ public class HabitDecrement extends Habit{
     /*
     !!!
      */
-    public void progressByIncrement() {
+    public void progressByStepAmount() {
         // !!!
     }
 
+
     @Override
-    // REQUIRES: !!!
-    // EFFECTS: calculates how much progress has been made towards the goal
+    // !!!
     public int calculateProgressPercentage(int currentAmount, int goal) {
         return 0;
     }

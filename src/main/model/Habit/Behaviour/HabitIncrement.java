@@ -1,20 +1,19 @@
 package model.Habit.Behaviour;
 
 /*
-A habit that increments in positive integer steps towards a goal
+A habit that advances in natural number steps towards a goal
  */
 public class HabitIncrement extends Habit {
     private ProgressType progressType; // Progress relative to the goal
     private enum ProgressType {
-        UNDERDONE, // !!!
-        DONE, // !!!
-        OVERLOADED // !!!
+        UNDERDONE, // currentAmount < goal
+        DONE, // currentAmount == goal
+        OVERLOADED // currentamount > goal
     }
     /*
     REQUIRES:
-    0 < increment amount <= goal
-    goal > 0
-    unit has at least one alphabetical character
+    Inherits requirements of parent class
+    currentAmount < goal
     EFFECTS:
     Instantiates a habit in accordance with the Habit abstract class constructor
      */
@@ -28,30 +27,30 @@ public class HabitIncrement extends Habit {
     MODIFIES:
     this
     EFFECTS:
-    increases this.currentAmount by this.incrementAmount
-    if currentAmount == goal, progressType = DONE
-    if currentAmount > goal, progressType > OVERDONE
-        calculateOverloadAmount()
-            !!!
-        does not calculateProgressPercentage()
-    calculateProgressPercentage()
-        !!!
+    this.currentAmount += this.stepAmount
+    if currentAmount < goal
+        calculates and sets new progress percentage
+    if currentAmount == goal
+        progressType = DONE
+        calculates and sets new progress percentage
+    if currentAmount > goal
+        progressType = OVERLOADED
+        calculates and sets new overload amount
      */
-    public void progressByIncrement() {
+    public void progressByStepAmount() {
         // !!!
     }
 
     @Override
-    // REQUIRES: !!!
-    // EFFECTS: calculates how much progress has been made towards the goal
+    // REQUIRES: currentAmount <= goal
+    // EFFECTS: calculates how much progress has been made towards the goal as an integer percentage
     public int calculateProgressPercentage(int currentAmount, int goal) {
         return 0;
     }
 
     @Override
-    /*
-    !!!
-     */
+    // REQUIRES: currentAmount > goal
+    // EFFECTS: calculutes how much currentAmount is above goal
     public int calculateOverloadAmount(int currentAmount, int goal) {
         return 0;
     }
