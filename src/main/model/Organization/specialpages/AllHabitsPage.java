@@ -5,9 +5,7 @@ import model.habit.Habit;
 import java.util.ArrayList;
 import java.util.List;
 
-/*
-A page for all habits
- */
+// A page for all habits
 public class AllHabitsPage {
     private String title;
 

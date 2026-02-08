@@ -5,9 +5,7 @@ import model.habit.Habit;
 import java.util.ArrayList;
 import java.util.List;
 
-/*
-The home page, where the user will land
- */
+// The home page, where the user will land
 public class HomePage {
     private String title;
 

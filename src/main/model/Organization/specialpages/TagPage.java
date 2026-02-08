@@ -6,9 +6,7 @@ import model.habit.Habit;
 import java.util.ArrayList;
 import java.util.List;
 
-/*
-A page for all habits of the same tag
- */
+// A page for all habits of the same tag
 public class TagPage {
     private String title;
 

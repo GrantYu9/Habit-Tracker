@@ -28,6 +28,8 @@ public class Tag {
     private Color colour; // Colour of tag
 
     /*
+    REQUIRES:
+        title has at least one character
     EFFECTS:
     Instantiates Tag such that
         this.title = title, with surrounding whitespace trimmed

@@ -5,9 +5,7 @@ import model.habit.Habit;
 import java.util.ArrayList;
 import java.util.List;
 
-/*
-A page for favourite habits
- */
+// A page for favourite habits
 public class FavouritesPage {
     private String title;
 
