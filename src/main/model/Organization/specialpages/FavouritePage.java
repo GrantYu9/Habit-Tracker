@@ -6,37 +6,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 /*
-Special types of pages that have limited functionality
-They will appear in the taskbar on the left
+A page for all habits
  */
 public class FavouritePage {
-    private PageType pageType;
-    private enum PageType {
-        ALL_HABITS,
-        HOME,
-        FAVOURITE,
-        TAG
-    }
-
     private String title;
 
     private List<Habit> habits;
 
     /*
-    EFFECTS: 
-    Intantiates ReadOnlyPage based on the intended pageType, and brings forth
-    their existence on the UI
-        if pageType = ALL_Habits
-            title = "All Habits"
-            !!!
-        if 
+    EFFECTS:
+    Instantiates FavouritePage such that
+        title = "Favourites"
+        habits = new ArrayList<>()
      */
-    public FavouritePage(PageType pageType, List<Habit> habits) {
+    public FavouritePage() {
         // !!!
     }
 
-    // !!!
-    private void addHabit(Habit habit) {
+    // MODIFIES: this
+    // EFFECTS: appends habit to habits
+    public void addToAllHabitsPage(Habit habit) {
         // !!!
+    }
+
+    public List<Habit> getHabits() {
+        return habits;
     }
 }
