@@ -1,5 +1,5 @@
 package model.organization.specialpages;
 
-public class HomePage {
+public class TagPage {
     
 }

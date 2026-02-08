@@ -3,6 +3,8 @@ package model.habit;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.organization.Tag;
+
 /*
 An abstract class for BuildHabit and BreakHabit
 Features basic getters and setters
@@ -38,6 +40,7 @@ public abstract class Habit {
     private String unit; // Type of units. E.g. mL or steps
 
     private List<Habit> history; // A record of past data of the habit
+    private List<Tag> tags; // Labels that can be attached to the habit for organization
 
     /*
     REQUIRES:
@@ -57,6 +60,8 @@ public abstract class Habit {
         progressPercentage = 0
         viewMode = BAR
         history = new ArrayList<>()
+
+        all pages constructor !!!
     */
     public Habit(int goal, int startingAmount, int stepAmount, String title, String unit) {
         // !!!
@@ -67,7 +72,19 @@ public abstract class Habit {
     public abstract void progressByStepAmount();
 
     public abstract void setCurrentAmount(int currentAmount);
-    
+
+    /*
+    REQUIRES:
+    tag has at least one alphabetical character
+    MODIFIES:
+    this
+    EFFECTS:
+    appends tag to tags, with surrounding whitespace removed
+    sorts tags by alphabetical order
+     */
+    public void addTag(Tag tag) {
+        // !!!
+    }
 
     // REQUIRES: incrementAmount > 0
     public void setStepAmount(int incrementAmount) {
@@ -152,5 +169,9 @@ public abstract class Habit {
 
     public List<Habit> getHistory() {
         return this.history;
+    }
+
+    public List<Tag> getTags() {
+        return tags;
     }
 }
