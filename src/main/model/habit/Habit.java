@@ -1,5 +1,8 @@
 package model.habit;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /*
 An abstract class for BuildHabit and BreakHabit
 Features basic getters and setters
@@ -34,6 +37,8 @@ public abstract class Habit {
     private String title; // A title for the habit
     private String unit; // Type of units. E.g. mL or steps
 
+    private List<Habit> history; // A record of past data of the habit
+
     /*
     REQUIRES:
     0 < stepAmount <= |goal|
@@ -53,6 +58,7 @@ public abstract class Habit {
         overloadAmount = 0
         progressPercentage = 0
         viewMode = BAR
+        history = new ArrayList<>()
     */
     public Habit(int goal, int startingAmount, int stepAmount, String title, String unit) {
         // !!!
@@ -107,42 +113,46 @@ public abstract class Habit {
     }
     
     public int getCurrentAmount() {
-        return this.currentAmount;
+        return currentAmount;
     }
 
     public int getGoal() {
-        return this.goal;
+        return goal;
     }
 
     public int getOverloadAmount() {
-        return this.overloadAmount;
+        return overloadAmount;
     }
 
     public int getProgressPercentage() {
-        return this.progressPercentage;
+        return progressPercentage;
     }
 
     public int getStartingAmount() {
-        return this.startingAmount;
+        return startingAmount;
     }
 
     public int getStepAmount() {
-        return this.stepAmount;
+        return stepAmount;
     }
     
     public ViewMode getViewMode() {
-        return this.viewMode;
-    }
-
-    public String getTitle() {
-        return this.title;
-    }
-
-    public String getUnit() {
-        return this.unit;
+        return viewMode;
     }
 
     public ProgressType getProgressType() {
-        return this.progressType;
+        return progressType;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public List<Habit> getHistory() {
+        return this.history;
     }
 }
