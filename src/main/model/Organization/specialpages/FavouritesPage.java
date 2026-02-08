@@ -8,7 +8,7 @@ import java.util.List;
 /*
 A page for all habits
  */
-public class FavouritePage {
+public class FavouritesPage {
     private String title;
 
     private List<Habit> habits;
@@ -19,13 +19,13 @@ public class FavouritePage {
         title = "Favourites"
         habits = new ArrayList<>()
      */
-    public FavouritePage() {
+    public FavouritesPage() {
         // !!!
     }
 
     // MODIFIES: this
     // EFFECTS: appends habit to habits
-    public void addToAllHabitsPage(Habit habit) {
+    public void addToFavouritesPage(Habit habit) {
         // !!!
     }
 
