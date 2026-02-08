@@ -1,4 +1,4 @@
-package model.organization.pages.specialpages;
+package model.organization.specialpages;
 
 // !!!
 public class AllHabitsPage {

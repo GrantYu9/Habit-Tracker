@@ -50,10 +50,8 @@ public abstract class Habit {
         this.goal = goal
         this.startingAmount = startingAmount
         this.stepAmount = stepAmount
-        this.title = title
-            With surrounding whitespace trimmed
-        this.unit = unit
-            With surrounding whitespace trimmed
+        this.title = title, with surrounding whitespace trimmed
+        this.unit = unit, with surrounding whitespace trimmed
 
         overloadAmount = 0
         progressPercentage = 0
