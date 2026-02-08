@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /*
-A page for all habits
+The home page, where the user will land
  */
 public class HomePage {
     private String title;

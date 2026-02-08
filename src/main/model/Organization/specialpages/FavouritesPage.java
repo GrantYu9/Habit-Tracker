@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /*
-A page for all habits
+A page for favourite habits
  */
 public class FavouritesPage {
     private String title;
