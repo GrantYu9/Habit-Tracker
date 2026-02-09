@@ -37,6 +37,10 @@ public class Folder {
         // !!!
     }
 
+    public String getTitle(String title) {
+        return title;
+    }
+
     public List<Folder> getFolders() {
         return folders;
     }
