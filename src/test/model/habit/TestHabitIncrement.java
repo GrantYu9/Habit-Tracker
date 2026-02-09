@@ -1,4 +1,4 @@
-package model;
+package model.habit;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 

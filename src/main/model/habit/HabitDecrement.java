@@ -1,5 +1,7 @@
 package model.habit;
 
+import java.time.ZonedDateTime;
+
 /*
 A habit that advances in negative integer steps towards a goal
  */
@@ -20,8 +22,8 @@ public class HabitDecrement extends Habit {
     Instantiates a habit in accordance with the Habit abstract class constructor
     progressType = UNDERDONE
      */
-    public HabitDecrement(int goal, int startingAmount, int stepAmount, String title, String unit) {
-        super(goal, startingAmount, stepAmount, title, unit);
+    public HabitDecrement(int goal, int startingAmount, int stepAmount, String title, String unit, ZonedDateTime cycleTime) {
+        super(goal, startingAmount, stepAmount, title, unit, cycleTime);
         // !!!
     }
 

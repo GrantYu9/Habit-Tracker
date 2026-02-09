@@ -1,5 +1,7 @@
 package model.habit;
 
+import java.time.LocalDate;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,6 +41,9 @@ public abstract class Habit {
     private String title; // A title for the habit
     private String unit; // Type of units. E.g. mL or steps
 
+    private LocalDate day; // Day of the habit
+    private ZonedDateTime cycleTime; // Time that the habit resets every day
+
     private List<Habit> history; // A record of past data of the habit
     private List<Tag> tags; // Labels that can be attached to the habit for organization
 
@@ -55,15 +60,17 @@ public abstract class Habit {
         this.stepAmount = stepAmount
         this.title = title, with surrounding whitespace trimmed
         this.unit = unit, with surrounding whitespace trimmed
+        this.cycleTime = cycleTime
 
         overloadAmount = 0
         progressPercentage = 0
         viewMode = BAR
+        day = LocalDate.now()
         history = new ArrayList<>()
-
-        all pages constructor !!!
+    Adds Habit to AllHabitsPage
+    Calls cycleHabit() every time cycleTime occurs
     */
-    public Habit(int goal, int startingAmount, int stepAmount, String title, String unit) {
+    public Habit(int goal, int startingAmount, int stepAmount, String title, String unit, ZonedDateTime cycleTime) {
         // !!!
     }
 
@@ -83,6 +90,19 @@ public abstract class Habit {
     sorts tags by alphabetical order
      */
     public void addTag(Tag tag) {
+        // !!!
+    }
+
+    /*
+    EFFECTS:
+    Adds Habit to history
+    Resets Habit such that
+        this.currentAmount = startingAmount
+
+        overloadAmount = 0
+        progressPercentage = 0
+     */
+    public void cycleHabit() {
         // !!!
     }
 
@@ -126,6 +146,10 @@ public abstract class Habit {
     public void setProgressType(ProgressType progressType) {
         this.progressType = progressType;
     }
+
+    public void setCycleTime(ZonedDateTime cycleTime) {
+        this.cycleTime = cycleTime;
+    }
     
     public int getCurrentAmount() {
         return currentAmount;
@@ -165,6 +189,14 @@ public abstract class Habit {
 
     public String getUnit() {
         return unit;
+    }
+
+    public LocalDate getDay() {
+        return day;
+    }
+
+    public ZonedDateTime getCycleTime() {
+        return cycleTime;
     }
 
     public List<Habit> getHistory() {
