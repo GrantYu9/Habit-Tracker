@@ -2,6 +2,8 @@ package model.habit;
 
 import java.time.ZonedDateTime;
 
+import model.organization.specialpages.AllHabitsPage;
+
 /*
 A habit that advances in natural number steps towards a goal
  */
@@ -20,11 +22,16 @@ public class HabitIncrement extends Habit {
     startingAmount < goal
     EFFECTS:
     Instantiates a habit in accordance with the Habit abstract class constructor
-    progressType = UNDERDONE
      */
-    public HabitIncrement(int goal, int startingAmount, int stepAmount, String title, String unit, ZonedDateTime cycleTime) {
-        super(goal, startingAmount, stepAmount, title, unit, cycleTime);
-        // !!!
+    public HabitIncrement(
+        int goal, 
+        int startingAmount, 
+        int stepAmount, 
+        String title, 
+        String unit, 
+        ZonedDateTime cycleTime, 
+        AllHabitsPage allHabitsPage) {
+        super(goal, startingAmount, stepAmount, title, unit, cycleTime, allHabitsPage);
     }
 
     @Override

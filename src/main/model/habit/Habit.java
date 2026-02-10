@@ -3,9 +3,14 @@ package model.habit;
 import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import java.util.List;
 
 import model.organization.Tag;
+import model.organization.specialpages.AllHabitsPage;
 
 /*
 An abstract class for BuildHabit and BreakHabit
@@ -65,13 +70,40 @@ public abstract class Habit {
         overloadAmount = 0
         progressPercentage = 0
         viewMode = BAR
+        progressType = UNDERDONE
         day = LocalDate.now()
         history = new ArrayList<>()
-    Adds Habit to AllHabitsPage
+        tags = new ArrayList<>()
+    Adds this to AllHabitsPage
     Calls cycleHabit() every time cycleTime occurs
     */
-    public Habit(int goal, int startingAmount, int stepAmount, String title, String unit, ZonedDateTime cycleTime) {
-        // !!!
+    public Habit(
+        int goal, 
+        int startingAmount, 
+        int stepAmount,
+        String title, 
+        String unit, 
+        ZonedDateTime cycleTime, 
+        AllHabitsPage allHabitsPage) {
+        this.currentAmount = startingAmount;
+        this.goal = goal;
+        this.startingAmount = startingAmount;
+        this.stepAmount = stepAmount;
+        this.title = title.strip();
+        this.unit = unit.strip();
+        this.cycleTime = cycleTime;
+
+        overloadAmount = 0;
+        progressPercentage = 0;
+        viewMode = ViewMode.BAR;
+        progressType = ProgressType.UNDERDONE;
+        day = LocalDate.now();
+        history = new ArrayList<>();
+        tags = new ArrayList<>();
+
+        allHabitsPage.addToAllHabitsPage(this);
+
+        // !!! calls cycleHabit() every time cycleTime occurs
     }
 
     public abstract int calculateOverloadAmount(int currentAmount, int goal);
@@ -81,29 +113,34 @@ public abstract class Habit {
     public abstract void setCurrentAmount(int currentAmount);
 
     /*
-    REQUIRES:
-    tag has at least one alphabetical character
-    MODIFIES:
-    this
     EFFECTS:
-    appends tag to tags, with surrounding whitespace removed
-    sorts tags by alphabetical order
+    Adds this to history
+    Resets this such that
+        this.currentAmount = startingAmount
+        overloadAmount = 0
+        progressPercentage = 0
+        progressType = UNDERDONE
+        day = LocalDate.now()
      */
-    public void addTag(Tag tag) {
-        // !!!
+    public void cycleHabit() {
+        history.add(this);
+        this.currentAmount = startingAmount;
+        overloadAmount = 0;
+        progressPercentage = 0;
+        progressType = ProgressType.UNDERDONE;
+        day = LocalDate.now();
     }
 
     /*
+    MODIFIES:
+    this
     EFFECTS:
-    Adds Habit to history
-    Resets Habit such that
-        this.currentAmount = startingAmount
-
-        overloadAmount = 0
-        progressPercentage = 0
+    appends tag to tags
+    sorts tags by alphabetical order
      */
-    public void cycleHabit() {
-        // !!!
+    public void addTag(Tag tag) {
+        tags.add(tag);
+        tags.sort(Comparator.comparing(t -> t.getTitle()));
     }
 
     // REQUIRES: incrementAmount > 0
