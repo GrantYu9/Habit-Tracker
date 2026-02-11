@@ -1,7 +1,9 @@
 package model.habit;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.ZonedDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.concurrent.Executors;
@@ -24,12 +26,6 @@ public abstract class Habit {
     private int progressPercentage; // Amount of progress made towards a goal
     private int startingAmount; // The starting amount a user sets
     private int stepAmount; // How much one wants to advance by; stepAmount > 0
-
-    private ViewMode viewMode; // How one can view the habit
-    private enum ViewMode {
-        BAR, // The default way to view a habit and how one can interact with it
-        HEATMAP // The heatmap to view history
-    }
     private ProgressType progressType; // Progress relative to the goal
     /*
     Warning: The behaviour of this enum is different between the derived classes.
@@ -42,12 +38,14 @@ public abstract class Habit {
         DONE,
         OVERLOADED
     }
+    private ViewMode viewMode; // How one can view the habit
+    private enum ViewMode {
+        BAR, // The default way to view a habit and how one can interact with it
+        HEATMAP // The heatmap to view history
+    }
 
     private String title; // A title for the habit
     private String unit; // Type of units. E.g. mL or steps
-
-    private LocalDate day; // Day of the habit
-    private ZonedDateTime cycleTime; // Time that the habit resets every day
 
     private List<Habit> history; // A record of past data of the habit
     private List<Tag> tags; // Labels that can be attached to the habit for organization
@@ -59,51 +57,44 @@ public abstract class Habit {
     unit has at least one character
     EFFECTS:
     Instantiates a habit such that
-        this.currentAmount = startingAmount
         this.goal = goal
         this.startingAmount = startingAmount
         this.stepAmount = stepAmount
         this.title = title, with surrounding whitespace trimmed
         this.unit = unit, with surrounding whitespace trimmed
-        this.cycleTime = cycleTime
 
+        this.currentAmount = startingAmount
         overloadAmount = 0
         progressPercentage = 0
         viewMode = BAR
         progressType = UNDERDONE
-        day = LocalDate.now()
         history = new ArrayList<>()
         tags = new ArrayList<>()
-    Adds this to AllHabitsPage
-    Calls cycleHabit() every time cycleTime occurs
+    Adds this to AllHabitsPages
     */
     public Habit(
         int goal, 
         int startingAmount, 
         int stepAmount,
-        String title, 
-        String unit, 
-        ZonedDateTime cycleTime, 
-        AllHabitsPage allHabitsPage) {
-        this.currentAmount = startingAmount;
+        String title,
+        String unit,
+        AllHabitsPage allHabitsPage
+    ) {
         this.goal = goal;
         this.startingAmount = startingAmount;
         this.stepAmount = stepAmount;
         this.title = title.strip();
         this.unit = unit.strip();
-        this.cycleTime = cycleTime;
 
+        this.currentAmount = startingAmount;
         overloadAmount = 0;
         progressPercentage = 0;
         viewMode = ViewMode.BAR;
         progressType = ProgressType.UNDERDONE;
-        day = LocalDate.now();
         history = new ArrayList<>();
         tags = new ArrayList<>();
 
         allHabitsPage.addToAllHabitsPage(this);
-
-        // !!! calls cycleHabit() every time cycleTime occurs
     }
 
     public abstract int calculateOverloadAmount(int currentAmount, int goal);
@@ -112,24 +103,27 @@ public abstract class Habit {
 
     public abstract void setCurrentAmount(int currentAmount);
 
+    // !!!
     /*
     EFFECTS:
     Adds this to history
-    Resets this such that
+    Removes this from AllHabitsPage
+    Calls constructor to make a new habit that acts as a resetted form of this, such that
         this.currentAmount = startingAmount
         overloadAmount = 0
         progressPercentage = 0
         progressType = UNDERDONE
-        day = LocalDate.now()
-     */
-    public void cycleHabit() {
+
+        And all other fields are as is in this
+     
+    public Habit cycleHabit() {
         history.add(this);
         this.currentAmount = startingAmount;
         overloadAmount = 0;
         progressPercentage = 0;
         progressType = ProgressType.UNDERDONE;
-        day = LocalDate.now();
     }
+    */
 
     /*
     MODIFIES:
@@ -138,12 +132,12 @@ public abstract class Habit {
     appends tag to tags
     sorts tags by alphabetical order
      */
-    public void addTag(Tag tag) {
+    public void addTagAndSortTags(Tag tag) {
         tags.add(tag);
         tags.sort(Comparator.comparing(t -> t.getTitle()));
     }
 
-    // REQUIRES: incrementAmount > 0
+    // REQUIRES: stepAmount > 0
     public void setStepAmount(int incrementAmount) {
         this.stepAmount = incrementAmount;
     }
@@ -176,16 +170,12 @@ public abstract class Habit {
         this.startingAmount = startingAmount;
     }
 
-    public void setViewMode(ViewMode viewMode) {
-        this.viewMode = viewMode;
-    }
-
     public void setProgressType(ProgressType progressType) {
         this.progressType = progressType;
     }
 
-    public void setCycleTime(ZonedDateTime cycleTime) {
-        this.cycleTime = cycleTime;
+    public void setViewMode(ViewMode viewMode) {
+        this.viewMode = viewMode;
     }
     
     public int getCurrentAmount() {
@@ -211,13 +201,13 @@ public abstract class Habit {
     public int getStepAmount() {
         return stepAmount;
     }
-    
-    public ViewMode getViewMode() {
-        return viewMode;
-    }
 
     public ProgressType getProgressType() {
         return progressType;
+    }
+
+        public ViewMode getViewMode() {
+        return viewMode;
     }
 
     public String getTitle() {
@@ -226,14 +216,6 @@ public abstract class Habit {
 
     public String getUnit() {
         return unit;
-    }
-
-    public LocalDate getDay() {
-        return day;
-    }
-
-    public ZonedDateTime getCycleTime() {
-        return cycleTime;
     }
 
     public List<Habit> getHistory() {

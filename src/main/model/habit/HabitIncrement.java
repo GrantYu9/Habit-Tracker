@@ -29,9 +29,9 @@ public class HabitIncrement extends Habit {
         int stepAmount, 
         String title, 
         String unit, 
-        ZonedDateTime cycleTime, 
-        AllHabitsPage allHabitsPage) {
-        super(goal, startingAmount, stepAmount, title, unit, cycleTime, allHabitsPage);
+        AllHabitsPage allHabitsPage
+    ) {
+        super(goal, startingAmount, stepAmount, title, unit, allHabitsPage);
     }
 
     @Override
