@@ -1,8 +1,7 @@
 package model.habit;
 
-import java.time.ZonedDateTime;
-
 import model.organization.specialpages.AllHabitsPage;
+import model.habit.Habit.ProgressType;
 
 /*
 A habit that advances in negative integer steps towards a goal
@@ -29,9 +28,8 @@ public class HabitDecrement extends Habit {
         int stepAmount, 
         String title, 
         String unit, 
-        ZonedDateTime cycleTime, 
         AllHabitsPage allHabitsPage) {
-        super(goal, startingAmount, stepAmount, title, unit, cycleTime, allHabitsPage);
+        super(goal, startingAmount, stepAmount, title, unit, allHabitsPage);
     }
 
     @Override

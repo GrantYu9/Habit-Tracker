@@ -10,22 +10,13 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import model.habit.Habit.ProgressType;
+import model.habit.Habit.ViewMode;
 import model.organization.Tag;
 import model.organization.specialpages.AllHabitsPage;
 
 // We use HabitIncrement as a way to test Habit
 public class TestHabit {
-    private enum ProgressType {
-        UNDERDONE,
-        DONE,
-        OVERLOADED
-    }
-
-    private enum ViewMode {
-        BAR,
-        HEATMAP
-    }
-
     private AllHabitsPage testAllHabitsPage;
     
     private Habit testHabitA; // Boolean
@@ -34,11 +25,15 @@ public class TestHabit {
     private Habit testHabitD; // Headstart
     private Habit testHabitE; // Funny title and unit
 
+    private HabitSnapshot testHabitSnapshotA; // For testHabitA
+
     private Tag tagA;
     private Tag tagB;
     private Tag tagC; // Actually mimics tagA
 
-    private List<Habit> whatShouldBe;
+    private List<Habit> whatShouldBeHabit;
+    private List<HabitSnapshot> whatShouldBeHabitSnapshot;
+    private List<Tag> whatShouldBeTag;
     
     @BeforeEach
     void runBefore() {
@@ -50,16 +45,18 @@ public class TestHabit {
         testHabitD = new HabitIncrement(5, 1, 1, "testHabitD", "km", testAllHabitsPage);
         testHabitE = new HabitIncrement(5, 0, 1, " super silly Title ", " super silly Unit", testAllHabitsPage);
 
+        testHabitSnapshotA = new HabitSnapshot(0, 1, 0, 0, 0, 1, ProgressType.UNDERDONE, null);
+
         tagA = new Tag("A");
         tagB = new Tag("B");
         tagC = new Tag("a");
 
-        whatShouldBe = new ArrayList<>();
+        whatShouldBeHabit = new ArrayList<>();
     }
 
     @Test
     void testConstructorA() {
-        whatShouldBe.add(testHabitA);
+        whatShouldBeHabit.add(testHabitA);
         
         assertEquals(1, testHabitA.getGoal());
         assertEquals(0, testHabitA.getStartingAmount());
@@ -75,19 +72,19 @@ public class TestHabit {
         assertTrue(testHabitA.getHistory().isEmpty());
         assertTrue(testHabitA.getTags().isEmpty());
 
-        assertEquals(whatShouldBe, testAllHabitsPage.getHabits());
+        assertEquals(whatShouldBeHabit, testAllHabitsPage.getHabits());
     }
 
     @Test
     void testConstructorD() {
-        whatShouldBe.add(testHabitD);
+        whatShouldBeHabit.add(testHabitD);
         
         assertEquals(5, testHabitA.getGoal());
         assertEquals(1, testHabitA.getStartingAmount());
         assertEquals(1, testHabitA.getStepAmount());
         assertEquals("testHabitD", testHabitA.getTitle());
         assertTrue(testHabitA.getUnit().equals("km"));
-        assertEquals(whatShouldBe, testAllHabitsPage.getHabits());
+        assertEquals(whatShouldBeHabit, testAllHabitsPage.getHabits());
 
         assertTrue(testHabitD.getCurrentAmount() == testHabitD.getStartingAmount());
         assertEquals(0, testHabitA.getOverloadAmount());
@@ -97,7 +94,7 @@ public class TestHabit {
         assertTrue(testHabitA.getHistory().isEmpty());
         assertTrue(testHabitA.getTags().isEmpty());
 
-        assertEquals(whatShouldBe, testAllHabitsPage.getHabits());
+        assertEquals(whatShouldBeHabit, testAllHabitsPage.getHabits());
     }
 
     // Just to check title and unit trimming behaviour
@@ -109,21 +106,41 @@ public class TestHabit {
 
     @Test
     void testCycleHabit() {
-        // !!!
+        // needs some extra stuff with time
+
+        whatShouldBeHabitSnapshot.add(testHabitSnapshotA);
+
+        assertEquals(whatShouldBeHabitSnapshot, testHabitA.getHistory());
+        assertTrue(testHabitA.getStartingAmount() == testHabitA.getCurrentAmount());
+        assertEquals(0, testHabitA.getOverloadAmount());
+        assertEquals(0, testHabitA.getProgressPercentage());
+        assertEquals(ProgressType.UNDERDONE, testHabitA.getProgressType());
     }
 
     @Test
     void testAddTagAndSortTags() {
-        // !!!
+        testHabitA.addTagAndSortTags(tagB);
+        whatShouldBeTag.add(tagB);
+        assertEquals(whatShouldBeTag, testHabitA.getTags());
+
+        testHabitA.addTagAndSortTags(tagA);
+        whatShouldBeTag.add(0, tagA);
+        assertEquals(whatShouldBeTag, testHabitA.getTags());
+
+        testHabitA.addTagAndSortTags(tagC);
+        whatShouldBeTag.add(1, tagC);
+        assertEquals(whatShouldBeTag, testHabitA.getTags());
     }
 
     @Test
     void testSetTitle() {
-        // !!!
+        testHabitA.setTitle(" nuh uh Uh ");
+        assertTrue(testHabitA.getTitle().equals("nuh uh uh"));
     }
 
     @Test
     void testSetUnit() {
-        // !!!
+        testHabitA.setUnit(" sips, sips, and more sips ");
+        assertTrue(testHabitA.getUnit().equals(" sips, sips, and more sips "));
     }
 }

@@ -1,8 +1,7 @@
 package model.habit;
 
-import java.time.ZonedDateTime;
-
 import model.organization.specialpages.AllHabitsPage;
+import model.habit.Habit.ProgressType;
 
 /*
 A habit that advances in natural number steps towards a goal

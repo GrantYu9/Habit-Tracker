@@ -1,14 +1,7 @@
 package model.habit;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.ZonedDateTime;
-import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 import java.util.List;
 
 import model.organization.Tag;
@@ -33,13 +26,13 @@ public abstract class Habit {
     The documentation will be located near the tops of each derived class, where the
     variables would be declared.
      */
-    private enum ProgressType {
+    public enum ProgressType {
         UNDERDONE,
         DONE,
         OVERLOADED
     }
     private ViewMode viewMode; // How one can view the habit
-    private enum ViewMode {
+    public enum ViewMode {
         BAR, // The default way to view a habit and how one can interact with it
         HEATMAP // The heatmap to view history
     }
@@ -47,7 +40,7 @@ public abstract class Habit {
     private String title; // A title for the habit
     private String unit; // Type of units. E.g. mL or steps
 
-    private List<Habit> history; // A record of past data of the habit
+    private List<HabitSnapshot> history; // A record of past data of the habit
     private List<Tag> tags; // Labels that can be attached to the habit for organization
 
     /*
@@ -103,27 +96,27 @@ public abstract class Habit {
 
     public abstract void setCurrentAmount(int currentAmount);
 
-    // !!!
+    // !!! needs functionality with time
     /*
     EFFECTS:
-    Adds this to history
-    Removes this from AllHabitsPage
-    Calls constructor to make a new habit that acts as a resetted form of this, such that
+    Instantiates an instance of HabitSnapshot with certain data of this
+        currentAmount
+        goal
+        overloadAmount
+        progressPercentage
+        startingAmount
+        progressType
+        unit
+    Adds the instance to history
+    Resets this such that
         this.currentAmount = startingAmount
         overloadAmount = 0
         progressPercentage = 0
         progressType = UNDERDONE
-
-        And all other fields are as is in this
-     
-    public Habit cycleHabit() {
-        history.add(this);
-        this.currentAmount = startingAmount;
-        overloadAmount = 0;
-        progressPercentage = 0;
-        progressType = ProgressType.UNDERDONE;
+     */
+    public void cycleHabit() {
+        // !!!
     }
-    */
 
     /*
     MODIFIES:
@@ -218,7 +211,7 @@ public abstract class Habit {
         return unit;
     }
 
-    public List<Habit> getHistory() {
+    public List<HabitSnapshot> getHistory() {
         return this.history;
     }
 

@@ -1,8 +1,6 @@
 package model.habit;
 
-import java.util.List;
-
-import model.organization.Tag;
+import model.habit.Habit.ProgressType;
 
 /*
 A snapshot of a day of a habit, for history field of Habit abstract class
@@ -17,17 +15,6 @@ public class HabitSnapshot {
     private int startingAmount; // The starting amount a user sets
     private int stepAmount; // How much one wants to advance by; stepAmount > 0
     private ProgressType progressType; // Progress relative to the goal
-    /*
-    Warning: The behaviour of this enum is different between the derived classes.
-    As such, please read the documentation that will be provided.
-    The documentation will be located near the tops of each derived class, where the
-    variables would be declared.
-     */
-    private enum ProgressType {
-        UNDERDONE,
-        DONE,
-        OVERLOADED
-    }
 
     private String unit; // Type of units. E.g. mL or steps
 
@@ -39,7 +26,7 @@ public class HabitSnapshot {
         int progressPercentage,
         int startingAmount,
         int stepAmount,
-        ProgressType progressType,
+        ProgressType underdone,
         String unit
     ) {
         // !!!
