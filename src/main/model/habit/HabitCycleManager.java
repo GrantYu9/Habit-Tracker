@@ -15,10 +15,13 @@ public class HabitCycleManager {
 
     /*
     Effects:
+    habits = allHabitsPage;
     Instantiates HabitManager such that
-    For each habit, 
+        For each habit,
+            Calls modifyHabitAtStartup, which inserts a HabitSnapshot into history for each elapsed day and recalculates
+            the next nextCycleTime to update the nextCycleTime and day
      */
-    public HabitCycleManager() {
+    public HabitCycleManager(AllHabitsPage allHabitsPage) {
         // !!!
     }
 
@@ -30,12 +33,12 @@ public class HabitCycleManager {
     EFFECTS:
     Determines if we should reset the habit and if so, by how many times
     If nextCycleTime was earlier than now
-        Finds the time difference from lastTime and now and adds the appropriate amount of HabitSnapshots in history
+        Finds the time difference from lastTime and adds a HabitSnapshot for each day
     Regardless,
         Calculates nextCycleTime and sets this.nextCycleTime to the new one
         Also sets day to new, appropriate day
      */
-    public void cycleHabitAtStartup(Habit habit, LocalDateTime lastTime) {
+    public void modifyHabitAtStartup(Habit habit, LocalDateTime lastTime) {
         // !!!
     }
 
@@ -61,7 +64,7 @@ public class HabitCycleManager {
         progressType = UNDERDONE
     Calculates nextCycleTime and sets this.nextCycleTime to the new one
      */
-    public void cycleHabitWhileRunning(Habit habit) {
+    public void cycleHabit(Habit habit) {
         // !!!
     }
 

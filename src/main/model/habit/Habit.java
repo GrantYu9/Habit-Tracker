@@ -30,10 +30,9 @@ public abstract class Habit {
     private int stepAmount; // How much one wants to advance by; stepAmount > 0
     private ProgressType progressType; // Progress relative to the goal
     /*
-    Warning: The behaviour of this enum is different between the derived classes.
-    As such, please read the documentation that will be provided.
-    The documentation will be located near the tops of each derived class, where the
-    variables would be declared.
+    Warning: 
+    The behaviour of this enum is different between the derived classes. As such, please read the documentation that 
+    will be provided near the tops of each derived classes, where the variables would be declared
      */
     public enum ProgressType {
         UNDERDONE,
@@ -49,10 +48,9 @@ public abstract class Habit {
     private String title; // A title for the habit
     private String unit; // Type of units. E.g. mL or steps
 
-    private LocalTime cycleTime; // Abstractly, when the habit needs to cycle every day
-    private LocalDate day; // The day of the habit
-    
-    private LocalDateTime nextCycleTime; // If app is up, when the habit needs to cycle
+    private LocalTime cycleTime; // Abstractly, when the habit needs to cycle every day as a clock time
+    private LocalDate day; // The day of the habit 
+    private LocalDateTime nextCycleTime; // Precisely when the habit needs to cycle
 
     private List<HabitSnapshot> history; // A record of past data of the habit
     private List<Tag> tags; // Labels that can be attached to the habit for organization
