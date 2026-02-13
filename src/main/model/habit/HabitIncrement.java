@@ -1,6 +1,9 @@
 package model.habit;
 
 import model.organization.specialpages.AllHabitsPage;
+
+import java.time.LocalTime;
+
 import model.habit.Habit.ProgressType;
 
 /*
@@ -28,9 +31,10 @@ public class HabitIncrement extends Habit {
         int stepAmount, 
         String title, 
         String unit, 
+        LocalTime cycleTime,
         AllHabitsPage allHabitsPage
     ) {
-        super(goal, startingAmount, stepAmount, title, unit, allHabitsPage);
+        super(goal, startingAmount, stepAmount, title, unit, cycleTime, allHabitsPage);
     }
 
     @Override
@@ -60,7 +64,7 @@ public class HabitIncrement extends Habit {
     }
 
     @Override
-    // REQUIRES: startingAmount < currentAmount <= goal
+    // REQUIRES: startingAmount <= currentAmount <= goal
     // EFFECTS: Calculates how much progress has been made towards the goal as a natural number percentage
     public int calculateProgressPercentage(int startingAmount, int currentAmount, int goal) {
         return 0;

@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +19,8 @@ import model.organization.specialpages.AllHabitsPage;
 // We use HabitIncrement as a way to test Habit
 public class TestHabit {
     private AllHabitsPage testAllHabitsPage;
+
+    private LocalTime timeOne;
     
     private Habit testHabitA; // Boolean
     private Habit testHabitB; // Step
@@ -38,6 +41,8 @@ public class TestHabit {
     @BeforeEach
     void runBefore() {
         testAllHabitsPage = new AllHabitsPage();
+
+        timeOne = uhhhhh;
 
         testHabitA = new HabitIncrement(1, 0, 1, "testHabitA", null, testAllHabitsPage);
         testHabitB = new HabitIncrement(5, 0, 1, "testHabitB", "sips", testAllHabitsPage);

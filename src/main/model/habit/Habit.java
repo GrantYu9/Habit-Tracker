@@ -1,5 +1,14 @@
 package model.habit;
 
+/*
+We use local time to capture when the user wants to cycle, then covert it to
+local date time and add by 24 hr to cycle
+We could also add in a cycle by how much feature
+ */
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -40,6 +49,11 @@ public abstract class Habit {
     private String title; // A title for the habit
     private String unit; // Type of units. E.g. mL or steps
 
+    private LocalTime cycleTime; // Abstractly, when the habit needs to cycle every day
+    private LocalDate day; // The day of the habit
+    
+    private LocalDateTime nextCycleTime; // If app is up, when the habit needs to cycle
+
     private List<HabitSnapshot> history; // A record of past data of the habit
     private List<Tag> tags; // Labels that can be attached to the habit for organization
 
@@ -55,15 +69,18 @@ public abstract class Habit {
         this.stepAmount = stepAmount
         this.title = title, with surrounding whitespace trimmed
         this.unit = unit, with surrounding whitespace trimmed
+        this.cycleTime = cycleTime
 
         this.currentAmount = startingAmount
         overloadAmount = 0
         progressPercentage = 0
         viewMode = BAR
         progressType = UNDERDONE
-        history = new ArrayList<>()
-        tags = new ArrayList<>()
-    Adds this to AllHabitsPages
+        day = LocalDate.now
+        history = new ArrayList
+        tags = new ArrayList
+    Calculates nextCycleTime and sets this.nextCycleTime to the new one
+    Adds this to AllHabitsPages and HabitCycleManager
     */
     public Habit(
         int goal, 
@@ -71,23 +88,10 @@ public abstract class Habit {
         int stepAmount,
         String title,
         String unit,
+        LocalTime cycleTime,
         AllHabitsPage allHabitsPage
     ) {
-        this.goal = goal;
-        this.startingAmount = startingAmount;
-        this.stepAmount = stepAmount;
-        this.title = title.strip();
-        this.unit = unit.strip();
-
-        this.currentAmount = startingAmount;
-        overloadAmount = 0;
-        progressPercentage = 0;
-        viewMode = ViewMode.BAR;
-        progressType = ProgressType.UNDERDONE;
-        history = new ArrayList<>();
-        tags = new ArrayList<>();
-
-        allHabitsPage.addToAllHabitsPage(this);
+        // !!!
     }
 
     public abstract int calculateOverloadAmount(int currentAmount, int goal);
@@ -96,38 +100,16 @@ public abstract class Habit {
 
     public abstract void setCurrentAmount(int currentAmount);
 
-    // !!! needs functionality with time
-    /*
-    EFFECTS:
-    Instantiates an instance of HabitSnapshot with certain data of this
-        currentAmount
-        goal
-        overloadAmount
-        progressPercentage
-        startingAmount
-        progressType
-        unit
-    Adds the instance to history
-    Resets this such that
-        this.currentAmount = startingAmount
-        overloadAmount = 0
-        progressPercentage = 0
-        progressType = UNDERDONE
-     */
-    public void cycleHabit() {
+    // MODIFIES: this
+    // EFFECTS: Appends tag to tags and sorts tags by alphabetical order
+    public void addTagAndSortTags(Tag tag) {
         // !!!
     }
 
-    /*
-    MODIFIES:
-    this
-    EFFECTS:
-    appends tag to tags
-    sorts tags by alphabetical order
-     */
-    public void addTagAndSortTags(Tag tag) {
-        tags.add(tag);
-        tags.sort(Comparator.comparing(t -> t.getTitle()));
+    // MODIFIES: this
+    // EFFECTS: Appends HabitSnapshot to history
+    public void addToHistory(HabitSnapshot habitSnapshot) {
+        // !!!
     }
 
     // REQUIRES: stepAmount > 0
@@ -170,6 +152,14 @@ public abstract class Habit {
     public void setViewMode(ViewMode viewMode) {
         this.viewMode = viewMode;
     }
+
+    public void setCycleTime(LocalTime cycleTime) {
+        this.cycleTime = cycleTime;
+    }
+
+    public void setNextCycleTime(LocalDateTime nextCycleTime) {
+        this.nextCycleTime = nextCycleTime;
+    }
     
     public int getCurrentAmount() {
         return currentAmount;
@@ -199,7 +189,7 @@ public abstract class Habit {
         return progressType;
     }
 
-        public ViewMode getViewMode() {
+    public ViewMode getViewMode() {
         return viewMode;
     }
 
@@ -209,6 +199,14 @@ public abstract class Habit {
 
     public String getUnit() {
         return unit;
+    }
+
+    public LocalTime getCycleTime() {
+        return cycleTime;
+    }
+
+    public LocalDateTime getNextCycleTime() {
+        return nextCycleTime;
     }
 
     public List<HabitSnapshot> getHistory() {
