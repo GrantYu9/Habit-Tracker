@@ -192,7 +192,7 @@ public abstract class Habit {
     // MODIFIES: this
     // EFFECTS: Appends HabitSnapshot to history
     public void addToHistory(HabitSnapshot habitSnapshot) {
-        // !!!
+        history.add(habitSnapshot);
     }
 
     // REQUIRES: stepAmount > 0
@@ -203,13 +203,13 @@ public abstract class Habit {
     // REQUIRES: title has at least one character
     // EFFECTS: this.title = title, with surrounding whitespace trimmed
     public void setTitle(String title) {
-        this.title = title;
+        this.title = title.strip();
     }
 
     // REQUIRES: unit has at least one character
     // EFFECTS: this.unit = unit, with surrounding whitespace trimmed
     public void setUnit(String unit) {
-        this.unit = unit;
+        this.unit = unit.strip();
     }
 
     public void setGoal(int goal) {
