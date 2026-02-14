@@ -61,21 +61,20 @@ public abstract class Habit {
     REQUIRES:
     0 < stepAmount <= |goal|
     title has at least one character
-    unit has at least one character
     EFFECTS:
     Instantiates a habit such that
         this.goal = goal
         this.startingAmount = startingAmount
         this.stepAmount = stepAmount
         this.title = title, with surrounding whitespace trimmed
-        this.unit = unit, with surrounding whitespace trimmed
         this.cycleTime = cycleTime
+        this.currentDay = curentDay
 
         this.currentAmount = startingAmount
         overloadAmount = 0
         viewMode = BAR
         progressType = UNDERDONE
-        this.currentDay = LocalDate.now
+        unit = ""
         history = new ArrayList
         tags = new ArrayList
     Calculate progressPercentage and set this.progressPercentage to the output
@@ -88,14 +87,27 @@ public abstract class Habit {
         int startingAmount, 
         int stepAmount,
         String title,
-        String unit,
         LocalTime cycleTime,
         LocalDate currentDay,
 
         AllHabitsPage allHabitsPage,
         HabitCycleManager habitCycleManager
     ) {
-        // !!!
+        this.goal = goal;
+        this.startingAmount = startingAmount;
+        this.stepAmount = stepAmount;
+        this.title = title.strip();
+        this.cycleTime = cycleTime;
+        this.currentDay = currentDay;
+
+        this.currentAmount = this.startingAmount;
+        overloadAmount = 0;
+        viewMode = ViewMode.BAR;
+        progressType = ProgressType.UNDERDONE;
+        unit = "";
+        
+        history = new ArrayList<>();
+        tags = new ArrayList<>();
     }
 
     public abstract int calculateOverloadAmount(int currentAmount, int goal);

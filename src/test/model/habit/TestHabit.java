@@ -68,11 +68,11 @@ public class TestHabit {
 
         time = LocalDateTime.of(2026, 2, 13, 13, 0);
 
-        testHabitA = new HabitIncrement(1, 0, 1, "testHabitA", null, cycleTimeA, dayA, testAllHabitsPage, 
+        testHabitA = new HabitIncrement(1, 0, 1, "testHabitA", cycleTimeA, dayA, testAllHabitsPage, 
             testHabitCycleManager);
-        testHabitD = new HabitIncrement(5, 1, 1, "testHabitD", "km", cycleTimeD, dayA, testAllHabitsPage, 
+        testHabitD = new HabitIncrement(5, 1, 1, "testHabitD", cycleTimeD, dayA, testAllHabitsPage, 
             testHabitCycleManager);
-        testHabitE = new HabitIncrement(5, 0, 1, " silly Title ", " silly Unit ", cycleTimeA, dayA, 
+        testHabitE = new HabitIncrement(5, 0, 1, " silly Title ", cycleTimeA, dayA, 
             testAllHabitsPage, testHabitCycleManager);
 
         testHabitSnapshotA = new HabitSnapshot(0, 1, 0, 0, 0, 1, ProgressType.UNDERDONE, dayA, null);
@@ -94,7 +94,6 @@ public class TestHabit {
         assertEquals(0, testHabitA.getStartingAmount());
         assertEquals(1, testHabitA.getStepAmount());
         assertEquals("testHabitA", testHabitA.getTitle());
-        assertNull(testHabitA.getUnit());
         assertEquals(cycleTimeA, testHabitA.getCycleTime());
         assertTrue(testHabitA.getCurrentDay().isEqual(dayA));
 
@@ -102,6 +101,7 @@ public class TestHabit {
         assertEquals(0, testHabitA.getOverloadAmount());
         assertEquals(ViewMode.BAR, testHabitA.getViewMode());
         assertEquals(ProgressType.UNDERDONE, testHabitA.getProgressType());
+        assertEquals("", testHabitA.getUnit());
         assertTrue(testHabitA.getHistory().isEmpty());
         assertTrue(testHabitA.getTags().isEmpty());
 

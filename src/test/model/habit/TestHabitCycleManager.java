@@ -72,13 +72,13 @@ public class TestHabitCycleManager {
         targetFor2330 = LocalDateTime.of(2026, 2, 13, 23, 0);
         stepOverDate = LocalDate.of(2026, 2, 14);
 
-        testHabitMidnightRecent = new HabitIncrement(1, 0, 1, "Workout", null, cycleTimeMidnight,
+        testHabitMidnightRecent = new HabitIncrement(1, 0, 1, "Workout", cycleTimeMidnight,
             lastTimeRecent.toLocalDate(), testAllHabitsPageRecent, testHabitCycleManagerRecent);
-        testHabit2330Recent = new HabitIncrement(1, 0, 1, "Workout", null, cycleTime2330, 
+        testHabit2330Recent = new HabitIncrement(1, 0, 1, "Workout", cycleTime2330, 
             lastTimeRecent.toLocalDate(), testAllHabitsPageRecent, testHabitCycleManagerRecent);
-        testHabitMidnightLate = new HabitIncrement(1, 0, 1, "Workout", null, cycleTimeMidnight, 
+        testHabitMidnightLate = new HabitIncrement(1, 0, 1, "Workout", cycleTimeMidnight, 
             lastTimeLate.toLocalDate(), testAllHabitsPageLate, testHabitCycleManagerLate);
-        testHabit2330Late = new HabitIncrement(1, 0, 1, "Workout", null, cycleTime2330, 
+        testHabit2330Late = new HabitIncrement(1, 0, 1, "Workout", cycleTime2330, 
             lastTimeLate.toLocalDate(), testAllHabitsPageLate, testHabitCycleManagerLate);
 
         testHabitSnapshotRecentNoChange = new HabitSnapshot(0, 1, 0, 0, 0, 1, ProgressType.UNDERDONE, 
@@ -453,8 +453,8 @@ public class TestHabitCycleManager {
     // EFFECTS: Outputs a copy of the habit
     public Habit copyHabit(Habit habit) {
         return new HabitIncrement(habit.getGoal(), habit.getStartingAmount(), habit.getStepAmount(), habit.getTitle(),
-         habit.getUnit(), habit.getCycleTime(), habit.getCurrentDay(), testAllHabitsPageRecent, 
-         testHabitCycleManagerRecent);
+            habit.getCycleTime(), habit.getCurrentDay(), testAllHabitsPageRecent, 
+            testHabitCycleManagerRecent);
     }
 
     // Spy class to check if scheduleHabit is called

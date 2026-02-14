@@ -46,8 +46,8 @@ public class TestPage {
         localTime = LocalTime.of(23, 30);
         localDateTime = LocalDateTime.of(localDate, localTime);
 
-        habitA = new HabitIncrement(1, 0, 1, "Workout", null, localTime, localDate, allHabitsPage, habitCycleManager);
-        habitB = new HabitIncrement(1, 0, 1, "Workout some more", null, localTime, localDate, allHabitsPage, habitCycleManager);
+        habitA = new HabitIncrement(1, 0, 1, "Workout", localTime, localDate, allHabitsPage, habitCycleManager);
+        habitB = new HabitIncrement(1, 0, 1, "Workout some more", localTime, localDate, allHabitsPage, habitCycleManager);
 
         allHabitsPage = new AllHabitsPage();
         habitCycleManager = new HabitCycleManager(allHabitsPage, localDateTime);

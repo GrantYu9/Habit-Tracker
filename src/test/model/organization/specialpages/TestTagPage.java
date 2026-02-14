@@ -48,8 +48,8 @@ public class TestTagPage {
 
         tagA = new Tag("tagA");
 
-        habitA = new HabitIncrement(1, 0, 1, "Workout", null, localTime, localDate, allHabitsPage, habitCycleManager);
-        habitB = new HabitIncrement(1, 0, 1, "More working out", null, localTime, localDate, allHabitsPage, habitCycleManager);
+        habitA = new HabitIncrement(1, 0, 1, "Workout", localTime, localDate, allHabitsPage, habitCycleManager);
+        habitB = new HabitIncrement(1, 0, 1, "More working out", localTime, localDate, allHabitsPage, habitCycleManager);
 
         allTagPages = new AllTagPagesPage();
         allHabitsPage = new AllHabitsPage();

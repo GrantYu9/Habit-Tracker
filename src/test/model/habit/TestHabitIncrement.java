@@ -38,15 +38,15 @@ public class TestHabitIncrement {
         localTime = LocalTime.of(23, 30);
         localDateTime = LocalDateTime.of(localDate, localTime);
 
-        testHabitIncrementA = new HabitIncrement(1, 0, 1, "Workout", null, localTime, localDate, testAllHabitsPage, 
+        testHabitIncrementA = new HabitIncrement(1, 0, 1, "Workout", localTime, localDate, testAllHabitsPage, 
             testHabitCycleManager);
-        testHabitIncrementB = new HabitIncrement(5, 0, 1, "Study", "study sessions", localTime, localDate, 
+        testHabitIncrementB = new HabitIncrement(5, 0, 1, "Study", localTime, localDate, 
             testAllHabitsPage, testHabitCycleManager);
-        testHabitIncrementC = new HabitIncrement(10, 0, 2, "Hydration", "sips", localTime, localDate, 
+        testHabitIncrementC = new HabitIncrement(10, 0, 2, "Hydration", localTime, localDate, 
             testAllHabitsPage, testHabitCycleManager);
-        testHabitIncrementD = new HabitIncrement(5, 1, 1, "Back stength", "pullups", localTime, localDate, 
+        testHabitIncrementD = new HabitIncrement(5, 1, 1, "Back stength", localTime, localDate, 
             testAllHabitsPage, testHabitCycleManager);
-        testHabitIncrementE = new HabitIncrement(3, -3, 1, "Bulking", "Net 100s of calories", localTime, localDate, 
+        testHabitIncrementE = new HabitIncrement(3, -3, 1, "Bulking", localTime, localDate, 
             testAllHabitsPage, testHabitCycleManager);
     }
 
@@ -465,7 +465,7 @@ public class TestHabitIncrement {
     // EFFECTS: Creates a copy of habitIncrement
     public Habit copyHabitIncrement (Habit habitIncrement) {
         return new HabitIncrement(habitIncrement.getGoal(), habitIncrement.getStartingAmount(), 
-            habitIncrement.getStepAmount(), habitIncrement.getTitle(), habitIncrement.getUnit(), 
+            habitIncrement.getStepAmount(), habitIncrement.getTitle(), 
             habitIncrement.getCycleTime(), habitIncrement.getCurrentDay(), testAllHabitsPage, testHabitCycleManager);
     }
 }

@@ -31,14 +31,13 @@ public class HabitDecrement extends Habit {
         int startingAmount, 
         int stepAmount, 
         String title, 
-        String unit, 
         LocalTime cycleTime,
         LocalDate currentDay,
         
         AllHabitsPage allHabitsPage,
         HabitCycleManager habitCycleManager
     ) {
-        super(goal, startingAmount, stepAmount, title, unit, cycleTime, currentDay, allHabitsPage, 
+        super(goal, startingAmount, stepAmount, title, cycleTime, currentDay, allHabitsPage, 
             habitCycleManager);
     }
 

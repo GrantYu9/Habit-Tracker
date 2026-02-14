@@ -38,15 +38,15 @@ public class TestHabitDecrement {
         localTime = LocalTime.of(23, 30);
         localDateTime = LocalDateTime.of(localDate, localTime);
 
-        testHabitDecrementA = new HabitDecrement(0, 1, 1, "Quitting smoking", null, localTime, localDate, 
+        testHabitDecrementA = new HabitDecrement(0, 1, 1, "Quitting smoking", localTime, localDate, 
             testAllHabitsPage, testHabitCycleManager);
-        testHabitDecrementB = new HabitDecrement(0, 5, 1, "Doomscrolling", "sessions", localTime, localDate, 
+        testHabitDecrementB = new HabitDecrement(0, 5, 1, "Doomscrolling", localTime, localDate, 
             testAllHabitsPage, testHabitCycleManager);
-        testHabitDecrementC = new HabitDecrement(0, 10, 2, "Snack abstination", "snacks avoided", localTime, localDate, 
+        testHabitDecrementC = new HabitDecrement(0, 10, 2, "Snack abstination", localTime, localDate, 
             testAllHabitsPage, testHabitCycleManager);
-        testHabitDecrementD = new HabitDecrement(5, 10, 1, "Locking In", "distractions avoided", localTime, localDate, 
+        testHabitDecrementD = new HabitDecrement(5, 10, 1, "Locking In", localTime, localDate, 
             testAllHabitsPage, testHabitCycleManager);
-        testHabitDecrementE = new HabitDecrement(-3, 3, 1, "Cutting", "Net 100s of calories", localTime, localDate, 
+        testHabitDecrementE = new HabitDecrement(-3, 3, 1, "Cutting", localTime, localDate, 
             testAllHabitsPage, testHabitCycleManager);
     }
 
@@ -469,7 +469,7 @@ public class TestHabitDecrement {
     // EFFECTS: Creates a copy of habitDecrement
     public Habit copyHabitDecrement (Habit habitDecrement) {
         return new HabitDecrement(habitDecrement.getGoal(), habitDecrement.getStartingAmount(), 
-            habitDecrement.getStepAmount(), habitDecrement.getTitle(), habitDecrement.getUnit(), 
+            habitDecrement.getStepAmount(), habitDecrement.getTitle(), 
             habitDecrement.getCycleTime(), habitDecrement.getCurrentDay(), testAllHabitsPage, testHabitCycleManager);
     }
 }
