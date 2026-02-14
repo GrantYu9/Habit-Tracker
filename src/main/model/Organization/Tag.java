@@ -13,14 +13,8 @@ public class Tag {
     private TagType tagType; // Type of the tag, which can alter behaviour
     public enum TagType {
         NORMAL, // A generic, customizable tag
-        /*
-        A tag that signals the habit should be on the home page
-         */
-        HOME,
-        /*
-        A tag that signals the habit should be on the favourite page
-         */
-        FAVOURITE
+        HOME, // A tag that signals the habit should be on the home page
+        FAVOURITE // A tag that signals the habit should be on the favourite page
     }
 
     private String title; // Title of the tag
@@ -46,7 +40,20 @@ public class Tag {
             colour = defaultColour
      */
     public Tag(String title) {
-        // !!!
+        this.title = title.strip();
+
+        String titleLowerCase = this.title.toLowerCase();
+        if (titleLowerCase.equals("home")) {
+            this.title = "Home";
+            tagType = TagType.HOME;
+            colour = homeColour;
+        } else if (titleLowerCase.equals("favourite")) {
+            this.title = "Favourite";
+            tagType = TagType.FAVOURITE;
+            colour = favouriteColour;
+        } else {
+            colour = defaultColour;
+        }
     }
 
     /*
