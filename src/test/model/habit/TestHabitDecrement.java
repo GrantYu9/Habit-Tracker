@@ -11,7 +11,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import model.habit.Habit.ProgressType;
-import model.organization.specialpages.AllHabitsPage;
+import model.organization.centralization.AllHabitsPage;
 
 public class TestHabitDecrement {
     private AllHabitsPage testAllHabitsPage;

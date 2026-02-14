@@ -1,6 +1,7 @@
-package model.organization;
+package model.organization.tree;
 
 import model.habit.Habit;
+import model.organization.centralization.AllGenericPages;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,8 +10,8 @@ import java.util.List;
 public class Page {
     private Order order; // Order to sort the habits
     public enum Order {
-        ALPHABETICAL,
-        MANUAL
+        ALPHABETICAL, // Alphabetical order
+        MANUAL // How the user wants to
     }
 
     private String title; // Title of the page
@@ -19,18 +20,25 @@ public class Page {
 
     /*
     REQUIRES:
-        title has at least one character
-    EFFECTS: initializes Page such that 
+    title has at least one character
+    EFFECTS: 
+    initializes Page such that 
         this.title = title, with surrounding whitespace removed
 
         order = ALPHABETICAL
         habits = new ArrayList<>()
+    Adds page to AllGenericPages
      */
-    public Page(String title) {
+    public Page(String title, AllGenericPages allGenericPages) {
         // !!!
     }
 
-    // REQUIRES:
+    // EFFECTS: Sorts habits as per order
+    public void sort() {
+        // !!!
+    }
+
+    // REQUIRES: habit can not be in any other page
     // MODIFIES: this
     // EFFECTS: appends habit to habits and sorts habits as per ORDER
     public void addHabit(Habit habit) {

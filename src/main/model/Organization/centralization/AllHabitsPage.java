@@ -1,4 +1,4 @@
-package model.organization.specialpages;
+package model.organization.centralization;
 
 import model.habit.Habit;
 
@@ -7,20 +7,14 @@ import java.util.List;
 
 // A page for all habits
 public class AllHabitsPage {
-    private String title;
-
     private List<Habit> habits;
 
-    /*
-    EFFECTS:
-    Instantiates AllHabitsPage such that
-        title = "All Habits"
-        habits = new ArrayList<>()
-     */
+    // EFFECTS: Instantiates AllHabitsPage such that habits = new ArrayList
     public AllHabitsPage() {
         // !!!
     }
 
+    // REQUIRES: habit is not already in habits
     // MODIFIES: this
     // EFFECTS: appends habit to habits
     public void addToAllHabitsPage(Habit habit) {

@@ -14,7 +14,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import model.organization.Tag;
-import model.organization.specialpages.AllHabitsPage;
+import model.organization.centralization.AllHabitsPage;
 import model.organization.specialpages.FavouritesPage;
 import model.organization.specialpages.HomePage;
 
@@ -138,11 +138,12 @@ public abstract class Habit {
     MODIFIES:
     this, homePage, favouritesPage
     EFFECTS:
-    If tag not in tags, appends tag to tags and instantiates a TagPage
+    If tag not in tags, appends tag to tags
     Special cases
         If tag.getTagType == HOME, adds tag to HomePage
         If tag.getTagType == FAVOURITE, adds tag to FavouritePage
-    Sorts tags by alphabetical order
+    If not a special tag, instantiates an instance of tagPage
+    Sorts tags by alphabetical order, with Favourites tag being first, and Home tag being second, if they exist
      */
     public void addTagAndSortTags(Tag tag, HomePage homePage, FavouritesPage favouritesPage) {
         // !!!

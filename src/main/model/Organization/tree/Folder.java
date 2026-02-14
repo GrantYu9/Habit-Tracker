@@ -1,4 +1,4 @@
-package model.organization;
+package model.organization.tree;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,13 +7,16 @@ import java.util.List;
 public class Folder {
     private String title;
 
-    private List<Folder> folders;
+    private Folder parentFolder;
+    private List<Folder> subFolders;
     private List<Page> pages;
 
     /*
     REQUIRES:
-        title has at least one character
-    EFFECTS: initializes Page such that 
+    title has at least one character
+    A folder of title can not already be in AllFolders
+    EFFECTS: 
+    Initializes Page such that 
         this.title = title, with surrounding whitespace removed
 
         folders = new ArrayList<>()
@@ -23,10 +26,16 @@ public class Folder {
         // !!!
     }
 
-    public void addToFolder(Folder folder) {
+    // REQUIRES: folder operand must be new
+    // MODIFIES: this
+    // EFFECTS: adds folder to subfolders
+    public void addToSubPages(Folder folder) {
         // !!!
     }
 
+    // REQUIRES: page operand must be new
+    // MODIFIES: this
+    // EFFECTS: adds page to pages
     public void addToFolder(Page page) {
         // !!!
     }
@@ -41,8 +50,12 @@ public class Folder {
         return title;
     }
 
-    public List<Folder> getFolders() {
-        return folders;
+    public Folder getParentFolder() {
+        return parentFolder;
+    }
+
+    public List<Folder> getSubFolders() {
+        return subFolders;
     }
 
     public List<Page> getPages() {

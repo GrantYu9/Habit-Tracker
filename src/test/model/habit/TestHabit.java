@@ -16,13 +16,23 @@ import org.junit.jupiter.api.Test;
 import model.habit.Habit.ProgressType;
 import model.habit.Habit.ViewMode;
 import model.organization.Tag;
-import model.organization.specialpages.AllHabitsPage;
+import model.organization.centralization.AllHabitsPage;
+import model.organization.centralization.AllTagPages;
+import model.organization.specialpages.FavouritesPage;
+import model.organization.specialpages.HomePage;
+import model.organization.specialpages.TagPage;
 
 // We use HabitIncrement as a way to test Habit
 public class TestHabit {
     // Fix naming consistency later !!!
     private AllHabitsPage testAllHabitsPage;
     private HabitCycleManager testHabitCycleManager;
+    private HomePage testHomePage;
+    private FavouritesPage testFavouritesPage;
+    private TagPage testTagPageA;
+    private TagPage testTagPageB;
+    private TagPage testTagPageC;
+    private AllTagPages testAllTagPages;
 
     private LocalTime cycleTimeA; // Midnight
     private LocalTime cycleTimeD; // 23:30
@@ -40,6 +50,8 @@ public class TestHabit {
     private Tag tagA;
     private Tag tagB;
     private Tag tagC; // Actually mimics tagA
+    private Tag tagHome; // Home tag
+    private Tag tagFavourite; // Favourite tag
 
     private List<Habit> whatShouldBeHabit;
     private List<HabitSnapshot> whatShouldBeHabitSnapshot;
@@ -49,6 +61,12 @@ public class TestHabit {
     void runBefore() {
         testAllHabitsPage = new AllHabitsPage();
         testHabitCycleManager = new HabitCycleManager(testAllHabitsPage, time);
+        testHomePage = new HomePage();
+        testFavouritesPage = new FavouritesPage();
+        testTagPageA = new TagPage(tagA, testAllTagPages);
+        testTagPageB = new TagPage(tagB, testAllTagPages);
+        testTagPageC = new TagPage(tagC, testAllTagPages);
+        testAllTagPages = new AllTagPages();
 
         cycleTimeA = LocalTime.of(0, 0);
         cycleTimeD = LocalTime.of(23, 30);
@@ -69,6 +87,8 @@ public class TestHabit {
         tagA = new Tag("A");
         tagB = new Tag("B");
         tagC = new Tag("a");
+        tagHome = new Tag("Home");
+        tagFavourite = new Tag("Favourite");
 
         whatShouldBeHabit = new ArrayList<>();
     }
@@ -129,18 +149,38 @@ public class TestHabit {
 
     @Test
     void testAddTagAndSortTags() {
-        assertTrue(false); // !!!
-        
-        testHabitA.addTagAndSortTags(tagB);
+        whatShouldBeHabit.add(testHabitA);
+
+        testHabitA.addTagAndSortTags(tagB, testHomePage, testFavouritesPage);
         whatShouldBeTag.add(tagB);
+        assertEquals(1, testAllTagPages.getTagPages().size());
+        assertEquals(whatShouldBeHabit, testAllTagPages.getTagPages().get(0).getHabits());
         assertEquals(whatShouldBeTag, testHabitA.getTags());
 
-        testHabitA.addTagAndSortTags(tagA);
+        testHabitA.addTagAndSortTags(tagB, testHomePage, testFavouritesPage);
+        assertEquals(1, testAllTagPages.getTagPages().size());
+        assertEquals(whatShouldBeTag, testHabitA.getTags());
+
+        testHabitA.addTagAndSortTags(tagA, testHomePage, testFavouritesPage);
         whatShouldBeTag.add(0, tagA);
+        assertEquals(2, testAllTagPages.getTagPages().size());
+        assertEquals(whatShouldBeHabit, testAllTagPages.getTagPages().get(1).getHabits());
         assertEquals(whatShouldBeTag, testHabitA.getTags());
 
-        testHabitA.addTagAndSortTags(tagC);
-        whatShouldBeTag.add(1, tagC);
+        testHabitA.addTagAndSortTags(tagHome, testHomePage, testFavouritesPage);
+        whatShouldBeTag.add(0, tagHome);
+        assertEquals(2, testAllTagPages.getTagPages().size());
+        assertEquals(whatShouldBeHabit, testHomePage.getHabits());
+
+        testHabitA.addTagAndSortTags(tagFavourite, testHomePage, testFavouritesPage);
+        whatShouldBeTag.add(0, tagFavourite);
+        assertEquals(2, testAllTagPages.getTagPages().size());
+        assertEquals(whatShouldBeHabit, testFavouritesPage.getHabits());
+
+        testHabitA.addTagAndSortTags(tagC, testHomePage, testFavouritesPage);
+        whatShouldBeTag.add(2, tagC);
+        assertEquals(3, testAllTagPages.getTagPages().size());
+        assertEquals(whatShouldBeHabit, testAllTagPages.getTagPages().get(2).getHabits());
         assertEquals(whatShouldBeTag, testHabitA.getTags());
     }
 

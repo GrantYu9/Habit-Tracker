@@ -8,7 +8,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-import model.organization.specialpages.AllHabitsPage;
+import model.organization.centralization.AllHabitsPage;
 
 // Manages when the habits need to cycle
 public class HabitCycleManager {

@@ -11,7 +11,7 @@ Searches for
  */
 public class Search {
 
-    // EFFECTS: Instantiates SearchMode to use search methods
+    // EFFECTS: Instantiates Search to use search methods
     public Search() {}
 
     /*

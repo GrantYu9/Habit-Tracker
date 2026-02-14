@@ -1,12 +1,11 @@
 package model.habit;
 
-import model.organization.specialpages.AllHabitsPage;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 import model.habit.Habit.ProgressType;
+import model.organization.centralization.AllHabitsPage;
 
 /*
 A habit that advances in natural number steps towards a goal

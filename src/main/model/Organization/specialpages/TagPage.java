@@ -1,6 +1,7 @@
 package model.organization.specialpages;
 
 import model.organization.Tag;
+import model.organization.centralization.AllTagPages;
 import model.habit.Habit;
 
 import java.util.ArrayList;
@@ -17,8 +18,9 @@ public class TagPage {
     Instantiates TagPage such that
         title = tag.getTitle()
         habits = new ArrayList<>()
+    Adds TagPage to AllTagPages, with the exception of Home and Favourite tags
      */
-    public TagPage(Tag tag) {
+    public TagPage(Tag tag, AllTagPages allTagPages) {
         // !!!
     }
 
