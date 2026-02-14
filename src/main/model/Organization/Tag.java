@@ -71,7 +71,18 @@ public class Tag {
         colour = favouriteColour
      */
     public void setTitle(String title) {
-        // !!!
+        this.title = title.strip();
+
+        String titleLowerCase = this.title.toLowerCase();
+        if (titleLowerCase.equals("Home")) {
+            this.title = "Home";
+            tagType = TagType.HOME;
+            colour = homeColour;
+        } else if (titleLowerCase.equals("Favourite")) {
+            this.title = "Favourite";
+            tagType = TagType.FAVOURITE;
+            colour = favouriteColour;
+        }
     }
 
     public void setDefaultColour(Color defaultColour) {
