@@ -14,9 +14,12 @@ import java.util.Comparator;
 import java.util.List;
 
 import model.organization.Tag;
+import model.organization.Tag.TagType;
 import model.organization.centralization.AllHabitsPage;
+import model.organization.centralization.AllTagPagesPage;
 import model.organization.specialpages.FavouritesPage;
 import model.organization.specialpages.HomePage;
+import model.organization.specialpages.TagPage;
 
 /*
 An abstract class for BuildHabit and BreakHabit
@@ -154,13 +157,36 @@ public abstract class Habit {
     EFFECTS:
     If tag not in tags, appends tag to tags
     Special cases
-        If tag.getTagType == HOME, adds tag to HomePage
-        If tag.getTagType == FAVOURITE, adds tag to FavouritePage
+        If tag.getTagType == FAVOURITE, adds habit to FavouritePage
+        If tag.getTagType == HOME, adds habit to HomePage
     If not a special tag, instantiates an instance of tagPage
     Sorts tags by alphabetical order, with Favourites tag being first, and Home tag being second, if they exist
      */
-    public void addTagAndSortTags(Tag tag, HomePage homePage, FavouritesPage favouritesPage) {
-        // !!!
+    public void addTagAndSortTags(Tag tag, HomePage homePage, FavouritesPage favouritesPage, 
+        AllTagPagesPage allTagPagesPage) {
+        if (!tags.contains(tag)) {
+            tags.add(tag);
+        }
+
+        tags.sort(Comparator.comparing(t -> t.getTitle()));
+
+        if (tag.getTagType() == TagType.FAVOURITE) {
+            favouritesPage.addToFavouritesPage(this);
+            tags.remove(tag);
+            tags.add(0, tag);
+        } else if (tag.getTagType() == TagType.HOME) {
+            homePage.addToHomePage(this);
+            if (tags.get(0).getTitle().equals("Favourite")) {
+                tags.remove(tag);
+                tags.add(1, tag);
+            } else {
+                tags.remove(tag);
+                tags.add(0, tag);
+            }
+        } else {
+            TagPage tagPage = new TagPage(tag, allTagPagesPage);
+            tagPage.addToTagPage(this);
+        }
     }
 
     // MODIFIES: this

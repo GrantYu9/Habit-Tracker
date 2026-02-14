@@ -49,6 +49,8 @@ public class TestHabit {
     private Tag tagHome; // Home tag
     private Tag tagFavourite; // Favourite tag
 
+    private AllTagPagesPage allTagPagesPage;
+
     private List<Habit> whatShouldBeHabit;
     private List<HabitSnapshot> whatShouldBeHabitSnapshot;
     private List<Tag> whatShouldBeTag;
@@ -144,33 +146,33 @@ public class TestHabit {
     void testAddTagAndSortTags() {
         whatShouldBeHabit.add(testHabitA);
 
-        testHabitA.addTagAndSortTags(tagB, testHomePage, testFavouritesPage);
+        testHabitA.addTagAndSortTags(tagB, testHomePage, testFavouritesPage, allTagPagesPage);
         whatShouldBeTag.add(tagB);
         assertEquals(1, testAllTagPages.getTagPages().size());
         assertEquals(whatShouldBeHabit, testAllTagPages.getTagPages().get(0).getHabits());
         assertEquals(whatShouldBeTag, testHabitA.getTags());
 
-        testHabitA.addTagAndSortTags(tagB, testHomePage, testFavouritesPage);
+        testHabitA.addTagAndSortTags(tagB, testHomePage, testFavouritesPage, allTagPagesPage);
         assertEquals(1, testAllTagPages.getTagPages().size());
         assertEquals(whatShouldBeTag, testHabitA.getTags());
 
-        testHabitA.addTagAndSortTags(tagA, testHomePage, testFavouritesPage);
+        testHabitA.addTagAndSortTags(tagA, testHomePage, testFavouritesPage, allTagPagesPage);
         whatShouldBeTag.add(0, tagA);
         assertEquals(2, testAllTagPages.getTagPages().size());
         assertEquals(whatShouldBeHabit, testAllTagPages.getTagPages().get(1).getHabits());
         assertEquals(whatShouldBeTag, testHabitA.getTags());
 
-        testHabitA.addTagAndSortTags(tagHome, testHomePage, testFavouritesPage);
+        testHabitA.addTagAndSortTags(tagHome, testHomePage, testFavouritesPage, allTagPagesPage);
         whatShouldBeTag.add(0, tagHome);
         assertEquals(2, testAllTagPages.getTagPages().size());
         assertEquals(whatShouldBeHabit, testHomePage.getHabits());
 
-        testHabitA.addTagAndSortTags(tagFavourite, testHomePage, testFavouritesPage);
+        testHabitA.addTagAndSortTags(tagFavourite, testHomePage, testFavouritesPage, allTagPagesPage);
         whatShouldBeTag.add(0, tagFavourite);
         assertEquals(2, testAllTagPages.getTagPages().size());
         assertEquals(whatShouldBeHabit, testFavouritesPage.getHabits());
 
-        testHabitA.addTagAndSortTags(tagC, testHomePage, testFavouritesPage);
+        testHabitA.addTagAndSortTags(tagC, testHomePage, testFavouritesPage, allTagPagesPage);
         whatShouldBeTag.add(2, tagC);
         assertEquals(3, testAllTagPages.getTagPages().size());
         assertEquals(whatShouldBeHabit, testAllTagPages.getTagPages().get(2).getHabits());

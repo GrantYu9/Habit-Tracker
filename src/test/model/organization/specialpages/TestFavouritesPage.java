@@ -17,6 +17,7 @@ import model.habit.HabitCycleManager;
 import model.habit.HabitIncrement;
 import model.organization.Tag;
 import model.organization.centralization.AllHabitsPage;
+import model.organization.centralization.AllTagPagesPage;
 
 public class TestFavouritesPage {
     private FavouritesPage favouritesPage;
@@ -31,6 +32,7 @@ public class TestFavouritesPage {
 
     private AllHabitsPage allHabitsPage;
     private HabitCycleManager habitCycleManager;
+    private AllTagPagesPage allTagPagesPage;
 
     private List<Habit> whatShouldBeHabit;
     
@@ -49,8 +51,8 @@ public class TestFavouritesPage {
         allHabitsPage = new AllHabitsPage();
         habitCycleManager = new HabitCycleManager(allHabitsPage, localDateTime);
 
-        habitA.addTagAndSortTags(tagFavourite, null, favouritesPage);
-        habitB.addTagAndSortTags(tagFavourite, null, favouritesPage);
+        habitA.addTagAndSortTags(tagFavourite, null, favouritesPage, allTagPagesPage);
+        habitB.addTagAndSortTags(tagFavourite, null, favouritesPage, allTagPagesPage);
 
         whatShouldBeHabit = new ArrayList<>();
     }
