@@ -33,11 +33,6 @@ public class Page {
         // !!!
     }
 
-    // EFFECTS: Sorts habits as per order
-    public void sort() {
-        // !!!
-    }
-
     // REQUIRES: habit can not be in any other page
     // MODIFIES: this
     // EFFECTS: appends habit to habits and sorts habits as per ORDER
@@ -51,6 +46,7 @@ public class Page {
         // !!!
     }
 
+    // EFFECTS: If order is Order.Alphabetical, sorts habits in that order
     public void setOrder(Order order) {
         this.order = order;
     }

@@ -20,7 +20,6 @@ import model.organization.centralization.AllHabitsPage;
 import model.organization.centralization.AllTagPages;
 import model.organization.specialpages.FavouritesPage;
 import model.organization.specialpages.HomePage;
-import model.organization.specialpages.TagPage;
 
 // We use HabitIncrement as a way to test Habit
 public class TestHabit {
@@ -29,9 +28,6 @@ public class TestHabit {
     private HabitCycleManager testHabitCycleManager;
     private HomePage testHomePage;
     private FavouritesPage testFavouritesPage;
-    private TagPage testTagPageA;
-    private TagPage testTagPageB;
-    private TagPage testTagPageC;
     private AllTagPages testAllTagPages;
 
     private LocalTime cycleTimeA; // Midnight
@@ -63,9 +59,6 @@ public class TestHabit {
         testHabitCycleManager = new HabitCycleManager(testAllHabitsPage, time);
         testHomePage = new HomePage();
         testFavouritesPage = new FavouritesPage();
-        testTagPageA = new TagPage(tagA, testAllTagPages);
-        testTagPageB = new TagPage(tagB, testAllTagPages);
-        testTagPageC = new TagPage(tagC, testAllTagPages);
         testAllTagPages = new AllTagPages();
 
         cycleTimeA = LocalTime.of(0, 0);

@@ -9,15 +9,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import model.organization.Tag.TagType;
-import model.organization.centralization.AllTagPages;
 
 public class TestTag {
     private Tag tagA; // Normal title
     private Tag tagB; // Funky title
     private Tag tagFavourite;
     private Tag tagHome;
-
-    private Color whatShouldBeColour;
 
     @BeforeEach
     void runBeforeEach() {
