@@ -27,6 +27,10 @@ public class FavouritesPage {
         // !!!
     }
 
+    public String getTitle() {
+        return title;
+    }
+
     public List<Habit> getHabits() {
         return habits;
     }
