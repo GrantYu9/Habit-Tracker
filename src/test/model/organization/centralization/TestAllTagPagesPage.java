@@ -12,8 +12,8 @@ import org.junit.jupiter.api.Test;
 import model.organization.Tag;
 import model.organization.specialpages.TagPage;
 
-public class TestAllTagPages {
-    private AllTagPages allTagPages;
+public class TestAllTagPagesPage {
+    private AllTagPagesPage allTagPages;
 
     private Tag tagA;
     private Tag tagB;
@@ -25,7 +25,7 @@ public class TestAllTagPages {
 
     @BeforeEach
     void runBeforeEach() {
-        allTagPages = new AllTagPages();
+        allTagPages = new AllTagPagesPage();
 
         tagA = new Tag("tagA");
         tagB = new Tag("tagB");

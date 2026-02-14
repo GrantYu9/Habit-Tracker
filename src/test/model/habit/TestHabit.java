@@ -17,7 +17,7 @@ import model.habit.Habit.ProgressType;
 import model.habit.Habit.ViewMode;
 import model.organization.Tag;
 import model.organization.centralization.AllHabitsPage;
-import model.organization.centralization.AllTagPages;
+import model.organization.centralization.AllTagPagesPage;
 import model.organization.specialpages.FavouritesPage;
 import model.organization.specialpages.HomePage;
 
@@ -28,7 +28,7 @@ public class TestHabit {
     private HabitCycleManager testHabitCycleManager;
     private HomePage testHomePage;
     private FavouritesPage testFavouritesPage;
-    private AllTagPages testAllTagPages;
+    private AllTagPagesPage testAllTagPages;
 
     private LocalTime cycleTimeA; // Midnight
     private LocalTime cycleTimeD; // 23:30
@@ -59,7 +59,7 @@ public class TestHabit {
         testHabitCycleManager = new HabitCycleManager(testAllHabitsPage, time);
         testHomePage = new HomePage();
         testFavouritesPage = new FavouritesPage();
-        testAllTagPages = new AllTagPages();
+        testAllTagPages = new AllTagPagesPage();
 
         cycleTimeA = LocalTime.of(0, 0);
         cycleTimeD = LocalTime.of(23, 30);

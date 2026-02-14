@@ -1,7 +1,7 @@
 package model.organization.specialpages;
 
 import model.organization.Tag;
-import model.organization.centralization.AllTagPages;
+import model.organization.centralization.AllTagPagesPage;
 import model.habit.Habit;
 
 import java.util.ArrayList;
@@ -25,7 +25,7 @@ public class TagPage {
         habits = new ArrayList<>()
     Adds TagPage to AllTagPages
      */
-    public TagPage(Tag tag, AllTagPages allTagPages) {
+    public TagPage(Tag tag, AllTagPagesPage allTagPages) {
         // !!!
     }
 

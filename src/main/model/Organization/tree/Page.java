@@ -1,7 +1,7 @@
 package model.organization.tree;
 
 import model.habit.Habit;
-import model.organization.centralization.AllGenericPages;
+import model.organization.centralization.AllGenericPagesPage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +29,7 @@ public class Page {
         habits = new ArrayList<>()
     Adds page to AllGenericPages
      */
-    public Page(String title, AllGenericPages allGenericPages) {
+    public Page(String title, AllGenericPagesPage allGenericPages) {
         // !!!
     }
 

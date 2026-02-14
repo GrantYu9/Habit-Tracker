@@ -5,11 +5,11 @@ import java.util.List;
 import model.organization.specialpages.TagPage;
 
 // Where all the tag pages will be located
-public class AllTagPages {
+public class AllTagPagesPage {
     List<TagPage> tagPages;
 
     // EFFECTS: Instantiates AllTagPages such that tagPages = new ArrayList
-    public AllTagPages() {
+    public AllTagPagesPage() {
         // !!!
     }
 

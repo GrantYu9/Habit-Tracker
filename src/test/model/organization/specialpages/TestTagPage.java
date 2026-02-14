@@ -17,7 +17,7 @@ import model.habit.HabitCycleManager;
 import model.habit.HabitIncrement;
 import model.organization.Tag;
 import model.organization.centralization.AllHabitsPage;
-import model.organization.centralization.AllTagPages;
+import model.organization.centralization.AllTagPagesPage;
 
 public class TestTagPage {
     private TagPage tagPageA;
@@ -31,7 +31,7 @@ public class TestTagPage {
     private Habit habitA;
     private Habit habitB;
 
-    private AllTagPages allTagPages;
+    private AllTagPagesPage allTagPages;
     private AllHabitsPage allHabitsPage;
     private HabitCycleManager habitCycleManager;
 
@@ -51,7 +51,7 @@ public class TestTagPage {
         habitA = new HabitIncrement(1, 0, 1, "Workout", null, localTime, localDate, allHabitsPage, habitCycleManager);
         habitB = new HabitIncrement(1, 0, 1, "More working out", null, localTime, localDate, allHabitsPage, habitCycleManager);
 
-        allTagPages = new AllTagPages();
+        allTagPages = new AllTagPagesPage();
         allHabitsPage = new AllHabitsPage();
         habitCycleManager = new HabitCycleManager(allHabitsPage, localDateTime);
 

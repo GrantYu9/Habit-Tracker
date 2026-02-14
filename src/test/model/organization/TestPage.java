@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 import model.habit.Habit;
 import model.habit.HabitCycleManager;
 import model.habit.HabitIncrement;
-import model.organization.centralization.AllGenericPages;
+import model.organization.centralization.AllGenericPagesPage;
 import model.organization.centralization.AllHabitsPage;
 import model.organization.specialpages.HomePage;
 import model.organization.tree.Page;
@@ -33,7 +33,7 @@ public class TestPage {
 
     private AllHabitsPage allHabitsPage;
     private HabitCycleManager habitCycleManager;
-    private AllGenericPages allGenericPages;
+    private AllGenericPagesPage allGenericPages;
 
     private List<Habit> whatShouldBeHabit;
     private List<Page> whatShouldBePage;
@@ -51,7 +51,7 @@ public class TestPage {
 
         allHabitsPage = new AllHabitsPage();
         habitCycleManager = new HabitCycleManager(allHabitsPage, localDateTime);
-        allGenericPages = new AllGenericPages();
+        allGenericPages = new AllGenericPagesPage();
 
         whatShouldBeHabit = new ArrayList<>();
         whatShouldBePage = new ArrayList<>();
