@@ -4,7 +4,7 @@ package ui.viewingperspectives;
 public class Heatmap {
     private int timeDuration; // !!!
     private TimeDurationType timeDurationType; // !!!
-    private enum TimeDurationType {
+    public enum TimeDurationType {
         DAY,
         WEEK,
         MONTH,

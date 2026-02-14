@@ -8,7 +8,7 @@ import java.util.List;
 // A generic page thats acts as a container to organize habits
 public class Page {
     private Order order; // Order to sort the habits
-    private enum Order {
+    public enum Order {
         ALPHABETICAL,
         MANUAL
     }

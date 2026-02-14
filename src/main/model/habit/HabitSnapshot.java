@@ -1,7 +1,6 @@
 package model.habit;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 import model.habit.Habit.ProgressType;
 

@@ -71,12 +71,12 @@ public abstract class Habit {
 
         this.currentAmount = startingAmount
         overloadAmount = 0
-        progressPercentage = 0
         viewMode = BAR
         progressType = UNDERDONE
         this.currentDay = LocalDate.now
         history = new ArrayList
         tags = new ArrayList
+    Calculate progressPercentage and set this.progressPercentage to the output
     Adds this to AllHabitsPages
     Calls HabitCycleManager to set nextCycleTime and execute cycleHabitWhileRunning at nextCycleTime
     */

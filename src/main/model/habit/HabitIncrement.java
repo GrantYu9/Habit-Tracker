@@ -13,7 +13,7 @@ A habit that advances in natural number steps towards a goal
  */
 public class HabitIncrement extends Habit {
     /*
-    private enum ProgressType {
+    public enum ProgressType {
         UNDERDONE, currentAmount < goal
         DONE, currentAmount == goal
         OVERLOADED currentAmount > goal

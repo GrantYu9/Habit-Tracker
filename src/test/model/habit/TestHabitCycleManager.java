@@ -81,11 +81,15 @@ public class TestHabitCycleManager {
         testHabit2330Late = new HabitIncrement(1, 0, 1, "Workout", null, cycleTime2330, 
             lastTimeLate.toLocalDate(), testAllHabitsPageLate, testHabitCycleManagerLate);
 
-        testHabitSnapshotRecentNoChange = new HabitSnapshot(0, 1, 0, 0, 0, 1, ProgressType.UNDERDONE, lastTimeRecent.toLocalDate(), null);
-        testHabitSnapshotRecentChange = new HabitSnapshot(1, 1, 0, 100, 0, 1, ProgressType.DONE, lastTimeRecent.toLocalDate(), null);
+        testHabitSnapshotRecentNoChange = new HabitSnapshot(0, 1, 0, 0, 0, 1, ProgressType.UNDERDONE, 
+            lastTimeRecent.toLocalDate(), null);
+        testHabitSnapshotRecentChange = new HabitSnapshot(1, 1, 0, 100, 0, 1, ProgressType.DONE, 
+            lastTimeRecent.toLocalDate(), null);
         testHabitSnapshotLateFeb12 = new HabitSnapshot(0, 1, 0, 0, 0, 1, ProgressType.UNDERDONE, inDaMiddle, null);
-        testHabitSnapshotLateFeb11NoChange = new HabitSnapshot(0, 1, 0, 0, 0, 1, ProgressType.UNDERDONE, lastTimeLate.toLocalDate(), null);
-        testHabitSnapshotLateFeb11Change = new HabitSnapshot(1, 1, 0, 100, 0, 1, ProgressType.DONE, lastTimeLate.toLocalDate(), null);
+        testHabitSnapshotLateFeb11NoChange = new HabitSnapshot(0, 1, 0, 0, 0, 1, ProgressType.UNDERDONE, 
+            lastTimeLate.toLocalDate(), null);
+        testHabitSnapshotLateFeb11Change = new HabitSnapshot(1, 1, 0, 100, 0, 1, ProgressType.DONE, 
+            lastTimeLate.toLocalDate(), null);
 
         testAllHabitsPageRecent.getHabits().remove(testHabitMidnightLate);
         testAllHabitsPageRecent.getHabits().remove(testHabit2330Late);

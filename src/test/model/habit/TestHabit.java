@@ -20,21 +20,18 @@ import model.organization.specialpages.AllHabitsPage;
 
 // We use HabitIncrement as a way to test Habit
 public class TestHabit {
+    // Fix naming consistency later !!!
     private AllHabitsPage testAllHabitsPage;
     private HabitCycleManager testHabitCycleManager;
 
     private LocalTime cycleTimeA; // Midnight
-    private LocalTime cycleTimeB; // 01:00
-    private LocalTime cycleTimeC; // 02:30
-    private LocalTime cycleTimeD; // 23:00
+    private LocalTime cycleTimeD; // 23:30
 
     private LocalDate dayA; // Fr Feb 13, 2026
 
     private LocalDateTime time; // Fr Feb 13, 2026 at 13:00
     
     private Habit testHabitA; // Boolean
-    private Habit testHabitB; // Step
-    private Habit testHabitC; // Bigger steps
     private Habit testHabitD; // Headstart
     private Habit testHabitE; // Funny title and unit
 
@@ -54,9 +51,7 @@ public class TestHabit {
         testHabitCycleManager = new HabitCycleManager(testAllHabitsPage, time);
 
         cycleTimeA = LocalTime.of(0, 0);
-        cycleTimeB = LocalTime.of(1, 0);
-        cycleTimeC = LocalTime.of(2, 30);
-        cycleTimeD = LocalTime.of(23, 0);
+        cycleTimeD = LocalTime.of(23, 30);
 
         dayA = LocalDate.of(2026, 2, 13);
 
@@ -64,17 +59,13 @@ public class TestHabit {
 
         testHabitA = new HabitIncrement(1, 0, 1, "testHabitA", null, cycleTimeA, dayA, testAllHabitsPage, 
             testHabitCycleManager);
-        testHabitB = new HabitIncrement(5, 0, 1, "testHabitB", "sips", cycleTimeB, dayA, testAllHabitsPage, 
-            testHabitCycleManager);
-        testHabitC = new HabitIncrement(10, 0, 2, "testHabitC", "jumping jacks", cycleTimeC, dayA, 
-            testAllHabitsPage, testHabitCycleManager);
         testHabitD = new HabitIncrement(5, 1, 1, "testHabitD", "km", cycleTimeD, dayA, testAllHabitsPage, 
             testHabitCycleManager);
         testHabitE = new HabitIncrement(5, 0, 1, " silly Title ", " silly Unit ", cycleTimeA, dayA, 
             testAllHabitsPage, testHabitCycleManager);
 
-        // testHabitSnapshotA = new HabitSnapshot(0, 1, 0, 0, 0, 1, ProgressType.UNDERDONE, null);
-        // !!!
+        testHabitSnapshotA = new HabitSnapshot(0, 1, 0, 0, 0, 1, ProgressType.UNDERDONE, dayA, null);
+
         tagA = new Tag("A");
         tagB = new Tag("B");
         tagC = new Tag("a");
@@ -96,7 +87,6 @@ public class TestHabit {
 
         assertTrue(testHabitA.getCurrentAmount() == testHabitA.getStartingAmount());
         assertEquals(0, testHabitA.getOverloadAmount());
-        assertEquals(0, testHabitA.getProgressPercentage());
         assertEquals(ViewMode.BAR, testHabitA.getViewMode());
         assertEquals(ProgressType.UNDERDONE, testHabitA.getProgressType());
         assertTrue(testHabitA.getHistory().isEmpty());
@@ -121,7 +111,6 @@ public class TestHabit {
 
         assertTrue(testHabitD.getCurrentAmount() == testHabitD.getStartingAmount());
         assertEquals(0, testHabitD.getOverloadAmount());
-        assertEquals(0, testHabitD.getProgressPercentage());
         assertEquals(ViewMode.BAR, testHabitD.getViewMode());
         assertEquals(ProgressType.UNDERDONE, testHabitD.getProgressType());
         assertTrue(testHabitD.getHistory().isEmpty());
