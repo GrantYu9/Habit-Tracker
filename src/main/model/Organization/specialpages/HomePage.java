@@ -14,7 +14,7 @@ public class HomePage {
     /*
     EFFECTS:
     Instantiates HomePage such that
-        title = "HomePage"
+        title = "Home"
         habits = new ArrayList<>()
      */
     public HomePage() {
@@ -25,6 +25,10 @@ public class HomePage {
     // EFFECTS: appends habit to habits
     public void addToHomePage(Habit habit) {
         // !!!
+    }
+
+    public String getTitle() {
+        return title;
     }
 
     public List<Habit> getHabits() {
