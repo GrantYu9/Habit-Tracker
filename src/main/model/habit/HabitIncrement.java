@@ -35,6 +35,7 @@ public class HabitIncrement extends Habit {
         String unit, 
         LocalTime cycleTime,
         LocalDate currentDay,
+        
         AllHabitsPage allHabitsPage,
         HabitCycleManager habitCycleManager
     ) {

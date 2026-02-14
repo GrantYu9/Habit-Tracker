@@ -15,6 +15,8 @@ import java.util.List;
 
 import model.organization.Tag;
 import model.organization.specialpages.AllHabitsPage;
+import model.organization.specialpages.FavouritesPage;
+import model.organization.specialpages.HomePage;
 
 /*
 An abstract class for BuildHabit and BreakHabit
@@ -77,6 +79,7 @@ public abstract class Habit {
         history = new ArrayList
         tags = new ArrayList
     Calculate progressPercentage and set this.progressPercentage to the output
+
     Adds this to AllHabitsPages
     Calls HabitCycleManager to set nextCycleTime and execute cycleHabitWhileRunning at nextCycleTime
     */
@@ -88,6 +91,7 @@ public abstract class Habit {
         String unit,
         LocalTime cycleTime,
         LocalDate currentDay,
+
         AllHabitsPage allHabitsPage,
         HabitCycleManager habitCycleManager
     ) {
@@ -99,9 +103,48 @@ public abstract class Habit {
     public abstract void progressByStepAmount();
     public abstract void setCurrentAmount(int currentAmount);
 
-    // MODIFIES: this
-    // EFFECTS: Appends tag to tags and sorts tags by alphabetical order
-    public void addTagAndSortTags(Tag tag) {
+    @Override
+    /*
+    REQUIRES:
+    The object can not be null
+    The object must be the same type as this
+    EFFECTS:
+    Checks equality between two objects
+    If the objects point to the same memory address, return true
+    Casts the object into Habit and returns whether all the fields are the same
+     */
+    public boolean equals(Object object) {
+        if (this == object) {
+            return true;
+        }
+
+        Habit habit = (Habit) object;
+
+        return this.currentAmount == habit.getCurrentAmount() &&
+            this.goal == habit.getGoal() &&
+            this.overloadAmount == habit.getOverloadAmount() &&
+            this.progressPercentage == habit.getProgressPercentage() &&
+            this.startingAmount == habit.getStartingAmount() &&
+            this.stepAmount == habit.getStepAmount() &&
+            this.progressType == habit.getProgressType() &&
+            this.title.equals(habit.getTitle()) &&
+            this.unit.equals(habit.getUnit()) &&
+            this.cycleTime.equals(habit.getCycleTime()) &&
+            this.currentDay.equals(habit.getCurrentDay()) &&
+            this.nextCycleTime.isEqual(habit.getNextCycleTime());
+    }
+
+    /*
+    MODIFIES:
+    this, homePage, favouritesPage
+    EFFECTS:
+    If tag not in tags, appends tag to tags and instantiates a TagPage
+    Special cases
+        If tag.getTagType == HOME, adds tag to HomePage
+        If tag.getTagType == FAVOURITE, adds tag to FavouritePage
+    Sorts tags by alphabetical order
+     */
+    public void addTagAndSortTags(Tag tag, HomePage homePage, FavouritesPage favouritesPage) {
         // !!!
     }
 

@@ -1,8 +1,8 @@
 package model.habit;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.Duration;
@@ -136,8 +136,8 @@ public class TestHabitCycleManager {
         testHabitCycleManagerRecent.cycleHabitAtStartup(actualMidnight);
         testHabitCycleManagerRecent.cycleHabitAtStartup(actual2330);
 
-        assertEquals(testHabitMidnightRecent, actualMidnight);
-        assertEquals(testHabit2330Recent, actual2330);
+        assertTrue(testHabitMidnightRecent.equals(actualMidnight));
+        assertTrue(testHabit2330Recent.equals(actual2330));
     }
 
     @Test
@@ -151,8 +151,8 @@ public class TestHabitCycleManager {
         testHabitCycleManagerRecent.cycleHabitAtStartup(actualMidnight);
         testHabitCycleManagerRecent.cycleHabitAtStartup(actual2330);
 
-        assertEquals(testHabitMidnightRecent, actualMidnight);
-        assertEquals(testHabit2330Recent, actual2330);
+        assertTrue(testHabitMidnightRecent.equals(actualMidnight));
+        assertTrue(testHabit2330Recent.equals(actual2330));
     }
 
     @Test
@@ -167,8 +167,8 @@ public class TestHabitCycleManager {
         testHabitCycleManagerRecent.cycleHabitAtStartup(actualMidnight);
         testHabitCycleManagerRecent.cycleHabitAtStartup(actual2330);
 
-        assertEquals(testHabitMidnightRecent, actualMidnight);
-        assertEquals(testHabit2330Recent, actual2330);
+        assertTrue(testHabitMidnightRecent.equals(actualMidnight));
+        assertTrue(testHabit2330Recent.equals(actual2330));
     }
 
     @Test
@@ -180,8 +180,8 @@ public class TestHabitCycleManager {
         testHabitCycleManagerRecent.cycleHabitAtStartup(actualMidnight);
         testHabitCycleManagerRecent.cycleHabitAtStartup(actual2330);
 
-        assertEquals(testHabitMidnightLate, actualMidnight);
-        assertEquals(testHabit2330Late, actual2330);
+        assertTrue(testHabitMidnightLate.equals(actualMidnight));
+        assertTrue(testHabit2330Late.equals(actual2330));
     }
 
     @Test
@@ -195,8 +195,8 @@ public class TestHabitCycleManager {
         testHabitCycleManagerRecent.cycleHabitAtStartup(actualMidnight);
         testHabitCycleManagerRecent.cycleHabitAtStartup(actual2330);
 
-        assertEquals(testHabitMidnightLate, actualMidnight);
-        assertEquals(testHabit2330Late, actual2330);
+        assertTrue(testHabitMidnightLate.equals(actualMidnight));
+        assertTrue(testHabit2330Late.equals(actual2330));
     }
 
     @Test
@@ -211,8 +211,8 @@ public class TestHabitCycleManager {
         testHabitCycleManagerRecent.cycleHabitAtStartup(actualMidnight);
         testHabitCycleManagerRecent.cycleHabitAtStartup(actual2330);
 
-        assertEquals(testHabitMidnightLate, actualMidnight);
-        assertEquals(testHabit2330Late, actual2330);
+        assertTrue(testHabitMidnightLate.equals(actualMidnight));
+        assertTrue(testHabit2330Late.equals(actual2330));
     }
 
     @Test
@@ -252,7 +252,7 @@ public class TestHabitCycleManager {
         testHabitCycleManagerRecent.resetHabit(expected);
         testHabitCycleManagerRecent.updateHabitTimes(expected);
 
-        assertEquals(expected, actual);
+        assertTrue(expected.equals(actual));
     }
 
     @Test
@@ -266,7 +266,7 @@ public class TestHabitCycleManager {
         testHabitCycleManagerRecent.resetHabit(expected);
         testHabitCycleManagerRecent.updateHabitTimes(expected);
 
-        assertEquals(expected, actual);
+        assertTrue(expected.equals(actual));
     }
 
     @Test
@@ -278,7 +278,7 @@ public class TestHabitCycleManager {
         testHabitCycleManagerLate.updateHabit(expected);
         testHabitCycleManagerRecent.updateHabitTimes(expected);
 
-        assertEquals(expected, actual);
+        assertTrue(expected.equals(actual));
     }
 
     @Test
@@ -292,7 +292,7 @@ public class TestHabitCycleManager {
         testHabitCycleManagerLate.updateHabit(expected);
         testHabitCycleManagerRecent.updateHabitTimes(expected);
 
-        assertEquals(expected, actual);
+        assertTrue(expected.equals(actual));
     }
 
     @Test
@@ -305,7 +305,8 @@ public class TestHabitCycleManager {
         spy.resetHabit(expected);
         spy.updateHabitTimes(expected);
         spy.cycleHabitWhileRunning(actual);
-        assertEquals(expected, actual);
+
+        assertTrue(expected.equals(actual));
         assertEquals(1, spy.scheduleHabitCallCount);
     }
 
@@ -321,7 +322,8 @@ public class TestHabitCycleManager {
         spy.resetHabit(expected);
         spy.updateHabitTimes(expected);
         spy.cycleHabitWhileRunning(actual);
-        assertEquals(expected, actual);
+
+        assertTrue(expected.equals(actual));
         assertEquals(1, spy.scheduleHabitCallCount);
     }
 
