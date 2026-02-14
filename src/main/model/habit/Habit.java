@@ -135,6 +135,8 @@ public abstract class Habit {
     }
 
     /*
+    REQUIRES:
+    There can neither be two home tags nor two favourite tags
     MODIFIES:
     this, homePage, favouritesPage
     EFFECTS:

@@ -1,10 +1,80 @@
 package model.organization;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.awt.Color;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import model.organization.Tag.TagType;
+import model.organization.centralization.AllTagPages;
+
 public class TestTag {
-    
+    private Tag tagA; // Normal title
+    private Tag tagB; // Funky title
+    private Tag tagFavourite;
+    private Tag tagHome;
+
+    private Color whatShouldBeColour;
+
+    @BeforeEach
+    void runBeforeEach() {
+        tagA = new Tag("tagA");
+        tagB = new Tag(" sUper funky Title ");
+        tagFavourite = new Tag("Favourite");
+        tagHome = new Tag("Home");
+    }
+
+    @Test
+    void testConstructorNormal() {
+        assertTrue(tagA.getTitle().equals("tagA"));
+        assertEquals(TagType.NORMAL, tagA.getTagType());
+        assertTrue(tagA.getColour().equals(Color.DARK_GRAY));
+    }
+
+    @Test
+    void testConstructorTitleTrim() {
+        assertTrue(tagB.getTitle().equals("sUper funky Title"));
+        assertEquals(TagType.NORMAL, tagB.getTagType());
+        assertTrue(tagB.getColour().equals(Color.DARK_GRAY));
+    }
+
+    @Test
+    void testConstructorFavourite() {
+        assertTrue(tagFavourite.getTitle().equals("Favourite"));
+        assertEquals(TagType.FAVOURITE, tagFavourite.getTagType());
+        assertTrue(tagFavourite.getColour().equals(Color.YELLOW));
+    }
+
+    @Test
+    void testConstructorHome() {
+        assertTrue(tagHome.getTitle().equals("Home"));
+        assertEquals(TagType.HOME, tagHome.getTagType());
+        assertTrue(tagHome.getColour().equals(Color.LIGHT_GRAY));
+    }
+
+    @Test
+    void testSetTitle() {
+        tagA.setTitle(" aNother sUper FunKy Title ");
+        assertTrue(tagA.getTitle().equals("aNother sUper FunKy Title"));
+        assertEquals(TagType.NORMAL, tagA.getTagType());
+        assertTrue(tagA.getColour().equals(Color.DARK_GRAY));
+
+        tagA.setTitle(" HoMe ");
+        assertTrue(tagA.getTitle().equals("Home"));
+        assertEquals(TagType.HOME, tagA.getTagType());
+        assertTrue(tagA.getColour().equals(Color.LIGHT_GRAY));
+
+        tagA.setTitle(" Favorite ");
+        assertTrue(tagA.getTitle().equals("Favorite"));
+        assertEquals(TagType.NORMAL, tagA.getTagType());
+        assertTrue(tagA.getColour().equals(Color.DARK_GRAY));
+
+        tagA.setTitle(" FAvourite ");
+        assertTrue(tagA.getTitle().equals("Favourite"));
+        assertEquals(TagType.FAVOURITE, tagA.getTagType());
+        assertTrue(tagA.getColour().equals(Color.YELLOW));
+    }
 }

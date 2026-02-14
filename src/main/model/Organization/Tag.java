@@ -6,9 +6,9 @@ import java.awt.Color;
 A tag for organization
  */
 public class Tag {
-    private static Color defautColour = Color.DARK_GRAY; // Default colour of the tag; can be changed
-    private static Color homeColour = defautColour; // Colour for the home tag, set to defaultColour by default
+    private static Color defaultColour = Color.DARK_GRAY; // Default colour of the tag; can be changed
     private static Color favouriteColour = Color.YELLOW; // Colour for the favourite tag, set to yellow by default
+    private static Color homeColour = Color.LIGHT_GRAY; // Colour for the home tag, set to defaultColour by default
 
     private TagType tagType; // Type of the tag, which can alter behaviour
     public enum TagType {
@@ -29,18 +29,19 @@ public class Tag {
 
     /*
     REQUIRES:
-        title has at least one character
+    title has at least one character
+    There can not already exist a TagPage with the corresponding Tag title in AllTagPages
     EFFECTS:
     Instantiates Tag such that
         this.title = title, with surrounding whitespace trimmed
         if title.strip().lower().equals("home")
+            this.title = "Home"
             tagType = HOME
             colour = homeColour
-            !!! constructor
         else if title.strip().lower().equals("favourite")
+            this.title = "Favourite"
             tagType = FAVOURITE
             colour = favouriteColour
-            !!! constructor
         else
             colour = defaultColour
      */
@@ -50,25 +51,32 @@ public class Tag {
 
     /*
     REQUIRES:
-        title.strip().lower() can not be "home" nor "favourite"
+    title has at least one character
     EFFECTS:
-    Instantiates Tag such that
-        this.title = title, with surrounding whitespace trimmed
-        this.colour = colour
-        !!! constructor
+    this.title = title, with surrounding whitespace trimmed
+    if title.strip().lower().equals("home")
+        this.title = "Home"
+        tagType = HOME
+        colour = homeColour
+    else if title.strip().lower().equals("favourite")
+        this.title = "Favourite"
+        tagType = FAVOURITE
+        colour = favouriteColour
      */
-    public Tag(String title, Color colour) {
-        // !!!
-    }
-
-    // REQUIRES: title has at least one character
-    // EFFECTS: this.title = title, with surrounding whitespace trimmed
     public void setTitle(String title) {
         // !!!
     }
 
     public void setDefaultColour(Color defaultColour) {
-        Tag.defautColour = defaultColour;
+        Tag.defaultColour = defaultColour;
+    }
+
+    public void setFavouriteColour(Color favouriteColour) {
+        Tag.favouriteColour = favouriteColour;
+    }
+
+    public void setHomeColour(Color homeColour) {
+        Tag.homeColour = homeColour;
     }
 
     public void setColour(Color colour) {
@@ -76,7 +84,19 @@ public class Tag {
     }
 
     public Color getDefaultColour() {
-        return defautColour;
+        return defaultColour;
+    }
+
+    public Color getFavouriteColour() {
+        return favouriteColour;
+    }
+
+    public Color getHomeColour() {
+        return homeColour;
+    }
+
+    public TagType getTagType() {
+        return tagType;
     }
 
     public String getTitle() {
