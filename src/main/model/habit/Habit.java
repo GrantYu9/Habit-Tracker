@@ -49,7 +49,7 @@ public abstract class Habit {
     private String unit; // Type of units. E.g. mL or steps
 
     private LocalTime cycleTime; // Abstractly, when the habit needs to cycle every day as a clock time
-    private LocalDate day; // The day of the habit 
+    private LocalDate currentDay; // The day of the habit
     private LocalDateTime nextCycleTime; // Precisely when the habit needs to cycle
 
     private List<HabitSnapshot> history; // A record of past data of the habit
@@ -74,11 +74,11 @@ public abstract class Habit {
         progressPercentage = 0
         viewMode = BAR
         progressType = UNDERDONE
-        day = LocalDate.now
+        this.currentDay = LocalDate.now
         history = new ArrayList
         tags = new ArrayList
-    Calculates nextCycleTime and sets this.nextCycleTime to the new one
-    Adds this to AllHabitsPages and HabitCycleManager
+    Adds this to AllHabitsPages
+    Calls HabitCycleManager to set nextCycleTime and execute cycleHabitWhileRunning at nextCycleTime
     */
     public Habit(
         int goal, 
@@ -87,7 +87,9 @@ public abstract class Habit {
         String title,
         String unit,
         LocalTime cycleTime,
-        AllHabitsPage allHabitsPage
+        LocalDate currentDay,
+        AllHabitsPage allHabitsPage,
+        HabitCycleManager habitCycleManager
     ) {
         // !!!
     }
@@ -95,7 +97,6 @@ public abstract class Habit {
     public abstract int calculateOverloadAmount(int currentAmount, int goal);
     public abstract int calculateProgressPercentage(int startingAmount, int currentAmount, int goal);
     public abstract void progressByStepAmount();
-
     public abstract void setCurrentAmount(int currentAmount);
 
     // MODIFIES: this
@@ -155,10 +156,14 @@ public abstract class Habit {
         this.cycleTime = cycleTime;
     }
 
+    public void setCurrentDay(LocalDate currentDay) {
+        this.currentDay = currentDay;
+    }
+
     public void setNextCycleTime(LocalDateTime nextCycleTime) {
         this.nextCycleTime = nextCycleTime;
     }
-    
+
     public int getCurrentAmount() {
         return currentAmount;
     }
@@ -201,6 +206,10 @@ public abstract class Habit {
 
     public LocalTime getCycleTime() {
         return cycleTime;
+    }
+
+    public LocalDate getCurrentDay() {
+        return currentDay;
     }
 
     public LocalDateTime getNextCycleTime() {

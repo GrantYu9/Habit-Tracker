@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,8 +21,16 @@ import model.organization.specialpages.AllHabitsPage;
 // We use HabitIncrement as a way to test Habit
 public class TestHabit {
     private AllHabitsPage testAllHabitsPage;
+    private HabitCycleManager testHabitCycleManager;
 
-    private LocalTime timeOne;
+    private LocalTime cycleTimeA; // Midnight
+    private LocalTime cycleTimeB; // 01:00
+    private LocalTime cycleTimeC; // 02:30
+    private LocalTime cycleTimeD; // 23:00
+
+    private LocalDate dayA; // Fr Feb 13, 2026
+
+    private LocalDateTime time; // Fr Feb 13, 2026 at 13:00
     
     private Habit testHabitA; // Boolean
     private Habit testHabitB; // Step
@@ -41,17 +51,30 @@ public class TestHabit {
     @BeforeEach
     void runBefore() {
         testAllHabitsPage = new AllHabitsPage();
+        testHabitCycleManager = new HabitCycleManager(testAllHabitsPage, time);
 
-        timeOne = uhhhhh;
+        cycleTimeA = LocalTime.of(0, 0);
+        cycleTimeB = LocalTime.of(1, 0);
+        cycleTimeC = LocalTime.of(2, 30);
+        cycleTimeD = LocalTime.of(23, 0);
 
-        testHabitA = new HabitIncrement(1, 0, 1, "testHabitA", null, testAllHabitsPage);
-        testHabitB = new HabitIncrement(5, 0, 1, "testHabitB", "sips", testAllHabitsPage);
-        testHabitC = new HabitIncrement(10, 0, 2, "testHabitC", "jumping jacks", testAllHabitsPage);
-        testHabitD = new HabitIncrement(5, 1, 1, "testHabitD", "km", testAllHabitsPage);
-        testHabitE = new HabitIncrement(5, 0, 1, " super silly Title ", " super silly Unit", testAllHabitsPage);
+        dayA = LocalDate.of(2026, 2, 13);
 
-        testHabitSnapshotA = new HabitSnapshot(0, 1, 0, 0, 0, 1, ProgressType.UNDERDONE, null);
+        time = LocalDateTime.of(2026, 2, 13, 13, 0);
 
+        testHabitA = new HabitIncrement(1, 0, 1, "testHabitA", null, cycleTimeA, dayA, testAllHabitsPage, 
+            testHabitCycleManager);
+        testHabitB = new HabitIncrement(5, 0, 1, "testHabitB", "sips", cycleTimeB, dayA, testAllHabitsPage, 
+            testHabitCycleManager);
+        testHabitC = new HabitIncrement(10, 0, 2, "testHabitC", "jumping jacks", cycleTimeC, dayA, 
+            testAllHabitsPage, testHabitCycleManager);
+        testHabitD = new HabitIncrement(5, 1, 1, "testHabitD", "km", cycleTimeD, dayA, testAllHabitsPage, 
+            testHabitCycleManager);
+        testHabitE = new HabitIncrement(5, 0, 1, " silly Title ", " silly Unit ", cycleTimeA, dayA, 
+            testAllHabitsPage, testHabitCycleManager);
+
+        // testHabitSnapshotA = new HabitSnapshot(0, 1, 0, 0, 0, 1, ProgressType.UNDERDONE, null);
+        // !!!
         tagA = new Tag("A");
         tagB = new Tag("B");
         tagC = new Tag("a");
@@ -68,6 +91,8 @@ public class TestHabit {
         assertEquals(1, testHabitA.getStepAmount());
         assertEquals("testHabitA", testHabitA.getTitle());
         assertNull(testHabitA.getUnit());
+        assertEquals(cycleTimeA, testHabitA.getCycleTime());
+        assertTrue(testHabitA.getCurrentDay().isEqual(dayA));
 
         assertTrue(testHabitA.getCurrentAmount() == testHabitA.getStartingAmount());
         assertEquals(0, testHabitA.getOverloadAmount());
@@ -78,48 +103,39 @@ public class TestHabit {
         assertTrue(testHabitA.getTags().isEmpty());
 
         assertEquals(whatShouldBeHabit, testAllHabitsPage.getHabits());
+        assertTrue(testHabitA.getNextCycleTime().isEqual(LocalDateTime.of(dayA, cycleTimeA).plusDays(1)));
     }
 
     @Test
     void testConstructorD() {
         whatShouldBeHabit.add(testHabitD);
         
-        assertEquals(5, testHabitA.getGoal());
-        assertEquals(1, testHabitA.getStartingAmount());
-        assertEquals(1, testHabitA.getStepAmount());
-        assertEquals("testHabitD", testHabitA.getTitle());
-        assertTrue(testHabitA.getUnit().equals("km"));
+        assertEquals(5, testHabitD.getGoal());
+        assertEquals(1, testHabitD.getStartingAmount());
+        assertEquals(1, testHabitD.getStepAmount());
+        assertEquals("testHabitD", testHabitD.getTitle());
+        assertTrue(testHabitD.getUnit().equals("km"));
         assertEquals(whatShouldBeHabit, testAllHabitsPage.getHabits());
+        assertEquals(cycleTimeD, testHabitD.getCycleTime());
+        assertTrue(testHabitD.getCurrentDay().isEqual(dayA));
 
         assertTrue(testHabitD.getCurrentAmount() == testHabitD.getStartingAmount());
-        assertEquals(0, testHabitA.getOverloadAmount());
-        assertEquals(0, testHabitA.getProgressPercentage());
-        assertEquals(ViewMode.BAR, testHabitA.getViewMode());
-        assertEquals(ProgressType.UNDERDONE, testHabitA.getProgressType());
-        assertTrue(testHabitA.getHistory().isEmpty());
-        assertTrue(testHabitA.getTags().isEmpty());
+        assertEquals(0, testHabitD.getOverloadAmount());
+        assertEquals(0, testHabitD.getProgressPercentage());
+        assertEquals(ViewMode.BAR, testHabitD.getViewMode());
+        assertEquals(ProgressType.UNDERDONE, testHabitD.getProgressType());
+        assertTrue(testHabitD.getHistory().isEmpty());
+        assertTrue(testHabitD.getTags().isEmpty());
 
         assertEquals(whatShouldBeHabit, testAllHabitsPage.getHabits());
+        assertTrue(testHabitD.getNextCycleTime().isEqual(LocalDateTime.of(dayA, cycleTimeA)));
     }
 
     // Just to check title and unit trimming behaviour
     @Test
     void testConstructorE() {
-        assertTrue(testHabitE.getTitle().equals("super silly Title"));
-        assertTrue(testHabitE.getTitle().equals("super silly Unit"));
-    }
-
-    @Test
-    void testCycleHabit() {
-        // needs some extra stuff with time
-
-        whatShouldBeHabitSnapshot.add(testHabitSnapshotA);
-
-        assertEquals(whatShouldBeHabitSnapshot, testHabitA.getHistory());
-        assertTrue(testHabitA.getStartingAmount() == testHabitA.getCurrentAmount());
-        assertEquals(0, testHabitA.getOverloadAmount());
-        assertEquals(0, testHabitA.getProgressPercentage());
-        assertEquals(ProgressType.UNDERDONE, testHabitA.getProgressType());
+        assertTrue(testHabitE.getTitle().equals("silly Title"));
+        assertTrue(testHabitE.getTitle().equals("silly Unit"));
     }
 
     @Test
@@ -135,6 +151,13 @@ public class TestHabit {
         testHabitA.addTagAndSortTags(tagC);
         whatShouldBeTag.add(1, tagC);
         assertEquals(whatShouldBeTag, testHabitA.getTags());
+    }
+
+    @Test
+    void testAddToHistory() {
+        whatShouldBeHabitSnapshot.add(testHabitSnapshotA);
+        testHabitA.addToHistory(testHabitSnapshotA);
+        assertEquals(whatShouldBeHabitSnapshot, testHabitA.getHistory());
     }
 
     @Test

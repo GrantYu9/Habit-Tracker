@@ -1,5 +1,8 @@
 package model.habit;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 import model.habit.Habit.ProgressType;
 
 /*
@@ -14,7 +17,10 @@ public class HabitSnapshot {
     private int progressPercentage; // Amount of progress made towards a goal
     private int startingAmount; // The starting amount a user sets
     private int stepAmount; // How much one wants to advance by; stepAmount > 0
+
     private ProgressType progressType; // Progress relative to the goal
+    
+    private LocalDate day; // Day of the habit
 
     private String unit; // Type of units. E.g. mL or steps
 
@@ -27,6 +33,7 @@ public class HabitSnapshot {
         int startingAmount,
         int stepAmount,
         ProgressType underdone,
+        LocalDate day,
         String unit
     ) {
         // !!!
@@ -58,6 +65,10 @@ public class HabitSnapshot {
 
     public ProgressType getProgressType() {
         return progressType;
+    }
+
+    public LocalDate getLocalDate() {
+        return day;
     }
 
     public String getUnit() {

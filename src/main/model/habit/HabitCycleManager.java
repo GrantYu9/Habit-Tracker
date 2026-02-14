@@ -1,6 +1,7 @@
 package model.habit;
 
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.concurrent.Executors;
@@ -11,78 +12,115 @@ import model.organization.specialpages.AllHabitsPage;
 
 // Manages when the habits need to cycle
 public class HabitCycleManager {
-    List<Habit> habits;
+    List<Habit> habits; // List of habits to manage
+
+    LocalDateTime lastTime; // Last time program was up
 
     /*
-    Effects:
-    habits = allHabitsPage;
-    Instantiates HabitManager such that
-        For each habit,
-            Calls modifyHabitAtStartup, which inserts a HabitSnapshot into history for each elapsed day and recalculates
-            the next nextCycleTime to update the nextCycleTime and day
+    EFFECTS:
+    Instantiates HabitManager such that 
+        habits = allHabitsPage
+        this.lastTime = lastTime
      */
-    public HabitCycleManager(AllHabitsPage allHabitsPage) {
+    public HabitCycleManager(AllHabitsPage allHabitsPage, LocalDateTime lastTime) {
+        // !!!
+    }
+
+    // MODIFIES: this
+    // EFFECTS: For each habit, calls calculateDelay and scheduleHabit
+    public void scheduleAllHabits() {
+        // !!!
+    }
+
+    // MODIFIES: this
+    // EFFECTS: For each habit, calls cycleHabitAtStartup
+    public void cycleAllHabitsAtStartup() {
+        // !!!
+    }
+
+    // EFFECTS: Sets a ScheduledExecutor for cycleHabitWhileRunning with the given delay
+    public void scheduleHabit(Habit habit, Duration duration) {
         // !!!
     }
 
     /*
-    REQUIRES:
-    The app must be closed and reopened again
     MODIFIES:
     habit
     EFFECTS:
-    Determines if we should reset the habit and if so, by how many times
-    If nextCycleTime was earlier than now
-        Finds the time difference from lastTime and adds a HabitSnapshot for each day
-    Regardless,
-        Calculates nextCycleTime and sets this.nextCycleTime to the new one
-        Also sets day to new, appropriate day
+    If nextCycleTime was earlier than now by < 2 days, calls resetHabit
+    Else if nextCycleTime was earlier than now by >= 2 days, calls updateHabitHistory
+    Calls updateHabitTimes
      */
-    public void modifyHabitAtStartup(Habit habit, LocalDateTime lastTime) {
+    public void cycleHabitAtStartup(Habit habit) {
         // !!!
     }
 
-        /*
-    REQUIRES:
-    The app must be running
+    // MODIFIES: habit
+    // EFFECTS: Calls resetHabit, updateHabitTimes, and scheduleHabit
+    public void cycleHabitWhileRunning(Habit habit) {
+        // !!!
+    }
+
+    /*
     MODIFIES:
     habit
     EFFECTS:
-    Instantiates an instance of HabitSnapshot with certain data of this
-        currentAmount
-        goal
-        overloadAmount
-        progressPercentage
-        startingAmount
-        progressType
-        unit
-    Adds the instance to history
+    Instantiates HabitSnapshot and adds it to history
     Resets this such that
+        currentDay is incremented by one day
         this.currentAmount = startingAmount
         overloadAmount = 0
         progressPercentage = 0
         progressType = UNDERDONE
-    Calculates nextCycleTime and sets this.nextCycleTime to the new one
      */
-    public void cycleHabit(Habit habit) {
+    public void resetHabit(Habit habit) {
+        // !!!
+    }
+
+    /*
+    REQUIRES:
+    The time gap between currentDay and now in habit must be greater than a day
+    MODIFIES:
+    habit
+    EFFECTS:
+    For the first day, calls resetHabit
+    For each subsequent day, inserts a blank HabitSnapshot, incrementing the day appropriately for each one
+     */
+    public void updateHabit(Habit habit) {
         // !!!
     }
 
     /*
     MODIFIES:
-    this
+    habit
     EFFECTS:
-    Based off of now, calculates the next time the habit should cycle
+    Calls calculateNextCycleTime
+    Sets nextCycleTime to the new one
+    Sets currentDay to today
      */
-    public LocalDateTime calculateNextCycleTime() {
+    public void updateHabitTimes(Habit habit) {
+        // !!!
+    }
+
+    // EFFECTS: Calculates time difference between now and nextCycleTime
+    public Duration calculateDelay(Habit habit) {
+        // !!!
+        return Duration.ZERO; // stub
+    }
+
+    // MODIFIES: this
+    // EFFECTS: Based off of now, calculates the next time the habit should cycle
+    public LocalDateTime calculateNextCycleTime(Habit habit) {
         // !!!
         return LocalDateTime.now(); // stub
     }
 
-    // MODIFIES: this
-    // EFFECTS: Appends habit to habits
-    public void addToHabit(Habit habit) {
-        habits.add(habit);
+    public void setLastTime(LocalDateTime lastTime) {
+        this.lastTime = lastTime;
+    }
+
+    public LocalDateTime getLastTime() {
+        return lastTime;
     }
 
     public List<Habit> getHabits() {

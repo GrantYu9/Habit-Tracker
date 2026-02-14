@@ -18,10 +18,12 @@ public class TestHabitIncrement {
     
     @BeforeEach
     void runBefore() {
+        /* !!! remove
         testHabitIncrementA = new HabitIncrement(1, 0, 1, "Workout", null, testAllHabitsPage);
         testHabitIncrementB = new HabitIncrement(5, 0, 1, "Study", "study sessions", testAllHabitsPage);
         testHabitIncrementC = new HabitIncrement(10, 0, 2, "Hydration", "sips", testAllHabitsPage);
         testHabitIncrementD = new HabitIncrement(5, 1, 1, "Back stength", "pullups", testAllHabitsPage);
+         */
 
         testAllHabitsPage = new AllHabitsPage();
     }

@@ -30,7 +30,7 @@ I picked this idea because all the habit trackers I have tried thus far have not
 
 ### Phase 0
 - Adding X to Y: As a user, I want to be able to place certain habits in certain habit pages to assist in organizing my habits.
-- Viewing a list of X: As a user, I want a default feature that has all my habits in one place.
+- List all Xs in Y: As a user, I want a default habit page that has all my habits in one place.
 - As a user, I want to be able to make a variety of habits, with different incrementing and decrementing behaviour, differing amounts of steps, goals, starting amounts, units, and with unique cycling times.
 - As a user, I want to be able to view the progress of my habits in the form of heatmaps.
 - As a user, I want to not only be able to meet my habits, but be rewarded for going above and beyond.

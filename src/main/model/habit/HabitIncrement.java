@@ -2,6 +2,8 @@ package model.habit;
 
 import model.organization.specialpages.AllHabitsPage;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 import model.habit.Habit.ProgressType;
@@ -32,9 +34,12 @@ public class HabitIncrement extends Habit {
         String title, 
         String unit, 
         LocalTime cycleTime,
-        AllHabitsPage allHabitsPage
+        LocalDate currentDay,
+        AllHabitsPage allHabitsPage,
+        HabitCycleManager habitCycleManager
     ) {
-        super(goal, startingAmount, stepAmount, title, unit, cycleTime, allHabitsPage);
+        super(goal, startingAmount, stepAmount, title, unit, cycleTime, currentDay, allHabitsPage, 
+            habitCycleManager);
     }
 
     @Override
