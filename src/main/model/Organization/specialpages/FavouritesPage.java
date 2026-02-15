@@ -15,16 +15,19 @@ public class FavouritesPage {
     EFFECTS:
     Instantiates FavouritePage such that
         title = "Favourites"
-        habits = new ArrayList<>()
+        habits = new ArrayList
      */
     public FavouritesPage() {
-        // !!!
+        title = "Favourites";
+
+        habits = new ArrayList<>();
     }
 
+    // REQUIRES: habit not already in habits
     // MODIFIES: this
     // EFFECTS: appends habit to habits
     public void addToFavouritesPage(Habit habit) {
-        // !!!
+        habits.add(habit);
     }
 
     public String getTitle() {

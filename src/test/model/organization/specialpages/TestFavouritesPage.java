@@ -51,9 +51,6 @@ public class TestFavouritesPage {
         allHabitsPage = new AllHabitsPage();
         habitCycleManager = new HabitCycleManager(allHabitsPage, localDateTime);
 
-        habitA.addTagAndSortTags(tagFavourite, null, favouritesPage, allTagPagesPage);
-        habitB.addTagAndSortTags(tagFavourite, null, favouritesPage, allTagPagesPage);
-
         whatShouldBeHabit = new ArrayList<>();
     }
 
