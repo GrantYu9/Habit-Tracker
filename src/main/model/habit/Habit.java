@@ -79,14 +79,14 @@ public abstract class Habit {
 
         this.currentAmount = startingAmount
         overloadAmount = 0
+        progressPercentage = 0
         viewMode = BAR
         progressType = UNDERDONE
         unit = ""
         history = new ArrayList
         tags = new ArrayList
-    Calculate progressPercentage and set this.progressPercentage to the output
 
-    Calls HabitCycleManager to set nextCycleTime and execute cycleHabitWhileRunning at nextCycleTime
+    Calls HabitCycleManager to set nextCycleTime based on the marker and execute cycleHabitWhileRunning at nextCycleTime
     */
     public Habit(
         int goal, 
@@ -95,6 +95,7 @@ public abstract class Habit {
         String title,
         LocalTime cycleTime,
         LocalDate currentDay,
+        LocalDateTime marker,
 
         HabitCycleManager habitCycleManager
     ) {
@@ -107,6 +108,7 @@ public abstract class Habit {
 
         this.currentAmount = this.startingAmount;
         overloadAmount = 0;
+        progressPercentage = 0;
         viewMode = ViewMode.BAR;
         progressType = ProgressType.UNDERDONE;
         unit = "";
@@ -114,10 +116,9 @@ public abstract class Habit {
         history = new ArrayList<>();
         tags = new ArrayList<>();
 
-        this.nextCycleTime = habitCycleManager.calculateNextCycleTime(this, LocalDateTime.now());
+        this.nextCycleTime = habitCycleManager.calculateNextCycleTime(this, marker);
 
-        habitCycleManager.scheduleHabit(this, Duration.between(LocalDateTime.now(), nextCycleTime), 
-            LocalDateTime.now());
+        habitCycleManager.scheduleHabit(this, Duration.between(marker, nextCycleTime), marker);
     }
 
     public abstract int calculateOverloadAmount(int currentAmount, int goal);

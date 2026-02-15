@@ -1,6 +1,7 @@
 package model.habit;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 /*
@@ -29,11 +30,12 @@ public class HabitIncrement extends Habit {
         String title, 
         LocalTime cycleTime,
         LocalDate currentDay,
+        LocalDateTime marker,
         
         HabitCycleManager habitCycleManager
     ) {
         super(goal, startingAmount, stepAmount, title, cycleTime, currentDay, 
-            habitCycleManager);
+            marker, habitCycleManager);
     }
 
     @Override

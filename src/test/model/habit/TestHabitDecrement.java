@@ -20,6 +20,7 @@ public class TestHabitDecrement {
     private LocalDate localDate; // Fr Feb 13, 2026
     private LocalTime localTime; // 23:30
     private LocalDateTime localDateTime; // localDate + localTime
+    private LocalDateTime rightNow; // Right now
 
     private Habit testHabitDecrementA; // Boolean
     private Habit testHabitDecrementB; // Step 1
@@ -37,17 +38,18 @@ public class TestHabitDecrement {
         localDate = LocalDate.of(2026, 2, 13);
         localTime = LocalTime.of(23, 30);
         localDateTime = LocalDateTime.of(localDate, localTime);
+        rightNow = LocalDateTime.now();
 
         testHabitDecrementA = new HabitDecrement(0, 1, 1, "Quitting smoking", localTime, localDate, 
-            testHabitCycleManager);
+            rightNow, testHabitCycleManager);
         testHabitDecrementB = new HabitDecrement(0, 5, 1, "Doomscrolling", localTime, localDate, 
-            testHabitCycleManager);
+            rightNow, testHabitCycleManager);
         testHabitDecrementC = new HabitDecrement(0, 10, 2, "Snack abstination", localTime, localDate, 
-            testHabitCycleManager);
+            rightNow, testHabitCycleManager);
         testHabitDecrementD = new HabitDecrement(5, 10, 1, "Locking In", localTime, localDate, 
-            testHabitCycleManager);
+            rightNow, testHabitCycleManager);
         testHabitDecrementE = new HabitDecrement(-3, 3, 1, "Cutting", localTime, localDate, 
-            testHabitCycleManager);
+            rightNow, testHabitCycleManager);
     }
 
     @Test
@@ -470,7 +472,7 @@ public class TestHabitDecrement {
     public Habit copyHabitDecrement (Habit habitDecrement) {
         Habit h = new HabitDecrement(habitDecrement.getGoal(), habitDecrement.getStartingAmount(), 
             habitDecrement.getStepAmount(), habitDecrement.getTitle(), 
-            habitDecrement.getCycleTime(), habitDecrement.getCurrentDay(), testHabitCycleManager);
+            habitDecrement.getCycleTime(), habitDecrement.getCurrentDay(), rightNow, testHabitCycleManager);
 
         h.setNextCycleTime(habitDecrement.getNextCycleTime());
 

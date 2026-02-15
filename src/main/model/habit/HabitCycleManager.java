@@ -56,16 +56,16 @@ public class HabitCycleManager {
     MODIFIES:
     habit
     EFFECTS:
-    If nextCycleTime was earlier than now by >= 2 days, calls updateHabit
-    Else if nextCycleTime was earlier than now, calls resetHabit
+    If nextCycleTime was earlier than a marker by >= 2 days, calls updateHabit
+    Else if nextCycleTime was earlier than a marker, calls resetHabit
     Calls updateHabitTimes
      */
     public void cycleHabitAtStartup(Habit habit, LocalDateTime marker) {
         LocalDateTime nextCycleTime = habit.getNextCycleTime();
 
-        if (nextCycleTime.isBefore(LocalDateTime.now().minusDays(2))) {
+        if (nextCycleTime.isBefore(marker.minusDays(2))) {
             updateHabit(habit, marker);
-        } else if (nextCycleTime.isBefore(LocalDateTime.now())) {
+        } else if (nextCycleTime.isBefore(marker)) {
             resetHabit(habit);
         }
 

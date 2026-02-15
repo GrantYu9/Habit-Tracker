@@ -38,10 +38,12 @@ public class TestAllHabitsPage {
         localTime = LocalTime.of(23, 30);
         localDateTime = LocalDateTime.of(localDate, localTime);
 
-        testHabitA = new HabitIncrement(1, 0, 1, "Workout", localTime, localDate, testHabitCycleManager);
-        testHabitB = new HabitIncrement(1, 0, 1, "More working out", localTime, localDate, testHabitCycleManager);
-
         testHabitCycleManager = new HabitCycleManager(testAllHabitsPage, localDateTime);
+
+        testHabitA = new HabitIncrement(1, 0, 1, "Workout", localTime, localDate, localDateTime, testHabitCycleManager);
+        testHabitB = new HabitIncrement(1, 0, 1, "More working out", localTime, localDate, localDateTime, testHabitCycleManager);
+
+        
 
         whatShouldBeHabit = new ArrayList<>();
     }

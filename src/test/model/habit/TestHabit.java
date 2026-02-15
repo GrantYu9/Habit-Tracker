@@ -86,13 +86,13 @@ public class TestHabit {
         spyHabitCycleManagerE = new SpyHabitCycleManager(testAllHabitsPage, justNow);
 
         testHabitA = new HabitIncrement(1, 0, 1, "testHabitA", cycleTimeA, dayA, 
-            spyHabitCycleManagerA);
+            time, spyHabitCycleManagerA);
         testHabitB = new HabitIncrement(1, 0, 1, "testHabitA", cycleTimeA, dayA, 
-            spyHabitCycleManagerB);
+            time, spyHabitCycleManagerB);
         testHabitD = new HabitIncrement(5, 1, 1, "testHabitD", cycleTimeD, dayA, 
-            spyHabitCycleManagerD);
+            time, spyHabitCycleManagerD);
         testHabitE = new HabitIncrement(5, 0, 1, " silly Title ", cycleTimeA, dayA, 
-            spyHabitCycleManagerE);
+            time, spyHabitCycleManagerE);
 
         whatShouldBeHabit = new ArrayList<>();
         whatShouldBeHabitSnapshot = new ArrayList<>();

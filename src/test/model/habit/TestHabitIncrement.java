@@ -20,6 +20,7 @@ public class TestHabitIncrement {
     private LocalDate localDate; // Today
     private LocalTime localTime; // Now
     private LocalDateTime localDateTime; // Right now
+    private LocalDateTime rightNow; // Right now
 
     private Habit testHabitIncrementA; // Boolean
     private Habit testHabitIncrementB; // Step 1
@@ -37,17 +38,18 @@ public class TestHabitIncrement {
         localDate = LocalDate.now();
         localTime = LocalTime.now();
         localDateTime = LocalDateTime.of(localDate, localTime);
+        rightNow = LocalDateTime.now();
 
         testHabitIncrementA = new HabitIncrement(1, 0, 1, "Workout", localTime, localDate, 
-            testHabitCycleManager);
+            rightNow, testHabitCycleManager);
         testHabitIncrementB = new HabitIncrement(5, 0, 1, "Study", localTime, localDate, 
-            testHabitCycleManager);
+            rightNow, testHabitCycleManager);
         testHabitIncrementC = new HabitIncrement(10, 0, 2, "Hydration", localTime, localDate, 
-            testHabitCycleManager);
+            rightNow, testHabitCycleManager);
         testHabitIncrementD = new HabitIncrement(5, 1, 1, "Back stength", localTime, localDate, 
-            testHabitCycleManager);
+            rightNow, testHabitCycleManager);
         testHabitIncrementE = new HabitIncrement(3, -3, 1, "Bulking", localTime, localDate, 
-            testHabitCycleManager);
+            rightNow, testHabitCycleManager);
     }
 
     @Test
@@ -464,7 +466,7 @@ public class TestHabitIncrement {
     public Habit copyHabitIncrement (Habit habitIncrement) {
         Habit h = new HabitIncrement(habitIncrement.getGoal(), habitIncrement.getStartingAmount(), 
             habitIncrement.getStepAmount(), habitIncrement.getTitle(), 
-            habitIncrement.getCycleTime(), habitIncrement.getCurrentDay(), testHabitCycleManager);
+            habitIncrement.getCycleTime(), habitIncrement.getCurrentDay(), rightNow, testHabitCycleManager);
         
         h.setNextCycleTime(habitIncrement.getNextCycleTime());
 

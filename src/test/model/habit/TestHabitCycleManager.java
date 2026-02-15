@@ -88,13 +88,13 @@ public class TestHabitCycleManager {
         testHabitCycleManagerLate = new HabitCycleManager(testAllHabitsPageLate, lastTimeLate);
 
         testHabitMidnightRecent = new HabitIncrement(1, 0, 1, "Workout", cycleTimeMidnight,
-            lastTimeRecent.toLocalDate(), testHabitCycleManagerRecent);
+            lastTimeRecent.toLocalDate(), rightNow, testHabitCycleManagerRecent);
         testHabit2330Recent = new HabitIncrement(1, 0, 1, "Workout", cycleTime2330, 
-            lastTimeRecent.toLocalDate(), testHabitCycleManagerRecent);
+            lastTimeRecent.toLocalDate(), rightNow, testHabitCycleManagerRecent);
         testHabitMidnightLate = new HabitIncrement(1, 0, 1, "Workout", cycleTimeMidnight, 
-            lastTimeLate.toLocalDate(), testHabitCycleManagerLate);
+            lastTimeLate.toLocalDate(), rightNow, testHabitCycleManagerLate);
         testHabit2330Late = new HabitIncrement(1, 0, 1, "Workout", cycleTime2330, 
-            lastTimeLate.toLocalDate(), testHabitCycleManagerLate);
+            lastTimeLate.toLocalDate(), rightNow, testHabitCycleManagerLate);
 
         testAllHabitsPageRecent.addToAllHabitsPage(testHabitMidnightRecent);
         testAllHabitsPageRecent.addToAllHabitsPage(testHabit2330Recent);
@@ -153,10 +153,10 @@ public class TestHabitCycleManager {
 
     @Test
     void testCycleAllHabitsAtStartupRecentMix() {
-        testHabit2330Recent.progressByStepAmount();
-
         Habit actualMidnight = copyHabit(testHabitMidnightRecent);
         Habit actual2330 = copyHabit(testHabit2330Recent);
+        testHabit2330Recent.progressByStepAmount();
+        actual2330.progressByStepAmount();
 
         testHabitCycleManagerRecent.cycleAllHabitsAtStartup(rightNow);
         testHabitCycleManagerRecent.cycleHabitAtStartup(actualMidnight, rightNow);
@@ -168,11 +168,13 @@ public class TestHabitCycleManager {
 
     @Test
     void testCycleAllHabitsAtStartupRecentChange() {
-        testHabitMidnightRecent.progressByStepAmount();
-        testHabit2330Recent.progressByStepAmount();
-        
         Habit actualMidnight = copyHabit(testHabitMidnightRecent);
         Habit actual2330 = copyHabit(testHabit2330Recent);
+
+        testHabitMidnightRecent.progressByStepAmount();
+        testHabit2330Recent.progressByStepAmount();
+        actualMidnight.progressByStepAmount();
+        actual2330.progressByStepAmount();
 
         testHabitCycleManagerRecent.cycleAllHabitsAtStartup(rightNow);
         testHabitCycleManagerRecent.cycleHabitAtStartup(actualMidnight, rightNow);
@@ -197,10 +199,11 @@ public class TestHabitCycleManager {
 
     @Test
     void testCycleAllHabitsAtStartupLateMix() {
-        testHabit2330Late.progressByStepAmount();
-
         Habit actualMidnight = copyHabit(testHabitMidnightLate);
         Habit actual2330 = copyHabit(testHabit2330Late);
+
+        testHabit2330Late.progressByStepAmount();
+        actual2330.progressByStepAmount();
 
         testHabitCycleManagerLate.cycleAllHabitsAtStartup(rightNow);
         testHabitCycleManagerLate.cycleHabitAtStartup(actualMidnight, rightNow);
@@ -212,11 +215,13 @@ public class TestHabitCycleManager {
 
     @Test
     void testCycleAllHabitsAtStartupLateChange() {
-        testHabitMidnightLate.progressByStepAmount();
-        testHabit2330Late.progressByStepAmount();
-
         Habit actualMidnight = copyHabit(testHabitMidnightLate);
         Habit actual2330 = copyHabit(testHabit2330Late);
+
+        testHabitMidnightLate.progressByStepAmount();
+        testHabit2330Late.progressByStepAmount();
+        actualMidnight.progressByStepAmount();
+        actual2330.progressByStepAmount();
 
         testHabitCycleManagerLate.cycleAllHabitsAtStartup(rightNow);
         testHabitCycleManagerLate.cycleHabitAtStartup(actualMidnight, rightNow);
@@ -467,7 +472,7 @@ public class TestHabitCycleManager {
     // EFFECTS: Outputs a copy of the habit
     public Habit copyHabit(Habit habit) {
         return new HabitIncrement(habit.getGoal(), habit.getStartingAmount(), habit.getStepAmount(), habit.getTitle(),
-            habit.getCycleTime(), habit.getCurrentDay(), 
+            habit.getCycleTime(), habit.getCurrentDay(), rightNow,
             testHabitCycleManagerRecent);
     }
 
