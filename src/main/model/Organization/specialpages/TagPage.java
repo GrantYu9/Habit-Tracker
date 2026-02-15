@@ -26,13 +26,17 @@ public class TagPage {
     Adds TagPage to AllTagPages
      */
     public TagPage(Tag tag, AllTagPagesPage allTagPages) {
-        // !!!
+        title = tag.getTitle();
+        this.tag = tag;
+        habits = new ArrayList<>();
+
+        allTagPages.addToTagPages(this);
     }
 
     // MODIFIES: this
     // EFFECTS: appends habit to habits
     public void addToTagPage(Habit habit) {
-        // !!!
+        habits.add(habit);
     }
 
     public String getTitle() {

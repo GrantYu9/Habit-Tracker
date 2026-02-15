@@ -40,13 +40,11 @@ public class TestTagPage {
 
     @BeforeEach
     void runBeforeEach() {
-        tagPageA = new TagPage(tagA, allTagPages);
+        tagA = new Tag("tagA");
 
         localDate = LocalDate.of(2026, 2, 13);
         localTime = LocalTime.of(23, 30);
         localDateTime = LocalDateTime.of(localDate, localTime);
-
-        tagA = new Tag("tagA");
 
         habitA = new HabitIncrement(1, 0, 1, "Workout", localTime, localDate, allHabitsPage, habitCycleManager);
         habitB = new HabitIncrement(1, 0, 1, "More working out", localTime, localDate, allHabitsPage, habitCycleManager);
@@ -57,6 +55,8 @@ public class TestTagPage {
 
         whatShouldBeTagPage = new ArrayList<>();
         whatShouldBeHabit = new ArrayList<>();
+
+        tagPageA = new TagPage(tagA, allTagPages);
     }
 
     @Test
