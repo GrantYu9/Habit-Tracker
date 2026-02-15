@@ -38,11 +38,15 @@ public class TestAllTagPagesPage {
     
     @Test
     void testConstructor() {
-        assertTrue(allTagPages.getTagPages().isEmpty());
+        whatShouldBeTagPage.add(tagPageA);
+        whatShouldBeTagPage.add(tagPageB);
+        assertEquals(whatShouldBeTagPage, allTagPages.getTagPages());
     }
 
     @Test
     void testAddToTagPage() {
+        allTagPages.getTagPages().clear();
+        
         allTagPages.addToTagPages(tagPageA);
         whatShouldBeTagPage.add(tagPageA);
         assertEquals(whatShouldBeTagPage, allTagPages.getTagPages());
