@@ -33,7 +33,7 @@ public class TestTag {
     void testConstructorTitleTrim() {
         assertTrue(tagB.getTitle().equals("sUper funky Title"));
         assertEquals(TagType.NORMAL, tagB.getTagType());
-        assertTrue(tagB.getColour().equals(tagA.getHomeColour()));
+        assertTrue(tagB.getColour().equals(tagB.getDefaultColour()));
     }
 
     @Test
@@ -47,7 +47,7 @@ public class TestTag {
     void testConstructorHome() {
         assertTrue(tagHome.getTitle().equals("Home"));
         assertEquals(TagType.HOME, tagHome.getTagType());
-        assertTrue(tagHome.getColour().equals(tagA.getDefaultColour()));
+        assertTrue(tagHome.getColour().equals(tagHome.getHomeColour()));
     }
 
     @Test
@@ -55,17 +55,17 @@ public class TestTag {
         tagA.setTitle(" aNother sUper FunKy Title ");
         assertTrue(tagA.getTitle().equals("aNother sUper FunKy Title"));
         assertEquals(TagType.NORMAL, tagA.getTagType());
-        assertTrue(tagA.getColour().equals(tagA.getHomeColour()));
+        assertTrue(tagA.getColour().equals(tagA.getDefaultColour()));
 
         tagA.setTitle(" HoMe ");
         assertTrue(tagA.getTitle().equals("Home"));
         assertEquals(TagType.HOME, tagA.getTagType());
-        assertTrue(tagA.getColour().equals(tagA.getDefaultColour()));
+        assertTrue(tagA.getColour().equals(tagA.getHomeColour()));
 
         tagA.setTitle(" Favorite ");
         assertTrue(tagA.getTitle().equals("Favorite"));
         assertEquals(TagType.NORMAL, tagA.getTagType());
-        assertTrue(tagA.getColour().equals(tagA.getHomeColour()));
+        assertTrue(tagA.getColour().equals(tagA.getDefaultColour()));
 
         tagA.setTitle(" FAvourite ");
         assertTrue(tagA.getTitle().equals("Favourite"));
