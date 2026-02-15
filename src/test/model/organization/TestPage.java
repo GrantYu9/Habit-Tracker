@@ -15,7 +15,6 @@ import org.junit.jupiter.api.Test;
 import model.habit.Habit;
 import model.habit.HabitCycleManager;
 import model.habit.HabitIncrement;
-import model.organization.centralization.AllGenericPagesPage;
 import model.organization.centralization.AllHabitsPage;
 import model.organization.tree.Page;
 import model.organization.tree.Page.Order;

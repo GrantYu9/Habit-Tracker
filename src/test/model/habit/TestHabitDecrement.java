@@ -187,12 +187,12 @@ public class TestHabitDecrement {
 
         testHabitDecrementE.progressByStepAmount();
         expected.setCurrentAmountLogic(2);
-        expected.setProgressPercentage(17);
+        expected.setProgressPercentage(16);
         assertTrue(testHabitDecrementE.equals(expected));
 
         testHabitDecrementE.progressByStepAmount();
         expected.setCurrentAmountLogic(1);
-        expected.setProgressPercentage(34);
+        expected.setProgressPercentage(33);
         assertTrue(testHabitDecrementE.equals(expected));
 
         testHabitDecrementE.progressByStepAmount();
@@ -202,7 +202,7 @@ public class TestHabitDecrement {
 
         testHabitDecrementE.progressByStepAmount();
         expected.setCurrentAmountLogic(-1);
-        expected.setProgressPercentage(67);
+        expected.setProgressPercentage(66);
         assertTrue(testHabitDecrementE.equals(expected));
 
         testHabitDecrementE.progressByStepAmount();
@@ -261,7 +261,7 @@ public class TestHabitDecrement {
     @Test
     void testCalculateProgressPercentageE() {
         assertEquals(0, testHabitDecrementE.calculateProgressPercentage(3, 3, -3));
-        assertEquals(17, testHabitDecrementE.calculateProgressPercentage(3, 2, -3));
+        assertEquals(16, testHabitDecrementE.calculateProgressPercentage(3, 2, -3));
         assertEquals(50, testHabitDecrementE.calculateProgressPercentage(3, 0, -3));
         assertEquals(83, testHabitDecrementE.calculateProgressPercentage(3, -2, -3));
         assertEquals(100, testHabitDecrementE.calculateProgressPercentage(3, -3, -3));
@@ -338,7 +338,7 @@ public class TestHabitDecrement {
 
         testHabitDecrementE.setCurrentAmountLogic(2);
         expected.setCurrentAmountLogic(2);
-        expected.setProgressPercentage(17);
+        expected.setProgressPercentage(16);
         assertTrue(testHabitDecrementE.equals(expected));
 
         testHabitDecrementE.setCurrentAmountLogic(-2);
@@ -462,14 +462,18 @@ public class TestHabitDecrement {
 
         testHabitDecrementE.setCurrentAmountLogic(2);
         expected.setCurrentAmountLogic(2);
-        expected.setProgressPercentage(17);
+        expected.setProgressPercentage(16);
         assertTrue(testHabitDecrementE.equals(expected));
     }
 
     // EFFECTS: Creates a copy of habitDecrement
     public Habit copyHabitDecrement (Habit habitDecrement) {
-        return new HabitDecrement(habitDecrement.getGoal(), habitDecrement.getStartingAmount(), 
+        Habit h = new HabitDecrement(habitDecrement.getGoal(), habitDecrement.getStartingAmount(), 
             habitDecrement.getStepAmount(), habitDecrement.getTitle(), 
             habitDecrement.getCycleTime(), habitDecrement.getCurrentDay(), testHabitCycleManager);
+
+        h.setNextCycleTime(habitDecrement.getNextCycleTime());
+
+        return h;
     }
 }

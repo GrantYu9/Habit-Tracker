@@ -1,11 +1,7 @@
 package model.habit;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
-
-import model.habit.Habit.ProgressType;
-import model.organization.centralization.AllHabitsPage;
 
 /*
 A habit that advances in natural number steps towards a goal
@@ -64,7 +60,7 @@ public class HabitIncrement extends Habit {
     // REQUIRES: currentAmount > goal
     // EFFECTS: Calculutes how much currentAmount is above goal, as a natural number
     public int calculateOverloadAmount(int currentAmount, int goal) {
-        return Math.abs(goal - currentAmount);
+        return Math.abs(currentAmount - goal);
     }
 
     @Override

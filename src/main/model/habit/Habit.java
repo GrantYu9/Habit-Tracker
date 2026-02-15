@@ -1,7 +1,6 @@
 package model.habit;
 
 import java.text.Collator;
-import java.time.Duration;
 
 /*
 We use local time to capture when the user wants to cycle, then covert it to
@@ -13,14 +12,12 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 
 import model.organization.Tag;
 import model.organization.Tag.TagType;
-import model.organization.centralization.AllHabitsPage;
 import model.organization.centralization.AllTagPagesPage;
 import model.organization.specialpages.FavouritesPage;
 import model.organization.specialpages.HomePage;

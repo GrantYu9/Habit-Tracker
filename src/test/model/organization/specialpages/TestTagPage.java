@@ -17,7 +17,6 @@ import model.habit.HabitCycleManager;
 import model.habit.HabitIncrement;
 import model.organization.Tag;
 import model.organization.centralization.AllHabitsPage;
-import model.organization.centralization.AllTagPagesPage;
 
 public class TestTagPage {
     private TagPage tagPageA;
