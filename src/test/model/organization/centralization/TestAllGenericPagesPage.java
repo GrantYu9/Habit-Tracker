@@ -31,11 +31,15 @@ public class TestAllGenericPagesPage {
 
     @Test
     void testConstructor() {
-        assertTrue(allGenericPagesPage.getPages().isEmpty());
+        whatShouldBePage.add(pageA);
+        whatShouldBePage.add(pageB);
+        assertEquals(whatShouldBePage, allGenericPagesPage.getPages());
     }
 
     @Test
     void testAddToPages() {
+        allGenericPagesPage.getPages().clear();
+        
         allGenericPagesPage.addToPages(pageA);
         whatShouldBePage.add(pageA);
         assertEquals(whatShouldBePage, allGenericPagesPage.getPages());
