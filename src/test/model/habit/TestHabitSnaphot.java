@@ -13,18 +13,21 @@ import model.habit.Habit.ProgressType;
 public class TestHabitSnaphot {
     private HabitSnapshot testHabitSnapshotA;
     private HabitSnapshot testHabitSnapshotB;
+    private HabitSnapshot testHabitSnapshotC; // Copy of B
 
     private LocalDate today;
 
     @BeforeEach
     void beforeEach() {
         today = LocalDate.now();
+
+        testHabitSnapshotA = new HabitSnapshot(1, 2, 0, 50, 0, 1, ProgressType.UNDERDONE, today, "breaks");
+        testHabitSnapshotB = new HabitSnapshot(6, 4, 2, 100, 2, 2, ProgressType.OVERLOADED, today, "study sessions");
+        testHabitSnapshotC = new HabitSnapshot(6, 4, 2, 100, 2, 2, ProgressType.OVERLOADED, today, "study sessions");
     }
 
     @Test
     void testConstructorA() {
-        testHabitSnapshotA = new HabitSnapshot(1, 2, 0, 50, 0, 1, ProgressType.UNDERDONE, today, "breaks");
-
         assertEquals(1, testHabitSnapshotA.getCurrentAmount());
         assertEquals(2, testHabitSnapshotA.getGoal());
         assertEquals(0, testHabitSnapshotA.getOverloadAmount());
@@ -37,8 +40,6 @@ public class TestHabitSnaphot {
 
     @Test
     void testConstructorB() {
-        testHabitSnapshotB = new HabitSnapshot(6, 4, 2, 100, 2, 2, ProgressType.OVERLOADED, today, "study sessions");
-
         assertEquals(6, testHabitSnapshotB.getCurrentAmount());
         assertEquals(4, testHabitSnapshotB.getGoal());
         assertEquals(2, testHabitSnapshotB.getOverloadAmount());
@@ -51,7 +52,6 @@ public class TestHabitSnaphot {
 
     @Test
     void testEquals() {
-        // !!!
-        assertTrue(false);
+        assertTrue(testHabitSnapshotB.equals(testHabitSnapshotC));
     }
 }
