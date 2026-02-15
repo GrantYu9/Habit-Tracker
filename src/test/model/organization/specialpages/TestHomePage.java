@@ -50,10 +50,7 @@ public class TestHomePage {
 
         allHabitsPage = new AllHabitsPage();
         habitCycleManager = new HabitCycleManager(allHabitsPage, localDateTime);
-
-        habitA.addTagAndSortTags(tagHome, homePage, null, allTagPagesPage);
-        habitB.addTagAndSortTags(tagHome, homePage, null, allTagPagesPage);
-
+        
         whatShouldBeHabit = new ArrayList<>();
     }
 

@@ -18,13 +18,15 @@ public class HomePage {
         habits = new ArrayList<>()
      */
     public HomePage() {
-        // !!!
+        title = "Home";
+        
+        habits = new ArrayList<>();
     }
 
     // MODIFIES: this
     // EFFECTS: appends habit to habits
     public void addToHomePage(Habit habit) {
-        // !!!
+        habits.add(habit);
     }
 
     public String getTitle() {
