@@ -31,11 +31,19 @@ public class HabitSnapshot {
         int progressPercentage,
         int startingAmount,
         int stepAmount,
-        ProgressType underdone,
+        ProgressType progressType,
         LocalDate day,
         String unit
     ) {
-        // !!!
+        this.currentAmount = currentAmount;
+        this.goal = goal;
+        this.overloadAmount = overloadAmount;
+        this.progressPercentage = progressPercentage;
+        this.startingAmount = startingAmount;
+        this.stepAmount = stepAmount;
+        this.progressType = progressType;
+        this.day = day;
+        this.unit = unit;
     }
 
     public int getCurrentAmount() {
