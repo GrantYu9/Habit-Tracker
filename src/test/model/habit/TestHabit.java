@@ -3,6 +3,7 @@ package model.habit;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -24,7 +25,10 @@ import model.organization.specialpages.HomePage;
 public class TestHabit {
     // Fix naming consistency later !!!
     private AllHabitsPage testAllHabitsPage;
-    private HabitCycleManager testHabitCycleManager;
+    private SpyHabitCycleManager spyHabitCycleManagerA;
+    private SpyHabitCycleManager spyHabitCycleManagerB;
+    private SpyHabitCycleManager spyHabitCycleManagerD;
+    private SpyHabitCycleManager spyHabitCycleManagerE;
     private HomePage testHomePage;
     private FavouritesPage testFavouritesPage;
     private AllTagPagesPage testAllTagPages;
@@ -32,11 +36,13 @@ public class TestHabit {
     private LocalTime cycleTimeA; // Midnight
     private LocalTime cycleTimeD; // 23:30
 
-    private LocalDate dayA; // Fr Feb 13, 2026
+    private LocalDate dayA; // Today
 
-    private LocalDateTime time; // Fr Feb 13, 2026 at 13:00
+    private LocalDateTime time; // Right now
+    private LocalDateTime justNow; // Right now - 1 hr
     
     private Habit testHabitA; // Boolean
+    private Habit testHabitB; // testHabitA copy
     private Habit testHabitD; // Headstart
     private Habit testHabitE; // Funny title and unit
 
@@ -57,9 +63,10 @@ public class TestHabit {
         cycleTimeA = LocalTime.of(0, 0);
         cycleTimeD = LocalTime.of(23, 30);
 
-        dayA = LocalDate.of(2026, 2, 13);
+        dayA = LocalDate.now();
 
-        time = LocalDateTime.of(2026, 2, 13, 13, 0);
+        time = LocalDateTime.now();
+        justNow = time.minusHours(1);
 
         testHabitSnapshotA = new HabitSnapshot(0, 1, 0, 0, 0, 1, ProgressType.UNDERDONE, dayA, null);
 
@@ -70,17 +77,22 @@ public class TestHabit {
         tagFavourite = new Tag("Favourite");
 
         testAllHabitsPage = new AllHabitsPage();
-        testHabitCycleManager = new HabitCycleManager(testAllHabitsPage, time);
         testHomePage = new HomePage();
         testFavouritesPage = new FavouritesPage();
         testAllTagPages = new AllTagPagesPage();
+        spyHabitCycleManagerA = new SpyHabitCycleManager(testAllHabitsPage, justNow);
+        spyHabitCycleManagerB = new SpyHabitCycleManager(testAllHabitsPage, justNow);
+        spyHabitCycleManagerD = new SpyHabitCycleManager(testAllHabitsPage, justNow);
+        spyHabitCycleManagerE = new SpyHabitCycleManager(testAllHabitsPage, justNow);
 
         testHabitA = new HabitIncrement(1, 0, 1, "testHabitA", cycleTimeA, dayA, 
-            testHabitCycleManager);
+            spyHabitCycleManagerA);
+        testHabitB = new HabitIncrement(1, 0, 1, "testHabitA", cycleTimeA, dayA, 
+            spyHabitCycleManagerB);
         testHabitD = new HabitIncrement(5, 1, 1, "testHabitD", cycleTimeD, dayA, 
-            testHabitCycleManager);
+            spyHabitCycleManagerD);
         testHabitE = new HabitIncrement(5, 0, 1, " silly Title ", cycleTimeA, dayA, 
-            testHabitCycleManager);
+            spyHabitCycleManagerE);
 
         whatShouldBeHabit = new ArrayList<>();
         whatShouldBeHabitSnapshot = new ArrayList<>();
@@ -106,7 +118,7 @@ public class TestHabit {
 
         assertTrue(testHabitA.getNextCycleTime().isEqual(LocalDateTime.of(dayA, cycleTimeA).plusDays(1)));
 
-        // !!! test scheduler
+        assertEquals(1, spyHabitCycleManagerA.scheduleHabitCallCount);
     }
 
     @Test
@@ -126,9 +138,11 @@ public class TestHabit {
         assertTrue(testHabitD.getHistory().isEmpty());
         assertTrue(testHabitD.getTags().isEmpty());
 
-        assertTrue(testHabitD.getNextCycleTime().isEqual(LocalDateTime.of(dayA, cycleTimeA)));
+        assertTrue(testHabitD.getNextCycleTime().isEqual(LocalDateTime.of(dayA, cycleTimeD)));
 
-        // !!! test scheduler
+        testAllHabitsPage.addToAllHabitsPage(testHabitD);
+        
+        assertEquals(1, spyHabitCycleManagerD.scheduleHabitCallCount);
     }
 
     // Just to check title trimming behaviour
@@ -188,7 +202,20 @@ public class TestHabit {
 
     @Test
     void testEquals() {
-        // !!!
-        assertTrue(false);
+        assertTrue(testHabitA.equals(testHabitB));
     }
+
+    // Spy class to check if scheduleHabit is called
+    public class SpyHabitCycleManager extends HabitCycleManager {
+        public int scheduleHabitCallCount = 0;
+
+        public SpyHabitCycleManager(AllHabitsPage allHabitsPage, LocalDateTime lastTime) {
+            super(allHabitsPage, lastTime);
+        }
+
+        @Override
+        public void scheduleHabit(Habit habit, Duration duration, LocalDateTime marker) {
+            scheduleHabitCallCount++;
+        }
+    };
 }

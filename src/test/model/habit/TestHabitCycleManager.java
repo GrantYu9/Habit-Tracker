@@ -2,7 +2,6 @@ package model.habit;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.Duration;
@@ -474,7 +473,7 @@ public class TestHabitCycleManager {
 
     // Spy class to check if scheduleHabit is called
     public class SpyHabitCycleManager extends HabitCycleManager {
-        private int scheduleHabitCallCount = 0;
+        public int scheduleHabitCallCount = 0;
 
         public SpyHabitCycleManager(AllHabitsPage allHabitsPage, LocalDateTime lastTime) {
             super(allHabitsPage, lastTime);

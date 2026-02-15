@@ -1,6 +1,7 @@
 package model.habit;
 
 import java.text.Collator;
+import java.time.Duration;
 
 /*
 We use local time to capture when the user wants to cycle, then covert it to
@@ -113,11 +114,10 @@ public abstract class Habit {
         history = new ArrayList<>();
         tags = new ArrayList<>();
 
-        this.nextCycleTime = LocalDateTime.now();
+        this.nextCycleTime = habitCycleManager.calculateNextCycleTime(this, LocalDateTime.now());
 
-        // this.nextCycleTime = habitCycleManager.calculateNextCycleTime(this);
-
-        // habitCycleManager.scheduleHabit(this, Duration.between(LocalDateTime.now(), nextCycleTime));
+        habitCycleManager.scheduleHabit(this, Duration.between(LocalDateTime.now(), nextCycleTime), 
+            LocalDateTime.now());
     }
 
     public abstract int calculateOverloadAmount(int currentAmount, int goal);
