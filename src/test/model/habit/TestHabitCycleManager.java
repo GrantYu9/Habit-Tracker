@@ -73,13 +73,13 @@ public class TestHabitCycleManager {
         stepOverDate = LocalDate.of(2026, 2, 14);
 
         testHabitMidnightRecent = new HabitIncrement(1, 0, 1, "Workout", cycleTimeMidnight,
-            lastTimeRecent.toLocalDate(), testAllHabitsPageRecent, testHabitCycleManagerRecent);
+            lastTimeRecent.toLocalDate(), testHabitCycleManagerRecent);
         testHabit2330Recent = new HabitIncrement(1, 0, 1, "Workout", cycleTime2330, 
-            lastTimeRecent.toLocalDate(), testAllHabitsPageRecent, testHabitCycleManagerRecent);
+            lastTimeRecent.toLocalDate(), testHabitCycleManagerRecent);
         testHabitMidnightLate = new HabitIncrement(1, 0, 1, "Workout", cycleTimeMidnight, 
-            lastTimeLate.toLocalDate(), testAllHabitsPageLate, testHabitCycleManagerLate);
+            lastTimeLate.toLocalDate(), testHabitCycleManagerLate);
         testHabit2330Late = new HabitIncrement(1, 0, 1, "Workout", cycleTime2330, 
-            lastTimeLate.toLocalDate(), testAllHabitsPageLate, testHabitCycleManagerLate);
+            lastTimeLate.toLocalDate(), testHabitCycleManagerLate);
 
         testHabitSnapshotRecentNoChange = new HabitSnapshot(0, 1, 0, 0, 0, 1, ProgressType.UNDERDONE, 
             lastTimeRecent.toLocalDate(), null);
@@ -91,29 +91,23 @@ public class TestHabitCycleManager {
         testHabitSnapshotLateFeb11Change = new HabitSnapshot(1, 1, 0, 100, 0, 1, ProgressType.DONE, 
             lastTimeLate.toLocalDate(), null);
 
-        testAllHabitsPageRecent.getHabits().remove(testHabitMidnightLate);
-        testAllHabitsPageRecent.getHabits().remove(testHabit2330Late);
+        testAllHabitsPageRecent.getHabits().add(testHabitMidnightLate);
+        testAllHabitsPageRecent.getHabits().add(testHabit2330Late);
         testHabitCycleManagerRecent = new HabitCycleManager(testAllHabitsPageRecent, lastTimeRecent);
 
-        testAllHabitsPageLate.getHabits().remove(testHabitMidnightRecent);
-        testAllHabitsPageLate.getHabits().remove(testHabit2330Recent);
+        testAllHabitsPageLate.getHabits().add(testHabitMidnightRecent);
+        testAllHabitsPageLate.getHabits().add(testHabit2330Recent);
         testHabitCycleManagerLate = new HabitCycleManager(testAllHabitsPageLate, lastTimeLate);
     }
 
     @Test
     void testConstructorRecent() {
-        whatShouldBeHabits.add(testHabitMidnightRecent);
-        whatShouldBeHabits.add(testHabit2330Recent);
-
         assertEquals(whatShouldBeHabits, testHabitCycleManagerRecent.getHabits());
         assertTrue(testHabitCycleManagerRecent.getLastTime().isEqual(lastTimeRecent));
     }
 
     @Test
     void testConstructorLate() {
-        whatShouldBeHabits.add(testHabitMidnightLate);
-        whatShouldBeHabits.add(testHabit2330Late);
-
         assertEquals(whatShouldBeHabits, testHabitCycleManagerLate.getHabits());
         assertTrue(testHabitCycleManagerLate.getLastTime().isEqual(lastTimeLate));
     }
@@ -453,7 +447,7 @@ public class TestHabitCycleManager {
     // EFFECTS: Outputs a copy of the habit
     public Habit copyHabit(Habit habit) {
         return new HabitIncrement(habit.getGoal(), habit.getStartingAmount(), habit.getStepAmount(), habit.getTitle(),
-            habit.getCycleTime(), habit.getCurrentDay(), testAllHabitsPageRecent, 
+            habit.getCycleTime(), habit.getCurrentDay(), 
             testHabitCycleManagerRecent);
     }
 

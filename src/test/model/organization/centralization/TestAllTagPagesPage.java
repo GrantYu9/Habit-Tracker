@@ -30,16 +30,14 @@ public class TestAllTagPagesPage {
         tagA = new Tag("tagA");
         tagB = new Tag("tagB");
 
-        tagPageA = new TagPage(tagA, allTagPages);
-        tagPageB = new TagPage(tagB, allTagPages);
+        tagPageA = new TagPage(tagA);
+        tagPageB = new TagPage(tagB);
 
         whatShouldBeTagPage = new ArrayList<>();
     }
     
     @Test
     void testConstructor() {
-        whatShouldBeTagPage.add(tagPageA);
-        whatShouldBeTagPage.add(tagPageB);
         assertEquals(whatShouldBeTagPage, allTagPages.getTagPages());
     }
 

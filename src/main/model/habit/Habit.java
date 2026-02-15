@@ -1,5 +1,8 @@
 package model.habit;
 
+import java.text.Collator;
+import java.time.Duration;
+
 /*
 We use local time to capture when the user wants to cycle, then covert it to
 local date time and add by 24 hr to cycle
@@ -10,8 +13,10 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Locale;
 
 import model.organization.Tag;
 import model.organization.Tag.TagType;
@@ -64,6 +69,7 @@ public abstract class Habit {
     REQUIRES:
     0 < stepAmount <= |goal|
     title has at least one character
+    User must add this to AllHabitsPage
     EFFECTS:
     Instantiates a habit such that
         this.goal = goal
@@ -82,7 +88,6 @@ public abstract class Habit {
         tags = new ArrayList
     Calculate progressPercentage and set this.progressPercentage to the output
 
-    Adds this to AllHabitsPages
     Calls HabitCycleManager to set nextCycleTime and execute cycleHabitWhileRunning at nextCycleTime
     */
     public Habit(
@@ -93,7 +98,6 @@ public abstract class Habit {
         LocalTime cycleTime,
         LocalDate currentDay,
 
-        AllHabitsPage allHabitsPage,
         HabitCycleManager habitCycleManager
     ) {
         this.goal = goal;
@@ -111,6 +115,12 @@ public abstract class Habit {
         
         history = new ArrayList<>();
         tags = new ArrayList<>();
+
+        this.nextCycleTime = LocalDateTime.now();
+
+        // this.nextCycleTime = habitCycleManager.calculateNextCycleTime(this);
+
+        // habitCycleManager.scheduleHabit(this, Duration.between(LocalDateTime.now(), nextCycleTime));
     }
 
     public abstract int calculateOverloadAmount(int currentAmount, int goal);
@@ -121,7 +131,6 @@ public abstract class Habit {
     @Override
     /*
     REQUIRES:
-    The object can not be null
     The object must be the same type as this
     EFFECTS:
     Checks equality between two objects
@@ -129,6 +138,10 @@ public abstract class Habit {
     Casts the object into Habit and returns whether all the fields are the same
      */
     public boolean equals(Object object) {
+        if (object == null) {
+            return false;
+        }
+
         if (this == object) {
             return true;
         }
@@ -168,8 +181,6 @@ public abstract class Habit {
             tags.add(tag);
         }
 
-        tags.sort(Comparator.comparing(t -> t.getTitle()));
-
         if (tag.getTagType() == TagType.FAVOURITE) {
             favouritesPage.addToFavouritesPage(this);
             tags.remove(tag);
@@ -184,9 +195,24 @@ public abstract class Habit {
                 tags.add(0, tag);
             }
         } else {
-            TagPage tagPage = new TagPage(tag, allTagPagesPage);
+            TagPage tagPage = new TagPage(tag);
             tagPage.addToTagPage(this);
         }
+
+        Collator dictionary = Collator.getInstance(Locale.ENGLISH);
+
+        tags.sort(Comparator.comparing((Tag t) -> t.getTagType()).thenComparing(t -> t.getTitle(), dictionary));
+    }
+
+    // EFFECTS: Determines if tags contains a tag of type tagType
+    public boolean containsTagType(TagType tagType) {
+        for (Tag tag : tags) {
+            if (tag.getTagType() == tagType) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     // MODIFIES: this

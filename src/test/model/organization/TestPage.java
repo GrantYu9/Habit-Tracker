@@ -30,12 +30,10 @@ public class TestPage {
 
     private AllHabitsPage allHabitsPage;
     private HabitCycleManager habitCycleManager;
-    private AllGenericPagesPage allGenericPages;
 
     private Page page;
 
     private List<Habit> whatShouldBeHabit;
-    private List<Page> whatShouldBePage;
 
     @BeforeEach
     void runBefore() {
@@ -43,27 +41,23 @@ public class TestPage {
         localTime = LocalTime.of(23, 30);
         localDateTime = LocalDateTime.of(localDate, localTime);
 
-        habitA = new HabitIncrement(1, 0, 1, "Workout", localTime, localDate, allHabitsPage, habitCycleManager);
-        habitB = new HabitIncrement(1, 0, 1, "Workout some more", localTime, localDate, allHabitsPage, habitCycleManager);
+        habitA = new HabitIncrement(1, 0, 1, "Workout", localTime, localDate, habitCycleManager);
+        habitB = new HabitIncrement(1, 0, 1, "Workout some more", localTime, localDate, habitCycleManager);
 
         allHabitsPage = new AllHabitsPage();
         habitCycleManager = new HabitCycleManager(allHabitsPage, localDateTime);
-        allGenericPages = new AllGenericPagesPage();
 
-        page = new Page(" hmmm, Sure ", allGenericPages);
+        page = new Page(" hmmm, Sure ");
 
         whatShouldBeHabit = new ArrayList<>();
-        whatShouldBePage = new ArrayList<>();
     }
 
     @Test
     void testConstructor() {
-        whatShouldBePage.add(page);
-
         assertTrue(page.getTitle().equals("hmmm, Sure"));
         assertEquals(Order.ALPHABETICAL, page.getOrder());
         assertTrue(page.getHabits().isEmpty());
-        assertEquals(whatShouldBePage, allGenericPages.getPages());
+
     }
 
     @Test

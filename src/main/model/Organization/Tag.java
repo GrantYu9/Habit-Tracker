@@ -12,9 +12,9 @@ public class Tag {
 
     private TagType tagType; // Type of the tag, which can alter behaviour
     public enum TagType {
-        NORMAL, // A generic, customizable tag
+        FAVOURITE, // A tag that signals the habit should be on the favourite page
         HOME, // A tag that signals the habit should be on the home page
-        FAVOURITE // A tag that signals the habit should be on the favourite page
+        NORMAL // A generic, customizable tag
     }
 
     private String title; // Title of the tag

@@ -1,11 +1,12 @@
 package model.organization.tree;
 
 import model.habit.Habit;
-import model.organization.centralization.AllGenericPagesPage;
 
+import java.text.Collator;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Locale;
 
 // A generic page thats acts as a container to organize habits
 public class Page {
@@ -22,21 +23,19 @@ public class Page {
     /*
     REQUIRES:
     title has at least one character
+    User must add this to AllGenericPages
     EFFECTS: 
     initializes Page such that 
         this.title = title, with surrounding whitespace removed
 
         order = ALPHABETICAL
         habits = new ArrayList<>()
-    Adds page to AllGenericPages
      */
-    public Page(String title, AllGenericPagesPage allGenericPages) {
+    public Page(String title) {
         this.title = title.strip();
 
         order = Order.ALPHABETICAL;
         habits = new ArrayList<>();
-
-        allGenericPages.addToPages(this);
     }
 
     // REQUIRES: habit can not be in any other page
@@ -61,7 +60,9 @@ public class Page {
         this.order = order;
 
         if (order == Order.ALPHABETICAL) {
-            habits.sort(Comparator.comparing(h -> h.getTitle()));
+            Collator dictionary = Collator.getInstance(Locale.ENGLISH);
+
+            habits.sort(Comparator.comparing(h -> h.getTitle(), dictionary));
         }
     }
 

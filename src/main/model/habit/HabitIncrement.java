@@ -34,10 +34,9 @@ public class HabitIncrement extends Habit {
         LocalTime cycleTime,
         LocalDate currentDay,
         
-        AllHabitsPage allHabitsPage,
         HabitCycleManager habitCycleManager
     ) {
-        super(goal, startingAmount, stepAmount, title, cycleTime, currentDay, allHabitsPage, 
+        super(goal, startingAmount, stepAmount, title, cycleTime, currentDay, 
             habitCycleManager);
     }
 

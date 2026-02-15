@@ -39,15 +39,15 @@ public class TestHabitDecrement {
         localDateTime = LocalDateTime.of(localDate, localTime);
 
         testHabitDecrementA = new HabitDecrement(0, 1, 1, "Quitting smoking", localTime, localDate, 
-            testAllHabitsPage, testHabitCycleManager);
+            testHabitCycleManager);
         testHabitDecrementB = new HabitDecrement(0, 5, 1, "Doomscrolling", localTime, localDate, 
-            testAllHabitsPage, testHabitCycleManager);
+            testHabitCycleManager);
         testHabitDecrementC = new HabitDecrement(0, 10, 2, "Snack abstination", localTime, localDate, 
-            testAllHabitsPage, testHabitCycleManager);
+            testHabitCycleManager);
         testHabitDecrementD = new HabitDecrement(5, 10, 1, "Locking In", localTime, localDate, 
-            testAllHabitsPage, testHabitCycleManager);
+            testHabitCycleManager);
         testHabitDecrementE = new HabitDecrement(-3, 3, 1, "Cutting", localTime, localDate, 
-            testAllHabitsPage, testHabitCycleManager);
+            testHabitCycleManager);
     }
 
     @Test
@@ -470,6 +470,6 @@ public class TestHabitDecrement {
     public Habit copyHabitDecrement (Habit habitDecrement) {
         return new HabitDecrement(habitDecrement.getGoal(), habitDecrement.getStartingAmount(), 
             habitDecrement.getStepAmount(), habitDecrement.getTitle(), 
-            habitDecrement.getCycleTime(), habitDecrement.getCurrentDay(), testAllHabitsPage, testHabitCycleManager);
+            habitDecrement.getCycleTime(), habitDecrement.getCurrentDay(), testHabitCycleManager);
     }
 }

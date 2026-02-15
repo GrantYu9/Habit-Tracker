@@ -40,8 +40,8 @@ public class TestFavouritesPage {
         localTime = LocalTime.of(23, 30);
         localDateTime = LocalDateTime.of(localDate, localTime);
 
-        habitA = new HabitIncrement(1, 0, 1, "Workout", localTime, localDate, allHabitsPage, habitCycleManager);
-        habitB = new HabitIncrement(1, 0, 1, "Workout some more", localTime, localDate, allHabitsPage, habitCycleManager);
+        habitA = new HabitIncrement(1, 0, 1, "Workout", localTime, localDate, habitCycleManager);
+        habitB = new HabitIncrement(1, 0, 1, "Workout some more", localTime, localDate, habitCycleManager);
 
         allHabitsPage = new AllHabitsPage();
         habitCycleManager = new HabitCycleManager(allHabitsPage, localDateTime);

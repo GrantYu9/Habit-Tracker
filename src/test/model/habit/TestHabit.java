@@ -48,33 +48,18 @@ public class TestHabit {
     private Tag tagHome; // Home tag
     private Tag tagFavourite; // Favourite tag
 
-    private AllTagPagesPage allTagPagesPage;
-
     private List<Habit> whatShouldBeHabit;
     private List<HabitSnapshot> whatShouldBeHabitSnapshot;
     private List<Tag> whatShouldBeTag;
     
     @BeforeEach
     void runBefore() {
-        testAllHabitsPage = new AllHabitsPage();
-        testHabitCycleManager = new HabitCycleManager(testAllHabitsPage, time);
-        testHomePage = new HomePage();
-        testFavouritesPage = new FavouritesPage();
-        testAllTagPages = new AllTagPagesPage();
-
         cycleTimeA = LocalTime.of(0, 0);
         cycleTimeD = LocalTime.of(23, 30);
 
         dayA = LocalDate.of(2026, 2, 13);
 
         time = LocalDateTime.of(2026, 2, 13, 13, 0);
-
-        testHabitA = new HabitIncrement(1, 0, 1, "testHabitA", cycleTimeA, dayA, testAllHabitsPage, 
-            testHabitCycleManager);
-        testHabitD = new HabitIncrement(5, 1, 1, "testHabitD", cycleTimeD, dayA, testAllHabitsPage, 
-            testHabitCycleManager);
-        testHabitE = new HabitIncrement(5, 0, 1, " silly Title ", cycleTimeA, dayA, 
-            testAllHabitsPage, testHabitCycleManager);
 
         testHabitSnapshotA = new HabitSnapshot(0, 1, 0, 0, 0, 1, ProgressType.UNDERDONE, dayA, null);
 
@@ -84,13 +69,26 @@ public class TestHabit {
         tagHome = new Tag("Home");
         tagFavourite = new Tag("Favourite");
 
+        testAllHabitsPage = new AllHabitsPage();
+        testHabitCycleManager = new HabitCycleManager(testAllHabitsPage, time);
+        testHomePage = new HomePage();
+        testFavouritesPage = new FavouritesPage();
+        testAllTagPages = new AllTagPagesPage();
+
+        testHabitA = new HabitIncrement(1, 0, 1, "testHabitA", cycleTimeA, dayA, 
+            testHabitCycleManager);
+        testHabitD = new HabitIncrement(5, 1, 1, "testHabitD", cycleTimeD, dayA, 
+            testHabitCycleManager);
+        testHabitE = new HabitIncrement(5, 0, 1, " silly Title ", cycleTimeA, dayA, 
+            testHabitCycleManager);
+
         whatShouldBeHabit = new ArrayList<>();
+        whatShouldBeHabitSnapshot = new ArrayList<>();
+        whatShouldBeTag = new ArrayList<>();
     }
 
     @Test
     void testConstructorA() {
-        whatShouldBeHabit.add(testHabitA);
-        
         assertEquals(1, testHabitA.getGoal());
         assertEquals(0, testHabitA.getStartingAmount());
         assertEquals(1, testHabitA.getStepAmount());
@@ -106,20 +104,17 @@ public class TestHabit {
         assertTrue(testHabitA.getHistory().isEmpty());
         assertTrue(testHabitA.getTags().isEmpty());
 
-        assertEquals(whatShouldBeHabit, testAllHabitsPage.getHabits());
         assertTrue(testHabitA.getNextCycleTime().isEqual(LocalDateTime.of(dayA, cycleTimeA).plusDays(1)));
+
+        // !!! test scheduler
     }
 
     @Test
     void testConstructorD() {
-        whatShouldBeHabit.add(testHabitD);
-        
         assertEquals(5, testHabitD.getGoal());
         assertEquals(1, testHabitD.getStartingAmount());
         assertEquals(1, testHabitD.getStepAmount());
         assertEquals("testHabitD", testHabitD.getTitle());
-        assertTrue(testHabitD.getUnit().equals("km"));
-        assertEquals(whatShouldBeHabit, testAllHabitsPage.getHabits());
         assertEquals(cycleTimeD, testHabitD.getCycleTime());
         assertTrue(testHabitD.getCurrentDay().isEqual(dayA));
 
@@ -127,55 +122,49 @@ public class TestHabit {
         assertEquals(0, testHabitD.getOverloadAmount());
         assertEquals(ViewMode.BAR, testHabitD.getViewMode());
         assertEquals(ProgressType.UNDERDONE, testHabitD.getProgressType());
+        assertEquals("", testHabitA.getUnit());
         assertTrue(testHabitD.getHistory().isEmpty());
         assertTrue(testHabitD.getTags().isEmpty());
 
-        assertEquals(whatShouldBeHabit, testAllHabitsPage.getHabits());
         assertTrue(testHabitD.getNextCycleTime().isEqual(LocalDateTime.of(dayA, cycleTimeA)));
+
+        // !!! test scheduler
     }
 
-    // Just to check title and unit trimming behaviour
+    // Just to check title trimming behaviour
     @Test
     void testConstructorE() {
         assertTrue(testHabitE.getTitle().equals("silly Title"));
-        assertTrue(testHabitE.getTitle().equals("silly Unit"));
     }
 
     @Test
     void testAddTagAndSortTags() {
         whatShouldBeHabit.add(testHabitA);
 
-        testHabitA.addTagAndSortTags(tagB, testHomePage, testFavouritesPage, allTagPagesPage);
+        testHabitA.addTagAndSortTags(tagB, testHomePage, testFavouritesPage, testAllTagPages);
         whatShouldBeTag.add(tagB);
-        assertEquals(1, testAllTagPages.getTagPages().size());
-        assertEquals(whatShouldBeHabit, testAllTagPages.getTagPages().get(0).getHabits());
         assertEquals(whatShouldBeTag, testHabitA.getTags());
 
-        testHabitA.addTagAndSortTags(tagB, testHomePage, testFavouritesPage, allTagPagesPage);
-        assertEquals(1, testAllTagPages.getTagPages().size());
-        assertEquals(whatShouldBeTag, testHabitA.getTags());
-
-        testHabitA.addTagAndSortTags(tagA, testHomePage, testFavouritesPage, allTagPagesPage);
+        testHabitA.addTagAndSortTags(tagA, testHomePage, testFavouritesPage, testAllTagPages);
         whatShouldBeTag.add(0, tagA);
-        assertEquals(2, testAllTagPages.getTagPages().size());
-        assertEquals(whatShouldBeHabit, testAllTagPages.getTagPages().get(1).getHabits());
         assertEquals(whatShouldBeTag, testHabitA.getTags());
 
-        testHabitA.addTagAndSortTags(tagHome, testHomePage, testFavouritesPage, allTagPagesPage);
+        testHabitA.addTagAndSortTags(tagHome, testHomePage, testFavouritesPage, testAllTagPages);
         whatShouldBeTag.add(0, tagHome);
-        assertEquals(2, testAllTagPages.getTagPages().size());
         assertEquals(whatShouldBeHabit, testHomePage.getHabits());
 
-        testHabitA.addTagAndSortTags(tagFavourite, testHomePage, testFavouritesPage, allTagPagesPage);
+        testHabitA.addTagAndSortTags(tagFavourite, testHomePage, testFavouritesPage, testAllTagPages);
         whatShouldBeTag.add(0, tagFavourite);
-        assertEquals(2, testAllTagPages.getTagPages().size());
         assertEquals(whatShouldBeHabit, testFavouritesPage.getHabits());
 
-        testHabitA.addTagAndSortTags(tagC, testHomePage, testFavouritesPage, allTagPagesPage);
+        testHabitA.addTagAndSortTags(tagC, testHomePage, testFavouritesPage, testAllTagPages);
         whatShouldBeTag.add(2, tagC);
-        assertEquals(3, testAllTagPages.getTagPages().size());
-        assertEquals(whatShouldBeHabit, testAllTagPages.getTagPages().get(2).getHabits());
         assertEquals(whatShouldBeTag, testHabitA.getTags());
+    }
+
+    @Test
+    void testContainsTagType() {
+        // !!!
     }
 
     @Test
@@ -188,12 +177,12 @@ public class TestHabit {
     @Test
     void testSetTitle() {
         testHabitA.setTitle(" nuh uh Uh ");
-        assertTrue(testHabitA.getTitle().equals("nuh uh uh"));
+        assertTrue(testHabitA.getTitle().equals("nuh uh Uh"));
     }
 
     @Test
     void testSetUnit() {
         testHabitA.setUnit(" sips, sips, and more sips ");
-        assertTrue(testHabitA.getUnit().equals(" sips, sips, and more sips "));
+        assertTrue(testHabitA.getUnit().equals("sips, sips, and more sips"));
     }
 }

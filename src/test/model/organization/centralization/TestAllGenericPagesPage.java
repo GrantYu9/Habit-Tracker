@@ -22,16 +22,14 @@ public class TestAllGenericPagesPage {
     void runBeforeEach() {
         allGenericPagesPage = new AllGenericPagesPage();
 
-        pageA = new Page("pageA", allGenericPagesPage);
-        pageB = new Page("pageB", allGenericPagesPage);
+        pageA = new Page("pageA");
+        pageB = new Page("pageB");
 
         whatShouldBePage = new ArrayList<>();
     }
 
     @Test
     void testConstructor() {
-        whatShouldBePage.add(pageA);
-        whatShouldBePage.add(pageB);
         assertEquals(whatShouldBePage, allGenericPagesPage.getPages());
     }
 

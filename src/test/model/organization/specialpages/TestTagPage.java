@@ -31,11 +31,9 @@ public class TestTagPage {
     private Habit habitA;
     private Habit habitB;
 
-    private AllTagPagesPage allTagPages;
     private AllHabitsPage allHabitsPage;
     private HabitCycleManager habitCycleManager;
 
-    private List<TagPage> whatShouldBeTagPage;
     private List<Habit> whatShouldBeHabit;
 
     @BeforeEach
@@ -46,27 +44,22 @@ public class TestTagPage {
         localTime = LocalTime.of(23, 30);
         localDateTime = LocalDateTime.of(localDate, localTime);
 
-        habitA = new HabitIncrement(1, 0, 1, "Workout", localTime, localDate, allHabitsPage, habitCycleManager);
-        habitB = new HabitIncrement(1, 0, 1, "More working out", localTime, localDate, allHabitsPage, habitCycleManager);
+        habitA = new HabitIncrement(1, 0, 1, "Workout", localTime, localDate, habitCycleManager);
+        habitB = new HabitIncrement(1, 0, 1, "More working out", localTime, localDate, habitCycleManager);
 
-        allTagPages = new AllTagPagesPage();
         allHabitsPage = new AllHabitsPage();
         habitCycleManager = new HabitCycleManager(allHabitsPage, localDateTime);
 
-        whatShouldBeTagPage = new ArrayList<>();
         whatShouldBeHabit = new ArrayList<>();
 
-        tagPageA = new TagPage(tagA, allTagPages);
+        tagPageA = new TagPage(tagA);
     }
 
     @Test
     void testConstructor() {
-        whatShouldBeTagPage.add(tagPageA);
-
         assertTrue(tagPageA.getTitle().equals(tagA.getTitle()));
         assertTrue(tagPageA.getTag().equals(tagA));
         assertTrue(tagPageA.getHabits().isEmpty());
-        assertEquals(whatShouldBeTagPage, allTagPages.getTagPages());
     }
 
     @Test
