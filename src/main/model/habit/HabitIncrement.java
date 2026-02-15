@@ -63,14 +63,14 @@ public class HabitIncrement extends Habit {
     // REQUIRES: currentAmount > goal
     // EFFECTS: Calculutes how much currentAmount is above goal, as a natural number
     public int calculateOverloadAmount(int currentAmount, int goal) {
-        return 0;
+        return goal - currentAmount;
     }
 
     @Override
     // REQUIRES: startingAmount <= currentAmount <= goal
     // EFFECTS: Calculates how much progress has been made towards the goal as a natural number percentage
     public int calculateProgressPercentage(int startingAmount, int currentAmount, int goal) {
-        return 0;
+        return (100 * (goal - currentAmount)) / (100 * (goal - startingAmount));
     }
 
     @Override
