@@ -4,6 +4,7 @@ import model.habit.Habit;
 import model.organization.centralization.AllGenericPagesPage;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 // A generic page thats acts as a container to organize habits
@@ -30,25 +31,38 @@ public class Page {
     Adds page to AllGenericPages
      */
     public Page(String title, AllGenericPagesPage allGenericPages) {
-        // !!!
+        this.title = title.strip();
+
+        order = Order.ALPHABETICAL;
+        habits = new ArrayList<>();
+
+        allGenericPages.addToPages(this);
     }
 
     // REQUIRES: habit can not be in any other page
     // MODIFIES: this
     // EFFECTS: appends habit to habits and sorts habits as per ORDER
     public void addHabit(Habit habit) {
-        // !!!
+        habits.add(habit);
+
+        if (order == Order.ALPHABETICAL) {
+            habits.sort(Comparator.comparing(h -> h.getTitle()));
+        }
     }
 
     // REQUIRES: title has at least one character
     // EFFECTS: this.title = title, with surrounding whitespace trimmed
     public void setTitle(String title) {
-        // !!!
+        this.title = title.strip();
     }
 
-    // EFFECTS: If order is Order.Alphabetical, sorts habits in that order
+    // EFFECTS: If order is Order.Alphabetical, sorts habits as per Order
     public void setOrder(Order order) {
         this.order = order;
+
+        if (order == Order.ALPHABETICAL) {
+            habits.sort(Comparator.comparing(h -> h.getTitle()));
+        }
     }
 
     public Order getOrder() {

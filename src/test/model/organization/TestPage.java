@@ -21,8 +21,6 @@ import model.organization.tree.Page;
 import model.organization.tree.Page.Order;
 
 public class TestPage {
-    private Page page;
-
     private LocalDate localDate;
     private LocalTime localTime;
     private LocalDateTime localDateTime;
@@ -34,13 +32,13 @@ public class TestPage {
     private HabitCycleManager habitCycleManager;
     private AllGenericPagesPage allGenericPages;
 
+    private Page page;
+
     private List<Habit> whatShouldBeHabit;
     private List<Page> whatShouldBePage;
 
     @BeforeEach
     void runBefore() {
-        page = new Page(" hmmm, Sure ", allGenericPages);
-
         localDate = LocalDate.of(2026, 2, 13);
         localTime = LocalTime.of(23, 30);
         localDateTime = LocalDateTime.of(localDate, localTime);
@@ -51,6 +49,8 @@ public class TestPage {
         allHabitsPage = new AllHabitsPage();
         habitCycleManager = new HabitCycleManager(allHabitsPage, localDateTime);
         allGenericPages = new AllGenericPagesPage();
+
+        page = new Page(" hmmm, Sure ", allGenericPages);
 
         whatShouldBeHabit = new ArrayList<>();
         whatShouldBePage = new ArrayList<>();

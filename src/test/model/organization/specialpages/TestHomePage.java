@@ -15,9 +15,7 @@ import org.junit.jupiter.api.Test;
 import model.habit.Habit;
 import model.habit.HabitCycleManager;
 import model.habit.HabitIncrement;
-import model.organization.Tag;
 import model.organization.centralization.AllHabitsPage;
-import model.organization.centralization.AllTagPagesPage;
 
 public class TestHomePage {
     private HomePage homePage;
@@ -26,13 +24,11 @@ public class TestHomePage {
     private LocalTime localTime;
     private LocalDateTime localDateTime;
 
-    private Tag tagHome;
     private Habit habitA;
     private Habit habitB;
 
     private AllHabitsPage allHabitsPage;
     private HabitCycleManager habitCycleManager;
-    private AllTagPagesPage allTagPagesPage;
 
     private List<Habit> whatShouldBeHabit;
     
@@ -44,7 +40,6 @@ public class TestHomePage {
         localTime = LocalTime.of(23, 30);
         localDateTime = LocalDateTime.of(localDate, localTime);
 
-        tagHome = new Tag("Home");
         habitA = new HabitIncrement(1, 0, 1, "Workout", localTime, localDate, allHabitsPage, habitCycleManager);
         habitB = new HabitIncrement(1, 0, 1, "Workout some more", localTime, localDate, allHabitsPage, habitCycleManager);
 
