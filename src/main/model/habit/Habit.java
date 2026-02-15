@@ -126,7 +126,7 @@ public abstract class Habit {
     public abstract int calculateOverloadAmount(int currentAmount, int goal);
     public abstract int calculateProgressPercentage(int startingAmount, int currentAmount, int goal);
     public abstract void progressByStepAmount();
-    public abstract void setCurrentAmount(int currentAmount);
+    public abstract void setCurrentAmountLogic(int currentAmount);
 
     @Override
     /*
@@ -236,6 +236,10 @@ public abstract class Habit {
     // EFFECTS: this.unit = unit, with surrounding whitespace trimmed
     public void setUnit(String unit) {
         this.unit = unit.strip();
+    }
+
+    public void setCurrentAmountNoLogic(int currentAmount) {
+        this.currentAmount = currentAmount;
     }
 
     public void setGoal(int goal) {

@@ -53,24 +53,25 @@ public class HabitIncrement extends Habit {
         Sets new progress percentage to 100
     else, currentAmount > goal
         progressType = OVERLOADED
+        Sets new progress percentage to 100
         Calculates and sets new overload amount
      */
     public void progressByStepAmount() {
-        // !!!
+        setCurrentAmountLogic(getCurrentAmount() + getStepAmount());
     }
 
     @Override
     // REQUIRES: currentAmount > goal
     // EFFECTS: Calculutes how much currentAmount is above goal, as a natural number
     public int calculateOverloadAmount(int currentAmount, int goal) {
-        return goal - currentAmount;
+        return Math.abs(goal - currentAmount);
     }
 
     @Override
-    // REQUIRES: startingAmount <= currentAmount <= goal
+    // REQUIRES: startingAmount < currentAmount < goal
     // EFFECTS: Calculates how much progress has been made towards the goal as a natural number percentage
     public int calculateProgressPercentage(int startingAmount, int currentAmount, int goal) {
-        return (100 * (goal - currentAmount)) / (100 * (goal - startingAmount));
+        return Math.abs((100 * (currentAmount - startingAmount)) / (goal - startingAmount));
     }
 
     @Override
@@ -79,16 +80,39 @@ public class HabitIncrement extends Habit {
     EFFECTS:
     if currentAmount == startingAmount
         Sets new progress percentage to 0
+        Sets overloaded amount to 0
+        progressType = UNDERDONE
     else if currentAmount < goal
         Calculates and sets new progress percentage
+        Sets overloaded amount to 0
+        progressType = UNDERDONE
     else if currentAmount == goal
         progressType = DONE
+        Sets overloaded amount to 0
         Sets new progress percentage to 100
     else, currentAmount > goal
         progressType = OVERLOADED
         Calculates and sets new overload amount
      */
-    public void setCurrentAmount(int currentAmount) {
-        // !!!
+    public void setCurrentAmountLogic(int currentAmount) {
+        setCurrentAmountNoLogic(currentAmount);
+
+        if (getCurrentAmount() == getStartingAmount()) {
+            setProgressPercentage(0);
+            setOverloadAmount(0);
+            setProgressType(ProgressType.UNDERDONE);
+        } else if (getCurrentAmount() < getGoal()) {
+            setProgressPercentage(calculateProgressPercentage(getStartingAmount(), currentAmount, getGoal()));
+            setOverloadAmount(0);
+            setProgressType(ProgressType.UNDERDONE);
+        } else if (getCurrentAmount() == getGoal()) {
+            setOverloadAmount(0);
+            setProgressPercentage(100);
+            setProgressType(ProgressType.DONE);
+        } else {
+            setProgressPercentage(100);
+            setOverloadAmount(calculateOverloadAmount(currentAmount, getGoal()));
+            setProgressType(ProgressType.OVERLOADED);
+        }
     }
 }

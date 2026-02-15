@@ -98,7 +98,7 @@ public class HabitCycleManager {
             habit.getStepAmount(), habit.getProgressType(), habit.getCurrentDay(), habit.getUnit()));
 
         habit.setCurrentDay(habit.getCurrentDay().plusDays(1));
-        habit.setCurrentAmount(habit.getStartingAmount());
+        habit.setCurrentAmountLogic(habit.getStartingAmount());
         habit.setOverloadAmount(0);
         habit.setProgressPercentage(0);
         habit.setProgressType(ProgressType.UNDERDONE);

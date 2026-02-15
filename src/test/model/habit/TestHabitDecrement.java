@@ -72,7 +72,7 @@ public class TestHabitDecrement {
         assertEquals(1, testHabitDecrementA.getCurrentAmount());
 
         testHabitDecrementA.progressByStepAmount();
-        expected.setCurrentAmount(0);
+        expected.setCurrentAmountLogic(0);
         expected.setProgressPercentage(100);
         expected.setProgressType(ProgressType.DONE);
         assertTrue(testHabitDecrementA.equals(expected));
@@ -85,23 +85,23 @@ public class TestHabitDecrement {
         assertEquals(5, testHabitDecrementB.getCurrentAmount());
 
         testHabitDecrementB.progressByStepAmount();
-        expected.setCurrentAmount(4);
+        expected.setCurrentAmountLogic(4);
         expected.setProgressPercentage(20);
         assertTrue(testHabitDecrementB.equals(expected));
 
         testHabitDecrementB.progressByStepAmount();
-        expected.setCurrentAmount(3);
+        expected.setCurrentAmountLogic(3);
         expected.setProgressPercentage(40);
 
         testHabitDecrementB.progressByStepAmount();
 
         testHabitDecrementB.progressByStepAmount();
-        expected.setCurrentAmount(1);
+        expected.setCurrentAmountLogic(1);
         expected.setProgressPercentage(80);
         assertTrue(testHabitDecrementB.equals(expected));
 
         testHabitDecrementB.progressByStepAmount();
-        expected.setCurrentAmount(0);
+        expected.setCurrentAmountLogic(0);
         expected.setProgressPercentage(100);
         expected.setProgressType(ProgressType.DONE);
         assertTrue(testHabitDecrementB.equals(expected));
@@ -115,24 +115,24 @@ public class TestHabitDecrement {
         assertEquals(10, testHabitDecrementC.getCurrentAmount());
 
         testHabitDecrementC.progressByStepAmount();
-        expected.setCurrentAmount(8);
+        expected.setCurrentAmountLogic(8);
         expected.setProgressPercentage(20);
         assertTrue(testHabitDecrementC.equals(expected));
 
         testHabitDecrementC.progressByStepAmount();
-        expected.setCurrentAmount(6);
+        expected.setCurrentAmountLogic(6);
         expected.setProgressPercentage(40);
         assertTrue(testHabitDecrementC.equals(expected));
 
         testHabitDecrementC.progressByStepAmount();
 
         testHabitDecrementC.progressByStepAmount();
-        expected.setCurrentAmount(2);
+        expected.setCurrentAmountLogic(2);
         expected.setProgressPercentage(80);
         assertTrue(testHabitDecrementC.equals(expected));
 
         testHabitDecrementC.progressByStepAmount();
-        expected.setCurrentAmount(0);
+        expected.setCurrentAmountLogic(0);
         expected.setProgressPercentage(100);
         expected.setProgressType(ProgressType.DONE);
         assertTrue(testHabitDecrementC.equals(expected));
@@ -145,36 +145,36 @@ public class TestHabitDecrement {
         assertEquals(10, testHabitDecrementD.getCurrentAmount());
 
         testHabitDecrementD.progressByStepAmount();
-        expected.setCurrentAmount(9);
+        expected.setCurrentAmountLogic(9);
         expected.setProgressPercentage(20);
         assertTrue(testHabitDecrementD.equals(expected));
 
         testHabitDecrementD.progressByStepAmount();
-        expected.setCurrentAmount(8);
+        expected.setCurrentAmountLogic(8);
         expected.setProgressPercentage(40);
         assertTrue(testHabitDecrementD.equals(expected));
 
         testHabitDecrementD.progressByStepAmount();
 
         testHabitDecrementD.progressByStepAmount();
-        expected.setCurrentAmount(6);
+        expected.setCurrentAmountLogic(6);
         expected.setProgressPercentage(80);
         assertTrue(testHabitDecrementD.equals(expected));
 
         testHabitDecrementD.progressByStepAmount();
-        expected.setCurrentAmount(5);
+        expected.setCurrentAmountLogic(5);
         expected.setProgressPercentage(100);
         expected.setProgressType(ProgressType.DONE);
         assertTrue(testHabitDecrementD.equals(expected));
 
         testHabitDecrementD.progressByStepAmount();
-        expected.setCurrentAmount(4);
+        expected.setCurrentAmountLogic(4);
         expected.setOverloadAmount(1);
         expected.setProgressType(ProgressType.OVERLOADED);
         assertTrue(testHabitDecrementD.equals(expected));
 
         testHabitDecrementD.progressByStepAmount();
-        expected.setCurrentAmount(3);
+        expected.setCurrentAmountLogic(3);
         expected.setOverloadAmount(2);
         assertTrue(testHabitDecrementD.equals(expected));
     }
@@ -186,44 +186,44 @@ public class TestHabitDecrement {
         assertEquals(3, testHabitDecrementE.getCurrentAmount());
 
         testHabitDecrementE.progressByStepAmount();
-        expected.setCurrentAmount(2);
+        expected.setCurrentAmountLogic(2);
         expected.setProgressPercentage(17);
         assertTrue(testHabitDecrementE.equals(expected));
 
         testHabitDecrementE.progressByStepAmount();
-        expected.setCurrentAmount(1);
+        expected.setCurrentAmountLogic(1);
         expected.setProgressPercentage(34);
         assertTrue(testHabitDecrementE.equals(expected));
 
         testHabitDecrementE.progressByStepAmount();
-        expected.setCurrentAmount(0);
+        expected.setCurrentAmountLogic(0);
         expected.setProgressPercentage(50);
         assertTrue(testHabitDecrementE.equals(expected));
 
         testHabitDecrementE.progressByStepAmount();
-        expected.setCurrentAmount(-1);
+        expected.setCurrentAmountLogic(-1);
         expected.setProgressPercentage(67);
         assertTrue(testHabitDecrementE.equals(expected));
 
         testHabitDecrementE.progressByStepAmount();
-        expected.setCurrentAmount(-2);
+        expected.setCurrentAmountLogic(-2);
         expected.setProgressPercentage(83);
         assertTrue(testHabitDecrementE.equals(expected));
 
         testHabitDecrementE.progressByStepAmount();
-        expected.setCurrentAmount(-3);
+        expected.setCurrentAmountLogic(-3);
         expected.setProgressPercentage(100);
         expected.setProgressType(ProgressType.DONE);
         assertTrue(testHabitDecrementE.equals(expected));
 
         testHabitDecrementE.progressByStepAmount();
-        expected.setCurrentAmount(-4);
+        expected.setCurrentAmountLogic(-4);
         expected.setOverloadAmount(1);
         expected.setProgressType(ProgressType.OVERLOADED);
         assertTrue(testHabitDecrementE.equals(expected));
 
         testHabitDecrementE.progressByStepAmount();
-        expected.setCurrentAmount(-5);
+        expected.setCurrentAmountLogic(-5);
         expected.setOverloadAmount(2);
         assertTrue(testHabitDecrementE.equals(expected));
     }
@@ -271,31 +271,31 @@ public class TestHabitDecrement {
     void testSetCurrentAmountDecreasingB() {
         expected = copyHabitDecrement(testHabitDecrementB);
 
-        testHabitDecrementB.setCurrentAmount(4);
-        expected.setCurrentAmount(4);
+        testHabitDecrementB.setCurrentAmountLogic(4);
+        expected.setCurrentAmountLogic(4);
         expected.setProgressPercentage(20);
         assertTrue(testHabitDecrementB.equals(expected));
 
 
-        testHabitDecrementB.setCurrentAmount(1);
-        expected.setCurrentAmount(1);
+        testHabitDecrementB.setCurrentAmountLogic(1);
+        expected.setCurrentAmountLogic(1);
         expected.setProgressPercentage(80);
         assertTrue(testHabitDecrementB.equals(expected));
 
-        testHabitDecrementB.setCurrentAmount(0);
-        expected.setCurrentAmount(0);
+        testHabitDecrementB.setCurrentAmountLogic(0);
+        expected.setCurrentAmountLogic(0);
         expected.setProgressPercentage(100);
         expected.setProgressType(ProgressType.DONE);
         assertTrue(testHabitDecrementB.equals(expected));
 
-        testHabitDecrementB.setCurrentAmount(-1);
-        expected.setCurrentAmount(-1);
+        testHabitDecrementB.setCurrentAmountLogic(-1);
+        expected.setCurrentAmountLogic(-1);
         expected.setOverloadAmount(1);
         expected.setProgressType(ProgressType.OVERLOADED);
         assertTrue(testHabitDecrementB.equals(expected));
 
-        testHabitDecrementB.setCurrentAmount(-2);
-        expected.setCurrentAmount(-2);
+        testHabitDecrementB.setCurrentAmountLogic(-2);
+        expected.setCurrentAmountLogic(-2);
         expected.setOverloadAmount(2);
         assertTrue(testHabitDecrementB.equals(expected));
     }
@@ -304,30 +304,30 @@ public class TestHabitDecrement {
     void testSetCurrentAmountDecreasingD() {
         expected = copyHabitDecrement(testHabitDecrementD);
 
-        testHabitDecrementD.setCurrentAmount(9);
-        expected.setCurrentAmount(9);
+        testHabitDecrementD.setCurrentAmountLogic(9);
+        expected.setCurrentAmountLogic(9);
         expected.setProgressPercentage(20);
         assertTrue(testHabitDecrementD.equals(expected));
 
-        testHabitDecrementD.setCurrentAmount(6);
-        expected.setCurrentAmount(6);
+        testHabitDecrementD.setCurrentAmountLogic(6);
+        expected.setCurrentAmountLogic(6);
         expected.setProgressPercentage(80);
         assertTrue(testHabitDecrementD.equals(expected));
 
-        testHabitDecrementD.setCurrentAmount(5);
-        expected.setCurrentAmount(5);
+        testHabitDecrementD.setCurrentAmountLogic(5);
+        expected.setCurrentAmountLogic(5);
         expected.setProgressPercentage(100);
         expected.setProgressType(ProgressType.DONE);
         assertTrue(testHabitDecrementD.equals(expected));
 
-        testHabitDecrementD.setCurrentAmount(4);
-        expected.setCurrentAmount(4);
+        testHabitDecrementD.setCurrentAmountLogic(4);
+        expected.setCurrentAmountLogic(4);
         expected.setOverloadAmount(1);
         expected.setProgressType(ProgressType.OVERLOADED);
         assertTrue(testHabitDecrementD.equals(expected));
 
-        testHabitDecrementD.setCurrentAmount(3);
-        expected.setCurrentAmount(3);
+        testHabitDecrementD.setCurrentAmountLogic(3);
+        expected.setCurrentAmountLogic(3);
         expected.setOverloadAmount(2);
         assertTrue(testHabitDecrementD.equals(expected));
     }
@@ -336,30 +336,30 @@ public class TestHabitDecrement {
     void testSetCurrentAmountDecreasingE() {
         expected = copyHabitDecrement(testHabitDecrementE);
 
-        testHabitDecrementE.setCurrentAmount(2);
-        expected.setCurrentAmount(2);
+        testHabitDecrementE.setCurrentAmountLogic(2);
+        expected.setCurrentAmountLogic(2);
         expected.setProgressPercentage(17);
         assertTrue(testHabitDecrementE.equals(expected));
 
-        testHabitDecrementE.setCurrentAmount(-2);
-        expected.setCurrentAmount(-2);
+        testHabitDecrementE.setCurrentAmountLogic(-2);
+        expected.setCurrentAmountLogic(-2);
         expected.setProgressPercentage(83);
         assertTrue(testHabitDecrementE.equals(expected));
 
-        testHabitDecrementE.setCurrentAmount(-3);
-        expected.setCurrentAmount(-3);
+        testHabitDecrementE.setCurrentAmountLogic(-3);
+        expected.setCurrentAmountLogic(-3);
         expected.setProgressPercentage(100);
         expected.setProgressType(ProgressType.DONE);
         assertTrue(testHabitDecrementE.equals(expected));
 
-        testHabitDecrementE.setCurrentAmount(-4);
-        expected.setCurrentAmount(-4);
+        testHabitDecrementE.setCurrentAmountLogic(-4);
+        expected.setCurrentAmountLogic(-4);
         expected.setOverloadAmount(1);
         expected.setProgressType(ProgressType.OVERLOADED);
         assertTrue(testHabitDecrementE.equals(expected));
 
-        testHabitDecrementE.setCurrentAmount(-5);
-        expected.setCurrentAmount(-5);
+        testHabitDecrementE.setCurrentAmountLogic(-5);
+        expected.setCurrentAmountLogic(-5);
         expected.setOverloadAmount(2);
         assertTrue(testHabitDecrementE.equals(expected));
     }
@@ -368,32 +368,32 @@ public class TestHabitDecrement {
     void testSetCurrentAmountIncreasingB() {
         expected = copyHabitDecrement(testHabitDecrementB);
 
-        testHabitDecrementB.setCurrentAmount(-2);
-        expected.setCurrentAmount(-2);
+        testHabitDecrementB.setCurrentAmountLogic(-2);
+        expected.setCurrentAmountLogic(-2);
         expected.setOverloadAmount(2);
         expected.setProgressPercentage(100);
         expected.setProgressType(ProgressType.OVERLOADED);
         assertTrue(testHabitDecrementB.equals(expected));
 
-        testHabitDecrementB.setCurrentAmount(-1);
-        expected.setCurrentAmount(-1);
+        testHabitDecrementB.setCurrentAmountLogic(-1);
+        expected.setCurrentAmountLogic(-1);
         expected.setOverloadAmount(1);
         assertTrue(testHabitDecrementB.equals(expected));
 
-        testHabitDecrementB.setCurrentAmount(0);
-        expected.setCurrentAmount(0);
+        testHabitDecrementB.setCurrentAmountLogic(0);
+        expected.setCurrentAmountLogic(0);
         expected.setOverloadAmount(0);
         expected.setProgressType(ProgressType.DONE);
         assertTrue(testHabitDecrementB.equals(expected));
 
-        testHabitDecrementB.setCurrentAmount(1);
-        expected.setCurrentAmount(1);
+        testHabitDecrementB.setCurrentAmountLogic(1);
+        expected.setCurrentAmountLogic(1);
         expected.setProgressPercentage(80);
         expected.setProgressType(ProgressType.UNDERDONE);
         assertTrue(testHabitDecrementB.equals(expected));
 
-        testHabitDecrementB.setCurrentAmount(4);
-        expected.setCurrentAmount(4);
+        testHabitDecrementB.setCurrentAmountLogic(4);
+        expected.setCurrentAmountLogic(4);
         expected.setProgressPercentage(20);
         assertTrue(testHabitDecrementB.equals(expected));
     }
@@ -402,32 +402,32 @@ public class TestHabitDecrement {
     void testSetCurrentAmountIncreasingD() {
         expected = copyHabitDecrement(testHabitDecrementD);
 
-        testHabitDecrementD.setCurrentAmount(3);
-        expected.setCurrentAmount(3);
+        testHabitDecrementD.setCurrentAmountLogic(3);
+        expected.setCurrentAmountLogic(3);
         expected.setOverloadAmount(2);
         expected.setProgressPercentage(100);
         expected.setProgressType(ProgressType.OVERLOADED);
         assertTrue(testHabitDecrementD.equals(expected));
 
-        testHabitDecrementD.setCurrentAmount(4);
-        expected.setCurrentAmount(4);
+        testHabitDecrementD.setCurrentAmountLogic(4);
+        expected.setCurrentAmountLogic(4);
         expected.setOverloadAmount(1);
         assertTrue(testHabitDecrementD.equals(expected));
 
-        testHabitDecrementD.setCurrentAmount(5);
-        expected.setCurrentAmount(5);
+        testHabitDecrementD.setCurrentAmountLogic(5);
+        expected.setCurrentAmountLogic(5);
         expected.setOverloadAmount(0);
         expected.setProgressType(ProgressType.DONE);
         assertTrue(testHabitDecrementD.equals(expected));
 
-        testHabitDecrementD.setCurrentAmount(6);
-        expected.setCurrentAmount(6);
+        testHabitDecrementD.setCurrentAmountLogic(6);
+        expected.setCurrentAmountLogic(6);
         expected.setProgressPercentage(80);
         expected.setProgressType(ProgressType.UNDERDONE);
         assertTrue(testHabitDecrementD.equals(expected));
 
-        testHabitDecrementD.setCurrentAmount(9);
-        expected.setCurrentAmount(9);
+        testHabitDecrementD.setCurrentAmountLogic(9);
+        expected.setCurrentAmountLogic(9);
         expected.setProgressPercentage(20);
         assertTrue(testHabitDecrementD.equals(expected));
     }
@@ -436,32 +436,32 @@ public class TestHabitDecrement {
     void testSetCurrentAmountIncreasingE() {
         expected = copyHabitDecrement(testHabitDecrementE);
 
-        testHabitDecrementE.setCurrentAmount(-5);
-        expected.setCurrentAmount(-5);
+        testHabitDecrementE.setCurrentAmountLogic(-5);
+        expected.setCurrentAmountLogic(-5);
         expected.setOverloadAmount(2);
         expected.setProgressPercentage(100);
         expected.setProgressType(ProgressType.OVERLOADED);
         assertTrue(testHabitDecrementE.equals(expected));
         
-        testHabitDecrementE.setCurrentAmount(-4);
-        expected.setCurrentAmount(-4);
+        testHabitDecrementE.setCurrentAmountLogic(-4);
+        expected.setCurrentAmountLogic(-4);
         expected.setOverloadAmount(1);
         assertTrue(testHabitDecrementE.equals(expected));
 
-        testHabitDecrementE.setCurrentAmount(-3);
-        expected.setCurrentAmount(-3);
+        testHabitDecrementE.setCurrentAmountLogic(-3);
+        expected.setCurrentAmountLogic(-3);
         expected.setOverloadAmount(0);
         expected.setProgressType(ProgressType.DONE);
         assertTrue(testHabitDecrementE.equals(expected));
 
-        testHabitDecrementE.setCurrentAmount(-2);
-        expected.setCurrentAmount(-2);
+        testHabitDecrementE.setCurrentAmountLogic(-2);
+        expected.setCurrentAmountLogic(-2);
         expected.setProgressPercentage(83);
         expected.setProgressType(ProgressType.UNDERDONE);
         assertTrue(testHabitDecrementE.equals(expected));
 
-        testHabitDecrementE.setCurrentAmount(2);
-        expected.setCurrentAmount(2);
+        testHabitDecrementE.setCurrentAmountLogic(2);
+        expected.setCurrentAmountLogic(2);
         expected.setProgressPercentage(17);
         assertTrue(testHabitDecrementE.equals(expected));
     }

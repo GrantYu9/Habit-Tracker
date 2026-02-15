@@ -88,7 +88,7 @@ public class HabitDecrement extends Habit {
         progressType = OVERLOADED
         Calculates and sets new overload amount
      */
-    public void setCurrentAmount(int currentAmount) {
+    public void setCurrentAmountLogic(int currentAmount) {
         // !!!
     }
 }
