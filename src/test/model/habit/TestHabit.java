@@ -185,4 +185,10 @@ public class TestHabit {
         testHabitA.setUnit(" sips, sips, and more sips ");
         assertTrue(testHabitA.getUnit().equals("sips, sips, and more sips"));
     }
+
+    @Test
+    void testEquals() {
+        // !!!
+        assertTrue(false);
+    }
 }

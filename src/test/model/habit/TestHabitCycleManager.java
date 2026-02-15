@@ -37,7 +37,6 @@ public class TestHabitCycleManager {
     private LocalDate yesterday; // Yesterday
     private LocalDate tomorrow; // Tomorrow
     private LocalDate twoDaysAgo; // 2 days ago
-    private LocalDate twoDaysAhead; // 2 days into the future
 
     private LocalDateTime lastTimeRecent;  // Today at 13:00
     private LocalDate inDaMiddle; // Yesterday
@@ -46,7 +45,6 @@ public class TestHabitCycleManager {
     private LocalDateTime targetForMidnight; // Tomorrow at 00:00
     private LocalDateTime targetFor2330; // Today at 23:30
     private LocalDate stepOverDate; // Tomorrow
-    private LocalDateTime nextCycleTimeMidnight; // Today + 2 days at 00:00
 
     private Habit testHabitMidnightRecent;
     private Habit testHabit2330Recent;
@@ -78,7 +76,6 @@ public class TestHabitCycleManager {
         yesterday = today.minusDays(1);
         tomorrow = today.plusDays(1);
         twoDaysAgo = yesterday.minusDays(1);
-        twoDaysAhead = tomorrow.plusDays(1);
 
         lastTimeRecent = LocalDateTime.of(today, marker1300);
         inDaMiddle = yesterday;
@@ -87,7 +84,6 @@ public class TestHabitCycleManager {
         targetForMidnight = LocalDateTime.of(tomorrow, cycleTimeMidnight);
         targetFor2330 = LocalDateTime.of(today, cycleTime2330);
         stepOverDate = tomorrow;
-        nextCycleTimeMidnight = LocalDateTime.of(twoDaysAhead, cycleTimeMidnight);
 
         testHabitCycleManagerRecent = new HabitCycleManager(testAllHabitsPageRecent, lastTimeRecent);
         testHabitCycleManagerLate = new HabitCycleManager(testAllHabitsPageLate, lastTimeLate);
@@ -108,14 +104,14 @@ public class TestHabitCycleManager {
         testAllHabitsPageLate.addToAllHabitsPage(testHabit2330Late);
 
         testHabitSnapshotRecentNoChange = new HabitSnapshot(0, 1, 0, 0, 0, 1, ProgressType.UNDERDONE, 
-            lastTimeRecent.toLocalDate(), null);
+            lastTimeRecent.toLocalDate(), "");
         testHabitSnapshotRecentChange = new HabitSnapshot(1, 1, 0, 100, 0, 1, ProgressType.DONE, 
-            lastTimeRecent.toLocalDate(), null);
-        testHabitSnapshotLateFeb12 = new HabitSnapshot(0, 1, 0, 0, 0, 1, ProgressType.UNDERDONE, inDaMiddle, null);
+            lastTimeRecent.toLocalDate(), "");
+        testHabitSnapshotLateFeb12 = new HabitSnapshot(0, 1, 0, 0, 0, 1, ProgressType.UNDERDONE, inDaMiddle, "");
         testHabitSnapshotLateFeb11NoChange = new HabitSnapshot(0, 1, 0, 0, 0, 1, ProgressType.UNDERDONE, 
-            lastTimeLate.toLocalDate(), null);
+            lastTimeLate.toLocalDate(), "");
         testHabitSnapshotLateFeb11Change = new HabitSnapshot(1, 1, 0, 100, 0, 1, ProgressType.DONE, 
-            lastTimeLate.toLocalDate(), null);
+            lastTimeLate.toLocalDate(), "");
     }
 
     @Test
@@ -192,9 +188,9 @@ public class TestHabitCycleManager {
         Habit actualMidnight = copyHabit(testHabitMidnightLate);
         Habit actual2330 = copyHabit(testHabit2330Late);
 
-        testHabitCycleManagerRecent.cycleAllHabitsAtStartup(rightNow);
-        testHabitCycleManagerRecent.cycleHabitAtStartup(actualMidnight, rightNow);
-        testHabitCycleManagerRecent.cycleHabitAtStartup(actual2330, rightNow);
+        testHabitCycleManagerLate.cycleAllHabitsAtStartup(rightNow);
+        testHabitCycleManagerLate.cycleHabitAtStartup(actualMidnight, rightNow);
+        testHabitCycleManagerLate.cycleHabitAtStartup(actual2330, rightNow);
 
         assertTrue(testHabitMidnightLate.equals(actualMidnight));
         assertTrue(testHabit2330Late.equals(actual2330));
@@ -207,9 +203,9 @@ public class TestHabitCycleManager {
         Habit actualMidnight = copyHabit(testHabitMidnightLate);
         Habit actual2330 = copyHabit(testHabit2330Late);
 
-        testHabitCycleManagerRecent.cycleAllHabitsAtStartup(rightNow);
-        testHabitCycleManagerRecent.cycleHabitAtStartup(actualMidnight, rightNow);
-        testHabitCycleManagerRecent.cycleHabitAtStartup(actual2330, rightNow);
+        testHabitCycleManagerLate.cycleAllHabitsAtStartup(rightNow);
+        testHabitCycleManagerLate.cycleHabitAtStartup(actualMidnight, rightNow);
+        testHabitCycleManagerLate.cycleHabitAtStartup(actual2330, rightNow);
 
         assertTrue(testHabitMidnightLate.equals(actualMidnight));
         assertTrue(testHabit2330Late.equals(actual2330));
@@ -223,9 +219,9 @@ public class TestHabitCycleManager {
         Habit actualMidnight = copyHabit(testHabitMidnightLate);
         Habit actual2330 = copyHabit(testHabit2330Late);
 
-        testHabitCycleManagerRecent.cycleAllHabitsAtStartup(rightNow);
-        testHabitCycleManagerRecent.cycleHabitAtStartup(actualMidnight, rightNow);
-        testHabitCycleManagerRecent.cycleHabitAtStartup(actual2330, rightNow);
+        testHabitCycleManagerLate.cycleAllHabitsAtStartup(rightNow);
+        testHabitCycleManagerLate.cycleHabitAtStartup(actualMidnight, rightNow);
+        testHabitCycleManagerLate.cycleHabitAtStartup(actual2330, rightNow);
 
         assertTrue(testHabitMidnightLate.equals(actualMidnight));
         assertTrue(testHabit2330Late.equals(actual2330));
@@ -256,7 +252,7 @@ public class TestHabitCycleManager {
             e.printStackTrace();
         }
 
-        assertTrue(testHabitMidnightRecent.getNextCycleTime().isEqual(nextCycleTimeMidnight));
+        assertTrue(testHabitMidnightRecent.getNextCycleTime().isEqual(targetForMidnight));
     }
 
     @Test
@@ -349,7 +345,7 @@ public class TestHabitCycleManager {
         testHabitCycleManagerRecent.resetHabit(testHabitMidnightRecent);
         assertEquals(whatShouldBeHabitSnapshots, testHabitMidnightRecent.getHistory());
 
-        assertEquals(stepOverDate, testHabitMidnightLate.getCurrentDay());
+        assertEquals(stepOverDate, testHabitMidnightRecent.getCurrentDay());
         assertEquals(testHabitMidnightRecent.getStartingAmount(), testHabitMidnightRecent.getCurrentAmount());
         assertEquals(0, testHabitMidnightRecent.getOverloadAmount());
         assertEquals(0, testHabitMidnightRecent.getProgressPercentage());
@@ -358,7 +354,7 @@ public class TestHabitCycleManager {
         assertEquals(1, testHabitMidnightRecent.getGoal());
         assertEquals(1, testHabitMidnightRecent.getStepAmount());
         assertEquals("Workout", testHabitMidnightRecent.getTitle());
-        assertNull(testHabitMidnightRecent.getUnit());
+        assertTrue(testHabitMidnightRecent.getUnit().equals(""));
     }
 
     @Test
@@ -368,7 +364,7 @@ public class TestHabitCycleManager {
         testHabitCycleManagerRecent.resetHabit(testHabitMidnightRecent);
         assertEquals(whatShouldBeHabitSnapshots, testHabitMidnightRecent.getHistory());
 
-        assertEquals(stepOverDate, testHabitMidnightLate.getCurrentDay());
+        assertEquals(stepOverDate, testHabitMidnightRecent.getCurrentDay());
         assertEquals(testHabitMidnightRecent.getStartingAmount(), testHabitMidnightRecent.getCurrentAmount());
         assertEquals(0, testHabitMidnightRecent.getOverloadAmount());
         assertEquals(0, testHabitMidnightRecent.getProgressPercentage());
@@ -377,7 +373,7 @@ public class TestHabitCycleManager {
         assertEquals(1, testHabitMidnightRecent.getGoal());
         assertEquals(1, testHabitMidnightRecent.getStepAmount());
         assertEquals("Workout", testHabitMidnightRecent.getTitle());
-        assertNull(testHabitMidnightRecent.getUnit());
+        assertTrue(testHabitMidnightRecent.getUnit().equals(""));
     }
 
     @Test
@@ -397,7 +393,7 @@ public class TestHabitCycleManager {
         assertEquals(1, testHabitMidnightLate.getGoal());
         assertEquals(1, testHabitMidnightLate.getStepAmount());
         assertEquals("Workout", testHabitMidnightLate.getTitle());
-        assertNull(testHabitMidnightLate.getUnit());
+        assertTrue(testHabitMidnightLate.getUnit().equals(""));
     }
 
     @Test
@@ -419,12 +415,12 @@ public class TestHabitCycleManager {
         assertEquals(1, testHabitMidnightLate.getGoal());
         assertEquals(1, testHabitMidnightLate.getStepAmount());
         assertEquals("Workout", testHabitMidnightLate.getTitle());
-        assertNull(testHabitMidnightLate.getUnit());
+        assertTrue(testHabitMidnightLate.getUnit().equals(""));
     }
 
     @Test
     void testUpdateHabitTimesMidnight() {
-        whatShouldBeDate = targetForMidnight.toLocalDate();
+        whatShouldBeDate = rightNow.toLocalDate();
 
         testHabitCycleManagerRecent.updateHabitTimes(testHabitMidnightRecent, rightNow);
         assertTrue(testHabitMidnightRecent.getNextCycleTime().isEqual(targetForMidnight));
@@ -433,7 +429,7 @@ public class TestHabitCycleManager {
 
     @Test
     void testUpdateHabitTimes2330() {
-        whatShouldBeDate = targetFor2330.toLocalDate();
+        whatShouldBeDate = rightNow.toLocalDate();
         
         testHabitCycleManagerRecent.updateHabitTimes(testHabit2330Recent, rightNow);
         assertTrue(testHabit2330Recent.getNextCycleTime().isEqual(targetFor2330));

@@ -48,4 +48,10 @@ public class TestHabitSnaphot {
         assertEquals(ProgressType.OVERLOADED, testHabitSnapshotB.getProgressType());
         assertTrue(testHabitSnapshotB.getUnit().equals("study sessions"));
     }
+
+    @Test
+    void testEquals() {
+        // !!!
+        assertTrue(false);
+    }
 }

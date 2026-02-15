@@ -46,6 +46,33 @@ public class HabitSnapshot {
         this.unit = unit;
     }
 
+    @Override
+    /*
+    REQUIRES:
+    The object must be the same type as this
+    EFFECTS:
+    Checks equality between two objects
+    If the objects point to the same memory address, return true
+    Casts the object into Habit and returns whether all the fields are the same
+     */
+    public boolean equals(Object object) {
+        if (this == object) {
+            return true;
+        }
+
+        HabitSnapshot habitSnapshot = (HabitSnapshot) object;
+
+        return this.currentAmount == habitSnapshot.getCurrentAmount() &&
+            this.goal == habitSnapshot.getGoal() &&
+            this.overloadAmount == habitSnapshot.getOverloadAmount() &&
+            this.progressPercentage == habitSnapshot.getProgressPercentage() &&
+            this.startingAmount == habitSnapshot.getStartingAmount() &&
+            this.stepAmount == habitSnapshot.getStepAmount() &&
+            this.progressType == habitSnapshot.getProgressType() &&
+            this.unit.equals(habitSnapshot.getUnit()) &&
+            this.day.equals(habitSnapshot.getDay());
+    }
+
     public int getCurrentAmount() {
         return currentAmount;
     }
@@ -74,7 +101,7 @@ public class HabitSnapshot {
         return progressType;
     }
 
-    public LocalDate getLocalDate() {
+    public LocalDate getDay() {
         return day;
     }
 
