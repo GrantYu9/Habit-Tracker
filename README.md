@@ -34,3 +34,7 @@ I picked this idea because all the habit trackers I have tried thus far have not
 - As a user, I want to be able to make a variety of habits, with different incrementing and decrementing behaviour, differing amounts of steps, goals, starting amounts, units, and with unique cycling times.
 - As a user, I want to not only be able to meet my habits, but be rewarded for going above and beyond.
 
+### Phase 2
+- As a user, I want the choice to save my habits to file.
+- As a user, I want the choice to load my habits from file, reset the habit fields as needed, and create the necessary side effects.
+

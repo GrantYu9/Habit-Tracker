@@ -258,7 +258,7 @@ public class HabitTrackerApp {
         for (Habit habit : allHabitsPage.getHabits()) {
             if (input.equals(habit.getTitle())) {
                 printHabit(habit);
-                System.out.println("Do you want to modify this habit (y/n): ");
+                System.out.print("Do you want to modify this habit (y/n): ");
                 input = scanner.nextLine().strip().toLowerCase();
 
                 if (input.equals("y")) {
@@ -565,12 +565,12 @@ public class HabitTrackerApp {
 
     // EFFECTS: Selects a page and asks if you want to modify it or print its contents
     public void selectPage() {
-        System.out.println("Title (watch case and spacing): ");
+        System.out.print("Title (watch case and spacing): ");
         String input = scanner.nextLine();
 
         for (Page page : allGenericPagesPage.getPages()) {
             if (page.getTitle().equals(input)) {
-                System.out.println("Modify, print, or neiter (m/p/n): ");
+                System.out.print("Modify, print, or neiter (m/p/n): ");
                 input = scanner.nextLine().strip().toLowerCase();
 
                 if (input.equals("m")) {
