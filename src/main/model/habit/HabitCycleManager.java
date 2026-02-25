@@ -1,6 +1,5 @@
 package model.habit;
 
-
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -21,10 +20,10 @@ public class HabitCycleManager {
     LocalDateTime lastTime; // Last time program was up
 
     /*
-    EFFECTS:
-    Instantiates HabitManager such that 
-        habits = allHabitsPage.getHabits
-        this.lastTime = lastTime
+     * EFFECTS:
+     * Instantiates HabitManager such that
+     * habits = allHabitsPage.getHabits
+     * this.lastTime = lastTime
      */
     public HabitCycleManager(AllHabitsPage allHabitsPage, LocalDateTime lastTime) {
         habits = allHabitsPage.getHabits();
@@ -47,18 +46,19 @@ public class HabitCycleManager {
         }
     }
 
-    // EFFECTS: Sets a ScheduledExecutor for cycleHabitWhileRunning with the given delay
+    // EFFECTS: Sets a ScheduledExecutor for cycleHabitWhileRunning with the given
+    // delay
     public void scheduleHabit(Habit habit, Duration duration, LocalDateTime marker) {
         executor.schedule(() -> cycleHabitWhileRunning(habit, marker), duration.toSeconds(), TimeUnit.SECONDS);
     }
 
     /*
-    MODIFIES:
-    habit
-    EFFECTS:
-    If nextCycleTime was earlier than a marker by >= 2 days, calls updateHabit
-    Else if nextCycleTime was earlier than a marker, calls resetHabit
-    Calls updateHabitTimes
+     * MODIFIES:
+     * habit
+     * EFFECTS:
+     * If nextCycleTime was earlier than a marker by >= 2 days, calls updateHabit
+     * Else if nextCycleTime was earlier than a marker, calls resetHabit
+     * Calls updateHabitTimes
      */
     public void cycleHabitAtStartup(Habit habit, LocalDateTime marker) {
         LocalDateTime nextCycleTime = habit.getNextCycleTime();
@@ -73,7 +73,8 @@ public class HabitCycleManager {
     }
 
     // MODIFIES: habit
-    // EFFECTS: Calls resetHabit, updateHabitTimes, calculateDelay, and scheduleHabit
+    // EFFECTS: Calls resetHabit, updateHabitTimes, calculateDelay, and
+    // scheduleHabit
     public void cycleHabitWhileRunning(Habit habit, LocalDateTime marker) {
         resetHabit(habit);
         updateHabitTimes(habit, marker);
@@ -81,21 +82,21 @@ public class HabitCycleManager {
     }
 
     /*
-    MODIFIES:
-    habit
-    EFFECTS:
-    Instantiates HabitSnapshot and adds it to history
-    Resets this such that, of habit
-        currentDay is incremented by one day
-        currentAmount = startingAmount
-        overloadAmount = 0
-        progressPercentage = 0
-        progressType = UNDERDONE
+     * MODIFIES:
+     * habit
+     * EFFECTS:
+     * Instantiates HabitSnapshot and adds it to history
+     * Resets this such that, of habit
+     * currentDay is incremented by one day
+     * currentAmount = startingAmount
+     * overloadAmount = 0
+     * progressPercentage = 0
+     * progressType = UNDERDONE
      */
     public void resetHabit(Habit habit) {
-        habit.addToHistory(new HabitSnapshot(habit.getCurrentAmount(), habit.getGoal(), 
-            habit.getOverloadAmount(), habit.getProgressPercentage(), habit.getStartingAmount(), 
-            habit.getStepAmount(), habit.getProgressType(), habit.getCurrentDay(), habit.getUnit()));
+        habit.addToHistory(new HabitSnapshot(habit.getCurrentAmount(), habit.getGoal(),
+                habit.getOverloadAmount(), habit.getProgressPercentage(), habit.getStartingAmount(),
+                habit.getStepAmount(), habit.getProgressType(), habit.getCurrentDay(), habit.getUnit()));
 
         habit.setCurrentDay(habit.getCurrentDay().plusDays(1));
         habit.setCurrentAmountLogic(habit.getStartingAmount());
@@ -105,13 +106,15 @@ public class HabitCycleManager {
     }
 
     /*
-    REQUIRES:
-    The time gap between currentDay and a marker in habit must be greater than a day
-    MODIFIES:
-    habit
-    EFFECTS:
-    For the first day, calls resetHabit
-    For each subsequent day, inserts a blank HabitSnapshot, incrementing the day appropriately for each one
+     * REQUIRES:
+     * The time gap between currentDay and a marker in habit must be greater than a
+     * day
+     * MODIFIES:
+     * habit
+     * EFFECTS:
+     * For the first day, calls resetHabit
+     * For each subsequent day, inserts a blank HabitSnapshot, incrementing the day
+     * appropriately for each one
      */
     public void updateHabit(Habit habit, LocalDateTime marker) {
         long days = ChronoUnit.DAYS.between(habit.getCurrentDay(), marker.toLocalDate());
@@ -119,20 +122,20 @@ public class HabitCycleManager {
         resetHabit(habit);
 
         for (long i = days - 1; i > 0; i--) {
-            habit.addToHistory(new HabitSnapshot(habit.getCurrentAmount(), habit.getGoal(), 
-                habit.getOverloadAmount(), habit.getProgressPercentage(), habit.getStartingAmount(), 
-                habit.getStepAmount(), habit.getProgressType(), habit.getCurrentDay(), habit.getUnit()));
+            habit.addToHistory(new HabitSnapshot(habit.getCurrentAmount(), habit.getGoal(),
+                    habit.getOverloadAmount(), habit.getProgressPercentage(), habit.getStartingAmount(),
+                    habit.getStepAmount(), habit.getProgressType(), habit.getCurrentDay(), habit.getUnit()));
             habit.setCurrentDay(habit.getCurrentDay().plusDays(1));
         }
     }
 
     /*
-    MODIFIES:
-    habit
-    EFFECTS:
-    Calls calculateNextCycleTime
-    Sets nextCycleTime to the new one
-    Sets currentDay to today
+     * MODIFIES:
+     * habit
+     * EFFECTS:
+     * Calls calculateNextCycleTime
+     * Sets nextCycleTime to the new one
+     * Sets currentDay to today
      */
     public void updateHabitTimes(Habit habit, LocalDateTime marker) {
         habit.setNextCycleTime(calculateNextCycleTime(habit, marker));
@@ -145,7 +148,8 @@ public class HabitCycleManager {
     }
 
     // MODIFIES: this
-    // EFFECTS: Based off of a marker, calculates the next time the habit should cycle
+    // EFFECTS: Based off of a marker, calculates the next time the habit should
+    // cycle
     public LocalDateTime calculateNextCycleTime(Habit habit, LocalDateTime marker) {
         LocalDateTime supposedCycleTime = LocalDateTime.of(marker.toLocalDate(), habit.getCycleTime());
 

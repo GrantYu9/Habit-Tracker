@@ -18,23 +18,23 @@ public class HabitSnapshot {
     private int stepAmount; // How much one wants to advance by; stepAmount > 0
 
     private ProgressType progressType; // Progress relative to the goal
-    
+
     private LocalDate day; // Day of the habit
 
     private String unit; // Type of units. E.g. mL or steps
 
-    // EFFECTS: Instantiates HabitSnapshot such that the fields are the same as the respective operands
+    // EFFECTS: Instantiates HabitSnapshot such that the fields are the same as the
+    // respective operands
     public HabitSnapshot(
-        int currentAmount,
-        int goal,
-        int overloadAmount,
-        int progressPercentage,
-        int startingAmount,
-        int stepAmount,
-        ProgressType progressType,
-        LocalDate day,
-        String unit
-    ) {
+            int currentAmount,
+            int goal,
+            int overloadAmount,
+            int progressPercentage,
+            int startingAmount,
+            int stepAmount,
+            ProgressType progressType,
+            LocalDate day,
+            String unit) {
         this.currentAmount = currentAmount;
         this.goal = goal;
         this.overloadAmount = overloadAmount;
@@ -48,12 +48,12 @@ public class HabitSnapshot {
 
     @Override
     /*
-    REQUIRES:
-    The object must be the same type as this
-    EFFECTS:
-    Checks equality between two objects
-    If the objects point to the same memory address, return true
-    Casts the object into Habit and returns whether all the fields are the same
+     * REQUIRES:
+     * The object must be the same type as this
+     * EFFECTS:
+     * Checks equality between two objects
+     * If the objects point to the same memory address, return true
+     * Casts the object into Habit and returns whether all the fields are the same
      */
     public boolean equals(Object object) {
         if (this == object) {
@@ -62,21 +62,21 @@ public class HabitSnapshot {
 
         HabitSnapshot habitSnapshot = (HabitSnapshot) object;
 
-        return this.currentAmount == habitSnapshot.getCurrentAmount() &&
-            this.goal == habitSnapshot.getGoal() &&
-            this.overloadAmount == habitSnapshot.getOverloadAmount() &&
-            this.progressPercentage == habitSnapshot.getProgressPercentage() &&
-            this.startingAmount == habitSnapshot.getStartingAmount() &&
-            this.stepAmount == habitSnapshot.getStepAmount() &&
-            this.progressType == habitSnapshot.getProgressType() &&
-            this.unit.equals(habitSnapshot.getUnit()) &&
-            this.day.equals(habitSnapshot.getDay());
+        return this.currentAmount == habitSnapshot.getCurrentAmount()
+                && this.goal == habitSnapshot.getGoal()
+                && this.overloadAmount == habitSnapshot.getOverloadAmount()
+                && this.progressPercentage == habitSnapshot.getProgressPercentage()
+                && this.startingAmount == habitSnapshot.getStartingAmount()
+                && this.stepAmount == habitSnapshot.getStepAmount()
+                && this.progressType == habitSnapshot.getProgressType()
+                && this.unit.equals(habitSnapshot.getUnit())
+                && this.day.equals(habitSnapshot.getDay());
     }
 
     public int getCurrentAmount() {
         return currentAmount;
     }
-    
+
     public int getGoal() {
         return goal;
     }

@@ -11,6 +11,7 @@ import java.util.Locale;
 // A generic page thats acts as a container to organize habits
 public class Page {
     private Order order; // Order to sort the habits
+    
     public enum Order {
         ALPHABETICAL, // Alphabetical order
         MANUAL // How the user wants to

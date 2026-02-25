@@ -11,6 +11,7 @@ public class Tag {
     private static Color homeColour = Color.LIGHT_GRAY; // Colour for the home tag, set to defaultColour by default
 
     private TagType tagType; // Type of the tag, which can alter behaviour
+    
     public enum TagType {
         FAVOURITE, // A tag that signals the habit should be on the favourite page
         HOME, // A tag that signals the habit should be on the home page

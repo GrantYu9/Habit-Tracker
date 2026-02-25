@@ -37,17 +37,22 @@ public abstract class Habit {
     private int startingAmount; // The starting amount a user sets
     private int stepAmount; // How much one wants to advance by; stepAmount > 0
     private ProgressType progressType; // Progress relative to the goal
+
     /*
-    Warning: 
-    The behaviour of this enum is different between the derived classes. As such, please read the documentation that 
-    will be provided near the tops of each derived classes, where the variables would be declared
+     * Warning:
+     * The behaviour of this enum is different between the derived classes. As such,
+     * please read the documentation that
+     * will be provided near the tops of each derived classes, where the variables
+     * would be declared
      */
     public enum ProgressType {
         UNDERDONE,
         DONE,
         OVERLOADED
     }
+
     private ViewMode viewMode; // How one can view the habit
+
     public enum ViewMode {
         BAR, // The default way to view a habit and how one can interact with it
         HEATMAP // The heatmap to view history
@@ -64,41 +69,41 @@ public abstract class Habit {
     private List<Tag> tags; // Labels that can be attached to the habit for organization
 
     /*
-    REQUIRES:
-    0 < stepAmount <= |goal|
-    title has at least one character
-    User must add this to AllHabitsPage
-    EFFECTS:
-    Instantiates a habit such that
-        this.goal = goal
-        this.startingAmount = startingAmount
-        this.stepAmount = stepAmount
-        this.title = title, with surrounding whitespace trimmed
-        this.cycleTime = cycleTime
-        this.currentDay = curentDay
-
-        this.currentAmount = startingAmount
-        overloadAmount = 0
-        progressPercentage = 0
-        viewMode = BAR
-        progressType = UNDERDONE
-        unit = ""
-        history = new ArrayList
-        tags = new ArrayList
-
-    Calls HabitCycleManager to set nextCycleTime based on the marker and execute cycleHabitWhileRunning at nextCycleTime
-    */
+     * REQUIRES:
+     * 0 < stepAmount <= |goal|
+     * title has at least one character
+     * User must add this to AllHabitsPage
+     * EFFECTS:
+     * Instantiates a habit such that
+     * this.goal = goal
+     * this.startingAmount = startingAmount
+     * this.stepAmount = stepAmount
+     * this.title = title, with surrounding whitespace trimmed
+     * this.cycleTime = cycleTime
+     * this.currentDay = curentDay
+     * 
+     * this.currentAmount = startingAmount
+     * overloadAmount = 0
+     * progressPercentage = 0
+     * viewMode = BAR
+     * progressType = UNDERDONE
+     * unit = ""
+     * history = new ArrayList
+     * tags = new ArrayList
+     * 
+     * Calls HabitCycleManager to set nextCycleTime based on the marker and execute
+     * cycleHabitWhileRunning at nextCycleTime
+     */
     public Habit(
-        int goal, 
-        int startingAmount, 
-        int stepAmount,
-        String title,
-        LocalTime cycleTime,
-        LocalDate currentDay,
-        LocalDateTime marker,
+            int goal,
+            int startingAmount,
+            int stepAmount,
+            String title,
+            LocalTime cycleTime,
+            LocalDate currentDay,
+            LocalDateTime marker,
 
-        HabitCycleManager habitCycleManager
-    ) {
+            HabitCycleManager habitCycleManager) {
         this.goal = goal;
         this.startingAmount = startingAmount;
         this.stepAmount = stepAmount;
@@ -112,7 +117,7 @@ public abstract class Habit {
         viewMode = ViewMode.BAR;
         progressType = ProgressType.UNDERDONE;
         unit = "";
-        
+
         history = new ArrayList<>();
         tags = new ArrayList<>();
 
@@ -122,18 +127,21 @@ public abstract class Habit {
     }
 
     public abstract int calculateOverloadAmount(int currentAmount, int goal);
+
     public abstract int calculateProgressPercentage(int startingAmount, int currentAmount, int goal);
+
     public abstract void progressByStepAmount();
+
     public abstract void setCurrentAmountLogic(int currentAmount);
 
     @Override
     /*
-    REQUIRES:
-    The object must be the same type as this
-    EFFECTS:
-    Checks equality between two objects
-    If the objects point to the same memory address, return true
-    Casts the object into Habit and returns whether all the fields are the same
+     * REQUIRES:
+     * The object must be the same type as this
+     * EFFECTS:
+     * Checks equality between two objects
+     * If the objects point to the same memory address, return true
+     * Casts the object into Habit and returns whether all the fields are the same
      */
     public boolean equals(Object object) {
         if (object == null) {
@@ -146,35 +154,36 @@ public abstract class Habit {
 
         Habit habit = (Habit) object;
 
-        return this.currentAmount == habit.getCurrentAmount() &&
-            this.goal == habit.getGoal() &&
-            this.overloadAmount == habit.getOverloadAmount() &&
-            this.progressPercentage == habit.getProgressPercentage() &&
-            this.startingAmount == habit.getStartingAmount() &&
-            this.stepAmount == habit.getStepAmount() &&
-            this.progressType == habit.getProgressType() &&
-            this.title.equals(habit.getTitle()) &&
-            this.unit.equals(habit.getUnit()) &&
-            this.cycleTime.equals(habit.getCycleTime()) &&
-            this.currentDay.equals(habit.getCurrentDay()) &&
-            this.nextCycleTime.isEqual(habit.getNextCycleTime());
+        return this.currentAmount == habit.getCurrentAmount()
+                && this.goal == habit.getGoal()
+                && this.overloadAmount == habit.getOverloadAmount()
+                && this.progressPercentage == habit.getProgressPercentage()
+                && this.startingAmount == habit.getStartingAmount()
+                && this.stepAmount == habit.getStepAmount()
+                && this.progressType == habit.getProgressType()
+                && this.title.equals(habit.getTitle())
+                && this.unit.equals(habit.getUnit())
+                && this.cycleTime.equals(habit.getCycleTime())
+                && this.currentDay.equals(habit.getCurrentDay())
+                && this.nextCycleTime.isEqual(habit.getNextCycleTime());
     }
 
     /*
-    REQUIRES:
-    There can neither be two home tags nor two favourite tags
-    MODIFIES:
-    this, homePage, favouritesPage
-    EFFECTS:
-    If tag not in tags, appends tag to tags
-    Special cases
-        If tag.getTagType == FAVOURITE, adds habit to FavouritePage
-        If tag.getTagType == HOME, adds habit to HomePage
-    If not a special tag, instantiates an instance of tagPage
-    Sorts tags by alphabetical order, with Favourites tag being first, and Home tag being second, if they exist
+     * REQUIRES:
+     * There can neither be two home tags nor two favourite tags
+     * MODIFIES:
+     * this, homePage, favouritesPage
+     * EFFECTS:
+     * If tag not in tags, appends tag to tags
+     * Special cases
+     * If tag.getTagType == FAVOURITE, adds habit to FavouritePage
+     * If tag.getTagType == HOME, adds habit to HomePage
+     * If not a special tag, instantiates an instance of tagPage
+     * Sorts tags by alphabetical order, with Favourites tag being first, and Home
+     * tag being second, if they exist
      */
-    public void addTagAndSortTags(Tag tag, HomePage homePage, FavouritesPage favouritesPage, 
-        AllTagPagesPage allTagPagesPage) {
+    public void addTagAndSortTags(Tag tag, HomePage homePage, FavouritesPage favouritesPage,
+            AllTagPagesPage allTagPagesPage) {
         if (!tags.contains(tag)) {
             tags.add(tag);
         }

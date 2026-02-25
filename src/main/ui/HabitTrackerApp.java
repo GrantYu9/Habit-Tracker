@@ -125,6 +125,7 @@ public class HabitTrackerApp {
         }
     }
 
+    // !!! too long
     /*
     REQUIRES:
     0 <= hour <= 23
@@ -198,7 +199,7 @@ public class HabitTrackerApp {
             System.out.print("Unit: ");
             habit.setUnit(scanner.nextLine().strip());
         } else if (input.equals("n")) {
-            
+            return;
         } else {
             System.out.println("I guess not ...");
         }
@@ -216,7 +217,7 @@ public class HabitTrackerApp {
             scanner.nextLine();
             
         } else if (input.equals("n")) {
-            
+            return;
         } else {
             System.out.println("I guess not ...");
         }
@@ -243,7 +244,7 @@ public class HabitTrackerApp {
         if (input.equals("y")) {
             selectHabit();
         } else if (input.equals("n")) {
-
+            return;
         } else {
             System.out.println("I guess not ...");
         }
@@ -264,7 +265,7 @@ public class HabitTrackerApp {
                 if (input.equals("y")) {
                     modifyHabit(habit);
                 } else if (input.equals("n")) {
-
+                    return;
                 } else {
                     System.out.println("I guess not ...");
                 }
@@ -276,6 +277,7 @@ public class HabitTrackerApp {
         System.out.println("Match not found.");
     }
 
+    // !!! too long
     // MODIFIES: habit
     // EFFECTS: Habit modification menu
     public void modifyHabit(Habit habit) {
@@ -328,12 +330,12 @@ public class HabitTrackerApp {
             System.out.print("Tag title: ");
             input = scanner.nextLine();
             selectTag(habit, input);
-        }
-        else {
+        } else {
             System.out.println("Invalid input.");
         }
     }
 
+    // !!! too long
     // EFFECTS: Prints stats of a habit
     public void printHabit(Habit habit) {
         DateTimeFormatter format = DateTimeFormatter.ofPattern("H:mm");
@@ -431,7 +433,7 @@ public class HabitTrackerApp {
             if (input.equals("y")) {
                 selectHabit();
             } else if (input.equals("n")) {
-
+                return;
             } else {
                 System.out.println("I guess not ...");
             }
@@ -443,7 +445,7 @@ public class HabitTrackerApp {
             if (input.equals("y")) {
                 selectHabit();
             } else if (input.equals("n")) {
-
+                return;
             } else {
                 System.out.println("I guess not ...");
             }
@@ -455,7 +457,7 @@ public class HabitTrackerApp {
             if (input.equals("y")) {
                 selectPage();
             } else if (input.equals("n")) {
-
+                return;
             } else {
                 System.out.println("I guess not ...");
             }
@@ -467,7 +469,7 @@ public class HabitTrackerApp {
             if (input.equals("y")) {
                 selectPage();
             } else if (input.equals("n")) {
-
+                return;
             } else {
                 System.out.println("I guess not ...");
             }
@@ -490,7 +492,7 @@ public class HabitTrackerApp {
         if (input.equals("y")) {
             selectHabit();
         } else if (input.equals("n")) {
-
+            return;
         } else {
             System.out.println("I guess not ...");
         }
@@ -510,7 +512,7 @@ public class HabitTrackerApp {
         if (input.equals("y")) {
             selectHabit();
         } else if (input.equals("n")) {
-
+            return;
         } else {
             System.out.println("I guess not ...");
         }
@@ -527,8 +529,8 @@ public class HabitTrackerApp {
             } else {
                 System.out.println("HABITS:");
                 for (Habit habit : page.getHabits()) {
-                System.out.println(habit.getTitle());
-            }
+                    System.out.println(habit.getTitle());
+                }
             }
             System.out.println("-------------------------------");
         }
@@ -539,7 +541,7 @@ public class HabitTrackerApp {
         if (input.equals("y")) {
             selectPage();
         } else if (input.equals("n")) {
-
+            return;
         } else {
             System.out.println("I guess not ...");
         }
@@ -556,8 +558,8 @@ public class HabitTrackerApp {
             } else {
                 System.out.println("HABITS:");
                 for (Habit habit : page.getHabits()) {
-                System.out.println(habit.getTitle());
-            }
+                    System.out.println(habit.getTitle());
+                }
             }
             System.out.println("-------------------------------");
         }
@@ -578,7 +580,7 @@ public class HabitTrackerApp {
                 } else if (input.equals("p")) {
                     printPage(page);
                 } else if (input.equals("n")) {
-
+                    return;
                 } else {
                     System.out.println("Defaulting to neither.");
                 }
@@ -588,6 +590,7 @@ public class HabitTrackerApp {
         System.out.println("Match not found.");
     }
 
+    // !!! too many lines
     // EFFECTS: Modify page
     public void modifyPage(Page page) {
         System.out.println("To change the title, type 't'.");
@@ -607,7 +610,7 @@ public class HabitTrackerApp {
             if (input.equals("a")) {
                 page.setOrder(Order.ALPHABETICAL);
             } else if (input.equals("m")) {
-               page.setOrder(Order.MANUAL);
+                page.setOrder(Order.MANUAL);
             } else {
                 System.out.println("Invalid input.");
             }
@@ -652,7 +655,7 @@ public class HabitTrackerApp {
         if (input.equals("y")) {
             selectHabit();
         } else if (input.equals("n")) {
-
+            return;
         } else {
             System.out.println("I guess not ...");
         }
