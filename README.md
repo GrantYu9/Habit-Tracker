@@ -35,6 +35,6 @@ I picked this idea because all the habit trackers I have tried thus far have not
 - As a user, I want to not only be able to meet my habits, but be rewarded for going above and beyond.
 
 ### Phase 2
-- As a user, I want the choice to save my habits to file.
-- As a user, I want the choice to load my habits from file, reset the habit fields as needed, and create the necessary side effects.
+- As a user, I want the choice to save my application to file.
+- As a user, I want the choice to load my application from file and update my habits as needed.
 
