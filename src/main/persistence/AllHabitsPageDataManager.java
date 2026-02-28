@@ -1,57 +1,65 @@
 package persistence;
 
+import java.io.IOException;
+import java.nio.file.Path;
+
 import org.json.JSONObject;
 
 import model.organization.centralization.AllHabitsPage;
 
 // Reads and writes data of AllHabitsPage from a destination
 public class AllHabitsPageDataManager {
-    private String destination;
-
     private AllHabitsPage allHabitsPage;
 
-    public AllHabitsPageDataManager() {
-        
+    private String destination;
+
+    /*
+    EFFECTS:
+    Instantiates AllHabitsPageDataManger such that
+        this.allHabitsPage = allHabitsPage
+
+        this.destination = destination
+     */
+    public AllHabitsPageDataManager(AllHabitsPage allHabitsPage, String destination) {
+        // !!!
     }
 
-    // REQUIRES: destination is valid
-    // EFFECTS: Reads destination and reconstructs AllHabitsPage
-    public void readFromFile() {
+    /*
+    MODIFIES:
+    allHabitsPage
+    EFFECTS:
+    Reads destination and reconstructs AllHabitsPage
+    Throws IOException if error occurred while trying to read the file
+     */
+    public void readFromFile() throws IOException {
         // !!!
     }
 
     // EFFECTS: Converts JSON in destination to a string
-    public String parseDestination() {
+    private String parseDestination() {
         return null;
     }
 
     // MODIFIES: allHabitsPage
     // EFFECTS: Reconstructs AllHabitsPage
-    public void parseJsonObject(JSONObject jsonObject) {
+    private void parseJsonObject(JSONObject jsonObject) {
         // !!!
     }
 
-    // REQUIRES: destination is valid and allHabitsPage != null
-    // EFFECTS: Writes allHabitsPage to destination
-    public void writeToFile() {
+    /*
+    EFFECTS:
+    Writes allHabitsPage to destination as JSON
+    Throws IOException if error occurred while trying to write
+     */
+    public void writeToFile(AllHabitsPage allHabitsPage) throws IOException {
         // !!!
-    }
-
-    // REQUIRES: destination is valid
-    public void setDestination(String destination) {
-        this.destination = destination;
-    }
-
-    // REQUIRES: allHabitsPage is valid
-    public void allHabitsPage(AllHabitsPage allHabitsPage) {
-        this.allHabitsPage = allHabitsPage;
-    }
-
-    public String getDestination() {
-        return destination;
     }
 
     public AllHabitsPage getAllHabitsPage() {
         return allHabitsPage;
+    }
+
+    public String getDestination() {
+        return destination;
     }
 }
