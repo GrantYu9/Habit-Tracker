@@ -40,6 +40,8 @@ public class LastTimeManager {
     }
 
     /*
+     * MODIFIES:
+     * this
      * EFFECTS:
      * Returns the last time from destination
      * Throws IOException upon failure to properly write

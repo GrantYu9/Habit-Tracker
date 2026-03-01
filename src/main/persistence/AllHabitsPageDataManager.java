@@ -338,6 +338,8 @@ public class AllHabitsPageDataManager {
     }
 
     /*
+     * MODIFIES:
+     * this
      * EFFECTS:
      * Writes allHabitsPage to destination as JSON
      * Throws IOException if error occurred while trying to write
