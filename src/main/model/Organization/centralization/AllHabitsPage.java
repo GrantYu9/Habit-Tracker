@@ -24,4 +24,31 @@ public class AllHabitsPage {
     public List<Habit> getHabits() {
         return habits;
     }
+
+    @Override
+    // EFFECTS: Returns true if and only if this and object point to the same
+    // location in memory or if their habits share the same fields
+    public boolean equals(Object object) {
+        if (object == null) {
+            return false;
+        }
+
+        if (this == object) {
+            return true;
+        }
+
+        AllHabitsPage allHabitsPage = (AllHabitsPage) object;
+
+        if (allHabitsPage.getHabits().size() != habits.size()) {
+            return false;
+        }
+
+        for (int i = 0; i < habits.size(); i++) {
+            if (!habits.get(i).equals(allHabitsPage.getHabits().get(i))) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 }

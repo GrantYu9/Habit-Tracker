@@ -73,6 +73,42 @@ public class HabitSnapshot {
                 && this.day.equals(habitSnapshot.getDay());
     }
 
+    public void setCurrentAmount(int currentAmount) {
+        this.currentAmount = currentAmount;
+    }
+
+    public void setGoal(int goal) {
+        this.goal = goal;
+    }
+
+    public void setOverloadAmount(int overloadAmount) {
+        this.overloadAmount = overloadAmount;
+    }
+
+    public void setProgressPercentage(int progressPercentage) {
+        this.progressPercentage = progressPercentage;
+    }
+
+    public void setStartingAmount(int startingAmount) {
+        this.startingAmount = startingAmount;
+    }
+
+    public void setStepAmount(int stepAmount) {
+        this.stepAmount = stepAmount;
+    }
+
+    public void setProgressType(ProgressType progressType) {
+        this.progressType = progressType;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
+    }
+
+    public void setDay(LocalDate day) {
+        this.day = day;
+    }
+
     public int getCurrentAmount() {
         return currentAmount;
     }

@@ -1,65 +1,75 @@
-[
-    {
-        "title": "Rock climbing",
-        "currentAmount": 0,
-        "goal": 1,
-        "overloadAmount": 0,
-        "progressPercentage": 0,
-        "startingAmount": 0,
-        "stepAmount": 1,
-        "progressType": "UNDERDONE",
-        "viewMode": "BAR",
-        "unit": null,
-        "cycleTime": "00:00",
-        "currentDay": "2026-02-27",
-        "nextCycleTime": "2026-02-28T00:00",
-        "history": [],
-        "tags": []
-    },
-    {
-        "title": "Cardio",
-        "currentAmount": 2,
-        "goal": 2,
-        "overloadAmount": 0,
-        "progressPercentage": 100,
-        "startingAmount": 1,
-        "stepAmount": 1,
-        "progressType": "DONE",
-        "viewMode": "BAR",
-        "unit": "runs",
-        "cycleTime": "00:00",
-        "currentDay": "2026-02-27",
-        "nextCycleTime": "2026-02-28T00:00",
-        "history": [
-            {
-                "currentAmount": 3,
-                "goal": 2,
-                "overloadAmount": 1,
-                "progressPercentage": 100,
-                "startingAmount": 1,
-                "stepAmount": 1,
-                "progressType": "OVERLOADED",
-                "viewMode": "BAR",
-                "unit": "runs",
-                "day": "2026-02-26"
-            }
-        ],
-        "tags": [
-            {
-                "title": "Home",
-                "tagType": "HOME",
-                "colour": "LIGHT_GRAY"
-            },
-            {
-                "title": "Favourite",
-                "tagType": "FAVOURITE",
-                "colour": "YELLOW"
-            },
-            {
-                "title": "Exercise",
-                "tagType": "NORMAL",
-                "colour": "DARK_GREY"
-            }
-        ]
-    }
-]
+{
+    "habits": [
+        {
+            "title": "Rock Climbing",
+            "currentAmount": 0,
+            "goal": 1,
+            "overloadAmount": 0,
+            "progressPercentage": 0,
+            "startingAmount": 0,
+            "stepAmount": 1,
+            "progressType": "UNDERDONE",
+            "unit": "",
+            "cycleTime": "00:00",
+            "currentDay": "2026-02-27",
+            "nextCycleTime": "2026-02-28T00:00",
+            "history": [],
+            "tags": []
+        },
+        {
+            "title": "Cardio",
+            "currentAmount": 2,
+            "goal": 2,
+            "overloadAmount": 0,
+            "progressPercentage": 100,
+            "startingAmount": 1,
+            "stepAmount": 1,
+            "progressType": "DONE",
+            "unit": "runs",
+            "cycleTime": "00:00",
+            "currentDay": "2026-02-27",
+            "nextCycleTime": "2026-02-28T00:00",
+            "history": [
+                {
+                    "currentAmount": 3,
+                    "goal": 2,
+                    "overloadAmount": 1,
+                    "progressPercentage": 100,
+                    "startingAmount": 1,
+                    "stepAmount": 1,
+                    "progressType": "OVERLOADED",
+                    "unit": "runs",
+                    "day": "2026-02-26"
+                },
+                {
+                    "currentAmount": 3,
+                    "goal": 2,
+                    "overloadAmount": 1,
+                    "progressPercentage": 100,
+                    "startingAmount": 1,
+                    "stepAmount": 1,
+                    "progressType": "OVERLOADED",
+                    "unit": "runs",
+                    "day": "2026-02-25"
+                }
+            ],
+            "tags": [
+                {
+                    "title": "Home",
+                    "tagType": "HOME",
+                    "colour": "LIGHT_GRAY"
+                },
+                {
+                    "title": "Favourite",
+                    "tagType": "FAVOURITE",
+                    "colour": "YELLOW"
+                },
+                {
+                    "title": "Exercise",
+                    "tagType": "NORMAL",
+                    "colour": "DARK_GREY"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,73 @@
+{"habits": [
+    {
+        "nextCycleTime": "2026-02-28T00:00",
+        "progressType": "DONE",
+        "goal": 2,
+        "cycleTime": "00:00",
+        "currentAmount": 2,
+        "stepAmount": 1,
+        "history": [
+            {
+                "progressType": "OVERLOADED",
+                "unit": "runs",
+                "goal": 2,
+                "overloadAmount": 1,
+                "currentAmount": 3,
+                "progressPercentage": 100,
+                "startingAmount": 1,
+                "stepAmount": 1,
+                "day": "2026-02-26"
+            },
+            {
+                "progressType": "OVERLOADED",
+                "unit": "runs",
+                "goal": 2,
+                "overloadAmount": 1,
+                "currentAmount": 3,
+                "progressPercentage": 100,
+                "startingAmount": 1,
+                "stepAmount": 1,
+                "day": "2026-02-25"
+            }
+        ],
+        "title": "Cardio",
+        "tags": [
+            {
+                "colour": "java.awt.Color[r=255,g=255,b=0]",
+                "tagType": "FAVOURITE",
+                "title": "Favourite"
+            },
+            {
+                "colour": "java.awt.Color[r=192,g=192,b=192]",
+                "tagType": "HOME",
+                "title": "Home"
+            },
+            {
+                "colour": "java.awt.Color[r=64,g=64,b=64]",
+                "tagType": "NORMAL",
+                "title": "Exercise"
+            }
+        ],
+        "unit": "runs",
+        "currentDay": "2026-02-27",
+        "overloadAmount": 0,
+        "progressPercentage": 100,
+        "startingAmount": 1
+    },
+    {
+        "nextCycleTime": "2026-02-28T00:00",
+        "progressType": "UNDERDONE",
+        "goal": 1,
+        "cycleTime": "00:00",
+        "currentAmount": 0,
+        "stepAmount": 1,
+        "history": [],
+        "title": "Leetcode",
+        "tags": [],
+        "unit": "",
+        "currentDay": "2026-02-27",
+        "overloadAmount": 0,
+        "progressPercentage": 0,
+        "startingAmount": 0
+    }
+]}

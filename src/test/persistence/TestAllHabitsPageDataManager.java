@@ -12,7 +12,6 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Objects;
 
-import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -26,7 +25,6 @@ import model.organization.centralization.AllHabitsPage;
 import model.organization.centralization.AllTagPagesPage;
 import model.organization.specialpages.FavouritesPage;
 import model.organization.specialpages.HomePage;
-import model.organization.specialpages.TagPage;
 
 public class TestAllHabitsPageDataManager {
     private String destinationEmpty;
@@ -42,6 +40,7 @@ public class TestAllHabitsPageDataManager {
     private Tag tagFavourite;
 
     private HabitSnapshot habitSnapshotA;
+    private HabitSnapshot habitSnapshotB;
     
     private Habit habitA;
     private Habit habitB;
@@ -78,28 +77,31 @@ public class TestAllHabitsPageDataManager {
         tagFavourite = new Tag("Favourite");
 
         habitSnapshotA = new HabitSnapshot(3, 2, 1, 100, 1, 1, ProgressType.OVERLOADED, localDate.minusDays(1), "runs");
+        habitSnapshotB = new HabitSnapshot(3, 2, 1, 100, 1, 1, ProgressType.OVERLOADED, localDate.minusDays(2), "runs");
 
         homePage = new HomePage();
         favouritesPage = new FavouritesPage();
 
         allTagPagesPage = new AllTagPagesPage();
 
+        allHabitsPageEmpty = new AllHabitsPage();
+        allHabitsPageGeneralWrite = new AllHabitsPage();
+
+        habitCycleManager = new HabitCycleManager(allHabitsPageEmpty, localDateTime);
+
         habitA = new HabitIncrement(1, 0, 1, "Rock Climbing", localTime, localDate, localDateTime, habitCycleManager);
-        habitB = new HabitIncrement(2, 0, 1, "Cardio", localTime, localDate, localDateTime, habitCycleManager);
+        habitB = new HabitIncrement(2, 1, 1, "Cardio", localTime, localDate, localDateTime, habitCycleManager);
         habitB.setUnit("runs");
         habitB.addTagAndSortTags(tagA, homePage, favouritesPage, allTagPagesPage);
         habitB.addTagAndSortTags(tagHome, homePage, favouritesPage, allTagPagesPage);
         habitB.addTagAndSortTags(tagFavourite, homePage, favouritesPage, allTagPagesPage);
         habitB.addToHistory(habitSnapshotA);
+        habitB.addToHistory(habitSnapshotB);
         habitB.progressByStepAmount();
         habitC = new HabitIncrement(1, 0, 1, "Leetcode", localTime, localDate, localDateTime, habitCycleManager);
 
-        allHabitsPageEmpty = new AllHabitsPage();
-        allHabitsPageGeneralWrite = new AllHabitsPage();
         allHabitsPageGeneralWrite.addToAllHabitsPage(habitB);
         allHabitsPageGeneralWrite.addToAllHabitsPage(habitC);
-
-        habitCycleManager = new HabitCycleManager(allHabitsPageEmpty, localDateTime);
 
         allHabitsPageDataManagerEmpty = new AllHabitsPageDataManager(allHabitsPageEmpty, destinationEmpty);
         allHabitsPageDataManagerGeneralRead = new AllHabitsPageDataManager(allHabitsPageEmpty, destinationGeneralRead);
@@ -109,8 +111,10 @@ public class TestAllHabitsPageDataManager {
         try {
             Files.writeString(Path.of(destinationGeneralWrite), "");
         } catch (IOException e) {
-            fail();
+            fail("Should not have thrown exception");
         }
+
+        whatShouldBeAllHabitsPage = new AllHabitsPage();
     }
 
     @Test
@@ -126,7 +130,7 @@ public class TestAllHabitsPageDataManager {
         AllHabitsPageDataManager fakeAllHabitsPageDataManager = new AllHabitsPageDataManager(allHabitsPageEmpty, fakeDestination);
 
         try {
-            fakeAllHabitsPageDataManager.readFromFile();
+            fakeAllHabitsPageDataManager.readFromFile(homePage, favouritesPage, allTagPagesPage);
 
             fakeAllHabitsPageDataManager.writeToFile(allHabitsPageEmpty);
 
@@ -139,9 +143,9 @@ public class TestAllHabitsPageDataManager {
     @Test
     public void testReadFromFileNothing() {
         try {
-            allHabitsPageDataManagerEmpty.readFromFile();
+            allHabitsPageDataManagerEmpty.readFromFile(homePage, favouritesPage, allTagPagesPage);
         } catch (IOException e) {
-            fail();
+            fail("Should not have thrown exception");
         }
 
         assertTrue(allHabitsPageEmpty.getHabits().isEmpty());
@@ -153,9 +157,9 @@ public class TestAllHabitsPageDataManager {
         whatShouldBeAllHabitsPage.addToAllHabitsPage(habitB);
 
         try {
-            allHabitsPageDataManagerGeneralRead.readFromFile();
+            allHabitsPageDataManagerGeneralRead.readFromFile(homePage, favouritesPage, allTagPagesPage);
         } catch (IOException e) {
-            fail();
+            fail("Should not have thrown exception");
         }
 
         assertTrue(Objects.equals(whatShouldBeAllHabitsPage, allHabitsPageEmpty));
@@ -165,9 +169,9 @@ public class TestAllHabitsPageDataManager {
     public void testWriteToFileNothing() {
         try {
             allHabitsPageDataManagerEmpty.writeToFile(allHabitsPageEmpty);
-            allHabitsPageDataManagerEmpty.readFromFile();
+            allHabitsPageDataManagerEmpty.readFromFile(homePage, favouritesPage, allTagPagesPage);
         } catch (IOException e) {
-            fail();
+            fail("Should not have thrown exception");
         }
 
         assertTrue(allHabitsPageEmpty.getHabits().isEmpty());
@@ -180,9 +184,9 @@ public class TestAllHabitsPageDataManager {
 
         try {
             allHabitsPageDataManagerGeneralWrite.writeToFile(allHabitsPageGeneralWrite);
-            allHabitsPageDataManagerGeneralWrite.readFromFile();
+            allHabitsPageDataManagerGeneralWrite.readFromFile(homePage, favouritesPage, allTagPagesPage);
         } catch (IOException e) {
-            fail();
+            fail("Should not have thrown exception");
         }
 
         assertTrue(Objects.equals(whatShouldBeAllHabitsPage, allHabitsPageGeneralWrite));

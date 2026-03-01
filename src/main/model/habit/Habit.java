@@ -122,8 +122,12 @@ public abstract class Habit {
         tags = new ArrayList<>();
 
         this.nextCycleTime = habitCycleManager.calculateNextCycleTime(this, marker);
-
-        habitCycleManager.scheduleHabit(this, Duration.between(marker, nextCycleTime), marker);
+            
+        Duration gap = Duration.between(marker, nextCycleTime);
+        long delay = gap.toSeconds();
+        if (delay > 0) {
+            habitCycleManager.scheduleHabit(this, gap, marker);
+        }
     }
 
     public abstract int calculateOverloadAmount(int currentAmount, int goal);

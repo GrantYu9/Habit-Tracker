@@ -160,8 +160,6 @@ public class HabitCycleManager {
         return supposedCycleTime;
     }
 
-    // !!! shutdown method for executor, for phase 2
-
     public void setLastTime(LocalDateTime lastTime) {
         this.lastTime = lastTime;
     }
