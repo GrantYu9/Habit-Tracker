@@ -1,6 +1,9 @@
 package persistence;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
+
+import model.exceptions.EmptyLastTimeFileException;
 
 // Manages the last time the app was open
 public class LastTimeManager {
@@ -12,14 +15,23 @@ public class LastTimeManager {
         // !!!
     }
 
-    // EFFECTS: Returns the last time from destination
-    public LocalDateTime readFromFile() {
+    /*
+     * EFFECTS:
+     * Returns the last time from destination
+     * Throws IOException upon failure to properly read
+     * Throws EmptyLastTimeFileException if file is empty
+     */
+    public LocalDateTime readFromFile() throws IOException, EmptyLastTimeFileException {
         // !!!
         return null; // stub
     }
 
-    // EFFECTS: Writes lastTime to destination
-    public void writeToFile(LocalDateTime lastTime) {
+    /*
+     * EFFECTS:
+     * Returns the last time from destination
+     * Throws IOException upon failure to properly write
+     */
+    public void writeToFile(LocalDateTime lastTime) throws IOException {
         // !!!
     }
 
