@@ -1,0 +1,18 @@
+{"pages": [
+    {
+        "habits": [
+            {"title": "Watering Plants"},
+            {"title": "Pulling Weeds"}
+        ],
+        "title": "Gardening",
+        "order": "MANUAL"
+    },
+    {
+        "habits": [
+            {"title": "Flashcards"},
+            {"title": "Grinding Questions"}
+        ],
+        "title": "Studying",
+        "order": "ALPHABETICAL"
+    }
+]}

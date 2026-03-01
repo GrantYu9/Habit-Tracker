@@ -11,6 +11,7 @@ import java.time.LocalTime;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import model.exceptions.HabitNotFoundException;
 import model.habit.Habit;
 import model.habit.HabitCycleManager;
 import model.habit.HabitIncrement;
@@ -111,23 +112,41 @@ public class TestAllGenericPagesPageDataManager {
         AllGenericPagesPageDataManager allGenericPagesPageDataManagerBroken = new AllGenericPagesPageDataManager("./data/fake.json", allGenericPagesPageEmpty);
 
         try {
-            allGenericPagesPageDataManagerBroken.readFromFile();
+            allGenericPagesPageDataManagerBroken.readFromFile(allHabitsPage);
             allGenericPagesPageDataManagerBroken.writeToFile();
             fail("Expected IOException");
         } catch (IOException e) {
             // pass
+        } catch (HabitNotFoundException e) {
+            fail("Unexpected HabitNotFoundException");
         }
     }
 
     @Test
     public void testReadFromFileNothing() {
         try {
-            allGenericPagesPageDataManagerEmpty.readFromFile();
+            allGenericPagesPageDataManagerEmpty.readFromFile(allHabitsPage);
         } catch (IOException e) {
             fail("Unexpected IOException");
+        } catch (HabitNotFoundException e) {
+            fail("Unexpected HabitNotFoundException");
         }
 
         assertTrue(allGenericPagesPageEmpty.getPages().isEmpty());
+    }
+
+    @Test
+    public void testReadFromFileHabitNotFound() {
+        allHabitsPage.getHabits().clear();
+
+        try {
+            allGenericPagesPageDataManagerGeneralRead.readFromFile(allHabitsPage);
+            fail("Expected HabitNotFoundException");
+        } catch (IOException e) {
+            fail("Unexpected IOException");
+        } catch (HabitNotFoundException e) {
+            // pass
+        }
     }
 
     @Test
@@ -137,9 +156,11 @@ public class TestAllGenericPagesPageDataManager {
         whatShouldBeAllGenericPagesPage.addToPages(pageGardening);
 
         try {
-            allGenericPagesPageDataManagerGeneralRead.readFromFile();
+            allGenericPagesPageDataManagerGeneralRead.readFromFile(allHabitsPage);
         } catch (IOException e) {
             fail("Unexpected IOException");
+        } catch (HabitNotFoundException e) {
+            fail("Unexpected HabitNotFoundException");
         }
 
         assertTrue(allGenericPagesPageEmpty.equals(whatShouldBeAllGenericPagesPage));
@@ -149,9 +170,11 @@ public class TestAllGenericPagesPageDataManager {
     public void testWriteToFileNothing() {
         try {
             allGenericPagesPageDataManagerEmpty.writeToFile();
-            allGenericPagesPageDataManagerEmpty.readFromFile();
+            allGenericPagesPageDataManagerEmpty.readFromFile(allHabitsPage);
         } catch (IOException e) {
             fail("Unexpected IOException");
+        } catch (HabitNotFoundException e) {
+            fail("Unexpected HabitNotFoundException");
         }
 
         assertTrue(allGenericPagesPageEmpty.getPages().isEmpty());
@@ -163,14 +186,16 @@ public class TestAllGenericPagesPageDataManager {
         allGenericPagesPageGeneralWrite.addToPages(pageStudying);
 
         whatShouldBeAllGenericPagesPage = new AllGenericPagesPage();
-        whatShouldBeAllGenericPagesPage.addToPages(pageExercise);
+        whatShouldBeAllGenericPagesPage.addToPages(pageGardening);
         whatShouldBeAllGenericPagesPage.addToPages(pageStudying);
 
         try {
             allGenericPagesPageDataManagerGeneralWrite.writeToFile();
-            allGenericPagesPageDataManagerGeneralWrite.readFromFile();
+            allGenericPagesPageDataManagerGeneralWrite.readFromFile(allHabitsPage);
         } catch (IOException e) {
             fail("Unexpected IOException");
+        } catch (HabitNotFoundException e) {
+            fail("Unexpected HabitNotFoundException");
         }
 
         assertTrue(allGenericPagesPageGeneralWrite.equals(whatShouldBeAllGenericPagesPage));
