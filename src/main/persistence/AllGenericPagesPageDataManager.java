@@ -5,7 +5,9 @@ import java.io.IOException;
 import model.organization.centralization.AllGenericPagesPage;
 
 // Reads and writes data of AllGenericPages from a destination
-public class AllGenericPagesDataManager {
+public class AllGenericPagesPageDataManager {
+    private static final int TAB = 4; // Identation
+
     private String destination; // destination to write to
 
     private AllGenericPagesPage allGenericPagesPage; // Where all the pages are
@@ -15,7 +17,7 @@ public class AllGenericPagesDataManager {
      * this.destination = destination
      * this.allGenericPagesPage = allGenericPagesPage
      */
-    public AllGenericPagesDataManager(String destination, AllGenericPagesPage allGenericPagesPage) {
+    public AllGenericPagesPageDataManager(String destination, AllGenericPagesPage allGenericPagesPage) {
         // !!!
     }
 
@@ -31,11 +33,11 @@ public class AllGenericPagesDataManager {
     }
 
     /*
-    MODIFIES:
-    this
-    EFFECTS:
-    Writes allGenericPagesPage to file as JSON
-    Throws IOException upon failure to properly write
+     * MODIFIES:
+     * this
+     * EFFECTS:
+     * Writes allGenericPagesPage to file as JSON
+     * Throws IOException upon failure to properly write
      */
     public void writeToFile() throws IOException {
         // !!!
@@ -43,5 +45,9 @@ public class AllGenericPagesDataManager {
 
     public String getDestination() {
         return destination;
+    }
+
+    public AllGenericPagesPage getAllGenericPagesPage() {
+        return allGenericPagesPage;
     }
 }

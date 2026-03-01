@@ -1,0 +1,28 @@
+{
+    "pages": [
+        {
+            "title": "Exercise",
+            "order": "ALPHABETICAL",
+            "habits": [
+                {
+                    "title": "Rock Climbing"
+                },
+                {
+                    "title": "Cardio"
+                }
+            ]
+        },
+        {
+            "title": "Gardening",
+            "order": "MANUAL",
+            "habits": [
+                {
+                    "title": "Pulling Weeds"
+                },
+                {
+                    "title": "Watering Plants"
+                }
+            ]
+        }
+    ]
+}

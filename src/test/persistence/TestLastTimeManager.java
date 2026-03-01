@@ -18,7 +18,8 @@ public class TestLastTimeManager {
     private String destinationGeneralRead;
     private String destinationGeneralWrite;
 
-    private LocalDateTime localDateTime;
+    private LocalDateTime localDateTimeA;
+    private LocalDateTime localDateTimeB;
 
     private LastTimeManager lastTimeManagerEmpty;
     private LastTimeManager lastTimeManagerGeneralRead;
@@ -30,7 +31,8 @@ public class TestLastTimeManager {
         destinationGeneralRead = "./data/testing/TestLastTimeManagerGeneralRead.json";
         destinationGeneralWrite = "./data/testing/TestLastTimeManagerGeneralWrite.json";
 
-        localDateTime = LocalDateTime.of(LocalDate.of(2026, 2, 28), LocalTime.MIN);
+        localDateTimeA = LocalDateTime.of(LocalDate.of(2026, 2, 28), LocalTime.MIN);
+        localDateTimeB = LocalDateTime.of(LocalDate.of(2026, 2, 27), LocalTime.MIN);
 
         lastTimeManagerEmpty = new LastTimeManager(destinationEmpty);
         lastTimeManagerGeneralRead = new LastTimeManager(destinationGeneralRead);
@@ -48,7 +50,7 @@ public class TestLastTimeManager {
 
         try {
             lastTimeManagerBroken.readFromFile();
-            lastTimeManagerBroken.writeToFile(localDateTime);
+            lastTimeManagerBroken.writeToFile(localDateTimeA);
             fail("Did not throw IOException");
         } catch (IOException e) {
             // pass
@@ -72,7 +74,7 @@ public class TestLastTimeManager {
     @Test
     public void testReadFromFileGeneral() {
         try {
-            assertTrue(lastTimeManagerGeneralRead.readFromFile().equals(localDateTime));
+            assertTrue(lastTimeManagerGeneralRead.readFromFile().equals(localDateTimeA));
         } catch (IOException e) {
             fail("Unexpected IOException");
         } catch (EmptyLastTimeFileException e) {
@@ -83,8 +85,8 @@ public class TestLastTimeManager {
     @Test
     public void testWriteToFile() {
         try {
-            lastTimeManagerGeneralWrite.writeToFile(localDateTime);
-            assertTrue(lastTimeManagerGeneralWrite.readFromFile().equals(localDateTime));
+            lastTimeManagerGeneralWrite.writeToFile(localDateTimeB);
+            assertTrue(lastTimeManagerGeneralWrite.readFromFile().equals(localDateTimeB));
         } catch (IOException e) {
             fail("Unexpected IOException");
         } catch (EmptyLastTimeFileException e) {
