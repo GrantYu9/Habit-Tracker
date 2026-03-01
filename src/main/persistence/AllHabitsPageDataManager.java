@@ -26,11 +26,11 @@ import model.organization.specialpages.HomePage;
 
 // Reads and writes data of AllHabitsPage from a destination
 public class AllHabitsPageDataManager {
-    private static final int TAB = 4;
+    private static final int TAB = 4; // Identation for JSON
 
-    private String destination;
+    private String destination; // Where the manager writes to
 
-    private AllHabitsPage allHabitsPage;
+    private AllHabitsPage allHabitsPage; // Where all the habits are
 
     /*
      * EFFECTS:
@@ -84,7 +84,8 @@ public class AllHabitsPageDataManager {
     // EFFECTS: For a habitJson, creates a habit and adds it to allHabitsPage
     private void buildHabit(JSONObject habitJson, HomePage homePage, FavouritesPage favouritesPage,
             AllTagPagesPage allTagPagesPage) {
-        Habit habit = new HabitIncrement(1, 0, 1, "", LocalTime.now(), LocalDate.now(), LocalDateTime.now(), new HabitCycleManager(allHabitsPage, LocalDateTime.now()));
+        Habit habit = new HabitIncrement(1, 0, 1, "", LocalTime.now(), LocalDate.now(), LocalDateTime.now(),
+                new HabitCycleManager(allHabitsPage, LocalDateTime.now()));
 
         buildTitle(habitJson, habit);
         buildCurrentAmount(habitJson, habit);
