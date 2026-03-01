@@ -120,7 +120,7 @@ public class TestAllGenericPagesPageDataManager {
     }
 
     @Test
-    public void readFromFileNothing() {
+    public void testReadFromFileNothing() {
         try {
             allGenericPagesPageDataManagerEmpty.readFromFile();
         } catch (IOException e) {
@@ -131,13 +131,13 @@ public class TestAllGenericPagesPageDataManager {
     }
 
     @Test
-    public void readFromFileGeneral() {
+    public void testReadFromFileGeneral() {
         whatShouldBeAllGenericPagesPage = new AllGenericPagesPage();
         whatShouldBeAllGenericPagesPage.addToPages(pageExercise);
         whatShouldBeAllGenericPagesPage.addToPages(pageGardening);
 
         try {
-            allGenericPagesPageDataManagerEmpty.readFromFile();
+            allGenericPagesPageDataManagerGeneralRead.readFromFile();
         } catch (IOException e) {
             fail("Unexpected IOException");
         }
@@ -146,7 +146,7 @@ public class TestAllGenericPagesPageDataManager {
     }
 
     @Test
-    public void writeToFileNothing() {
+    public void testWriteToFileNothing() {
         try {
             allGenericPagesPageDataManagerEmpty.writeToFile();
             allGenericPagesPageDataManagerEmpty.readFromFile();
@@ -158,7 +158,7 @@ public class TestAllGenericPagesPageDataManager {
     }
 
     @Test
-    public void writeToFileGeneral() {
+    public void testWriteToFileGeneral() {
         allGenericPagesPageGeneralWrite.addToPages(pageGardening);
         allGenericPagesPageGeneralWrite.addToPages(pageStudying);
 
