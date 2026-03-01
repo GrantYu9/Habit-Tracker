@@ -26,9 +26,9 @@ public class TestLastTimeManager {
 
     @BeforeEach
     public void runBeforeEach() {
-        destinationEmpty = "./data/TestLastTimeManagerEmpty.json";
-        destinationEmpty = "./data/TestLastTimeManagerGeneralRead.json";
-        destinationEmpty = "./data/TestLastTimeManagerGeneralWrite.json";
+        destinationEmpty = "./data/testing/TestLastTimeManagerEmpty.json";
+        destinationGeneralRead = "./data/testing/TestLastTimeManagerGeneralRead.json";
+        destinationGeneralWrite = "./data/testing/TestLastTimeManagerGeneralWrite.json";
 
         localDateTime = LocalDateTime.of(LocalDate.of(2026, 2, 28), LocalTime.MIN);
 
