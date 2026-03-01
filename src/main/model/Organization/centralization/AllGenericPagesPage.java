@@ -20,6 +20,32 @@ public class AllGenericPagesPage {
     public void addToPages(Page page) {
         pages.add(page);
     }
+
+    @Override
+    // !!!
+    public boolean equals(Object object) {
+        if (object == null) {
+            return false;
+        }
+
+        if (this == object) {
+            return true;
+        }
+
+        AllGenericPagesPage allGenericPagesPage = (AllGenericPagesPage) object;
+
+        if (pages.size() != allGenericPagesPage.getPages().size()) {
+            return false;
+        }
+
+        for (int i = 0; i < pages.size(); i++) {
+            if (!pages.get(i).equals(allGenericPagesPage.getPages().get(i))) {
+                return false;
+            }
+        }
+
+        return true;
+    }
     
     public List<Page> getPages() {
         return pages;

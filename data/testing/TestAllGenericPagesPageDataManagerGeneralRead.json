@@ -5,10 +5,10 @@
             "order": "ALPHABETICAL",
             "habits": [
                 {
-                    "title": "Rock Climbing"
+                    "title": "Cardio"
                 },
                 {
-                    "title": "Cardio"
+                    "title": "Rock Climbing"
                 }
             ]
         },
@@ -17,10 +17,10 @@
             "order": "MANUAL",
             "habits": [
                 {
-                    "title": "Pulling Weeds"
+                    "title": "Watering Plants"
                 },
                 {
-                    "title": "Watering Plants"
+                    "title": "Pulling Weeds"
                 }
             ]
         }
