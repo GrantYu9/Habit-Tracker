@@ -1,5 +1,6 @@
 package ui;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -7,6 +8,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Scanner;
 
+import model.exceptions.EmptyLastTimeFileException;
 import model.habit.Habit;
 import model.habit.HabitCycleManager;
 import model.habit.HabitDecrement;
@@ -20,16 +22,19 @@ import model.organization.specialpages.HomePage;
 import model.organization.specialpages.TagPage;
 import model.organization.tree.Page;
 import model.organization.tree.Page.Order;
+import persistence.AllGenericPagesPageDataManager;
+import persistence.AllHabitsPageDataManager;
+import persistence.LastTimeManager;
 
 /*
 Habit tracker
  */
 public class HabitTrackerApp {
-    /*
-    This is meant to simulate "last time", which is supposed to be the timestamp of the last moment the program was up
-    This will be properly implemented in Phase 2, as data persistence is outside the scope of Phase 1
-     */
-    private LocalDateTime psuedoLastTime;
+    private LocalDateTime lastTime;
+
+    private String destinationAllGenericPagesPage;
+    private String destinationAllHabitsPage;
+    private String destinationLastTime;
 
     private AllGenericPagesPage allGenericPagesPage;
     private AllHabitsPage allHabitsPage;
@@ -37,6 +42,10 @@ public class HabitTrackerApp {
     private FavouritesPage favouritesPage;
     private HomePage homePage;
     private HabitCycleManager habitCycleManager;
+
+    private AllGenericPagesPageDataManager allGenericPagesPageDataManager;
+    private AllHabitsPageDataManager allHabitsPageDataManager;
+    private LastTimeManager lastTimeManager;
 
     private boolean keepGoing; // To handle the program uptime
     private Scanner scanner; // To read input
@@ -49,8 +58,10 @@ public class HabitTrackerApp {
     }
 
     // EFFECTS: Initializes dependencies
-    public void initHabitTrackerApp() {
-        psuedoLastTime = LocalDateTime.now();
+    private void initHabitTrackerApp() {
+        destinationAllGenericPagesPage = "./data/AllGenericPagesPage.json";
+        destinationAllHabitsPage = "./data/AllHabitsPage.json";
+        destinationLastTime = "./data/LastTime.json";
 
         allGenericPagesPage = new AllGenericPagesPage();
         allHabitsPage = new AllHabitsPage();
@@ -59,12 +70,24 @@ public class HabitTrackerApp {
         favouritesPage = new FavouritesPage();
         homePage = new HomePage();
 
-        // !!! Change this in Phase 2
-        habitCycleManager = new HabitCycleManager(allHabitsPage, psuedoLastTime);
+        allGenericPagesPageDataManager = new AllGenericPagesPageDataManager(destinationAllGenericPagesPage,
+                allGenericPagesPage);
+        allHabitsPageDataManager = new AllHabitsPageDataManager(allHabitsPage, destinationAllHabitsPage);
+        lastTimeManager = new LastTimeManager(destinationLastTime);
+
+        try {
+            lastTime = lastTimeManager.readFromFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (EmptyLastTimeFileException e) {
+            lastTime = LocalDateTime.now();
+        }
+
+        habitCycleManager = new HabitCycleManager(allHabitsPage, lastTime);
     }
 
     // EFFECTS: Resets fields as needed
-    public void refreshFields() {
+    private void refreshFields() {
         habitCycleManager.cycleAllHabitsAtStartup(LocalDateTime.now());
         habitCycleManager.scheduleAllHabits(LocalDateTime.now());
     }
@@ -81,7 +104,7 @@ public class HabitTrackerApp {
 
             System.out.print("What would you like to do: ");
             String input = scanner.nextLine().strip().toLowerCase();
-            
+
             if (input.equals("q")) {
                 keepGoing = false;
             } else {
@@ -96,23 +119,29 @@ public class HabitTrackerApp {
     }
 
     // EFFECTS: Prints out a menu with inputs and descriptions
-    public void displayInputMenu() {
+    private void displayInputMenu() {
         StringBuilder inputMenu = new StringBuilder();
 
         inputMenu.append('\n');
         inputMenu.append("To quit, type 'q'.\n");
+        inputMenu.append("To save to file, type 's'.\n");
+        inputMenu.append("To load from file, type 'l'.\n");
         inputMenu.append("To initialize a habit, type 'h'.\n");
         inputMenu.append("To view or modify a habit, type 'habits'.\n");
         inputMenu.append("To initialize a page, type 'p'.\n");
         inputMenu.append("To view or modify a page, type 'pages'.\n");
-        
+
         System.out.println(inputMenu);
     }
 
     // MODIFIES: this
     // EFFECTS: Handles the input
-    public void handleMenuInput(String input) {
-        if (input.equals("h")) {
+    private void handleMenuInput(String input) {
+        if (input.equals("s")) {
+            // !!!
+        } else if (input.equals("l")) {
+            // !!!
+        } else if (input.equals("h")) {
             makeHabit();
         } else if (input.equals("habits")) {
             printHabits();
@@ -125,73 +154,81 @@ public class HabitTrackerApp {
         }
     }
 
-    // !!! too long
-    /*
-    REQUIRES:
-    0 <= hour <= 23
-    0 <= minute <= 59
-    MODIFIES:
-    this
-    EFFECTS:
-    Creates a habit and adds it to allHabitsPage
-    May also add it to the following
-        AllTagPagesPage
-        FavouritesPage
-        HomePage
-    May also initialize and add to the following
-        TagPage
-     */
-    public void makeHabit() {
-        int goal;
-        int startingAmount;
-        int stepAmount;
-        String title;
-        int hour;
-        int minute;
-        LocalTime cycleTime;
+    // !!! save
+    // !!!
 
+    // !!! load
+
+    /*
+     * REQUIRES:
+     * 0 <= hour <= 23
+     * 0 <= minute <= 59
+     * MODIFIES:
+     * this
+     * EFFECTS:
+     * Creates a habit and adds it to allHabitsPage
+     * May also add it to the following
+     * AllTagPagesPage
+     * FavouritesPage
+     * HomePage
+     * May also initialize and add to the following
+     * TagPage
+     */
+    private void makeHabit() {
         Habit habit;
 
-        String input;
-
         System.out.print("Title: ");
-        title = scanner.nextLine().strip();
+        String title = scanner.nextLine().strip();
 
         System.out.print("Goal: ");
-        goal = scanner.nextInt();
+        int goal = scanner.nextInt();
 
         System.out.print("Starting amount: ");
-        startingAmount = scanner.nextInt();
+        int startingAmount = scanner.nextInt();
 
         System.out.print("Step amount: ");
-        stepAmount = scanner.nextInt();
+        int stepAmount = scanner.nextInt();
 
         System.out.print("We will now determine the cycle time. ");
         System.out.println("We will ask for the hour, followed by the minute, in 24-hour time.");
         System.out.print("Hour: ");
-        hour = scanner.nextInt();
+        int hour = scanner.nextInt();
         System.out.print("Minute: ");
-        minute = scanner.nextInt();
-        cycleTime = LocalTime.of(hour, minute);
+        int minute = scanner.nextInt();
+        LocalTime cycleTime = LocalTime.of(hour, minute);
         scanner.nextLine();
 
+        habit = instantiateHabit(goal, startingAmount, stepAmount, title, cycleTime, habitCycleManager);
+
+        setUpUnit(habit);
+
+        setUpTag(habit);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: Instantiates habit based on if user wants to increment or decrement
+    private Habit instantiateHabit(int goal, int startingAmount, int stepAmount, String title, LocalTime cycleTime,
+            HabitCycleManager habitCycleManager) {
+        String input;
         System.out.print("Do you want the habit to increment or decrement? ");
         System.out.print("'i' for increment, 'd' for decrement: ");
         input = scanner.nextLine().strip().toLowerCase();
 
-        if (input.equals("i")) {
-            habit = new HabitIncrement(goal, startingAmount, stepAmount, title, cycleTime, LocalDate.now(), 
-                LocalDateTime.now(), habitCycleManager);
-            allHabitsPage.addToAllHabitsPage(habit);
-        } else if (input.equals("d")) {
-            habit = new HabitDecrement(goal, startingAmount, stepAmount, title, cycleTime, LocalDate.now(), 
-                LocalDateTime.now(), habitCycleManager);
+        if (input.equals("d")) {
+            return new HabitDecrement(goal, startingAmount, stepAmount, title, cycleTime, LocalDate.now(),
+                    LocalDateTime.now(), habitCycleManager);
         } else {
             System.out.println("Defaulting to increment.");
-            habit = new HabitIncrement(goal, startingAmount, stepAmount, title, cycleTime, LocalDate.now(), 
-                LocalDateTime.now(), habitCycleManager);
+            return new HabitIncrement(goal, startingAmount, stepAmount, title, cycleTime, LocalDate.now(),
+                    LocalDateTime.now(), habitCycleManager);
         }
+    }
 
+    // REQUIRES: unit has at least one character
+    // MODIFIES: habit
+    // EFFECTS: Sets up a unit, if user wants
+    private void setUpUnit(Habit habit) {
+        String input;
         System.out.print("Do you want to set a unit (y/n):");
         input = scanner.nextLine().strip().toLowerCase();
 
@@ -203,8 +240,16 @@ public class HabitTrackerApp {
         } else {
             System.out.println("I guess not ...");
         }
+    }
+
+    // REQUIRES: tag title has at least one character
+    // MODIFIES: habit
+    // EFFECTS: sets up tags, if user wants
+    private void setUpTag(Habit habit) {
+        String input;
 
         System.out.println("Would you like to make a tag (y/n): ");
+        input = scanner.nextLine().strip().toLowerCase();
 
         if (input.equals("y")) {
             System.out.println("How many: ");
@@ -215,7 +260,7 @@ public class HabitTrackerApp {
             }
 
             scanner.nextLine();
-            
+
         } else if (input.equals("n")) {
             return;
         } else {
@@ -224,7 +269,7 @@ public class HabitTrackerApp {
     }
 
     // EFFECTS: Prints all habits and asks if you want to select a habit
-    public void printHabits() {
+    private void printHabits() {
         List<Habit> habits = allHabitsPage.getHabits();
 
         if (habits.isEmpty()) {
@@ -252,7 +297,7 @@ public class HabitTrackerApp {
 
     // MODIFIES: habit
     // EFFECTS: Selects a habit and asks if you want to modify it
-    public void selectHabit() {
+    private void selectHabit() {
         System.out.print("Title of habit you want to select (watch cases and spacing): ");
         String input = scanner.nextLine().strip();
 
@@ -277,10 +322,15 @@ public class HabitTrackerApp {
         System.out.println("Match not found.");
     }
 
-    // !!! too long
     // MODIFIES: habit
     // EFFECTS: Habit modification menu
-    public void modifyHabit(Habit habit) {
+    private void modifyHabit(Habit habit) {
+        modifyHabitPrintMenu();
+        modifyHabitTakeInput(habit);
+    }
+
+    // EFFECTS: Prints modifyHabit menu
+    private void modifyHabitPrintMenu() {
         System.out.println("To step forward, type '+'.");
         System.out.println("To modify title, type 'title'.");
         System.out.println("To modify current amount, type 'current amount'.");
@@ -289,55 +339,112 @@ public class HabitTrackerApp {
         System.out.println("To modify step amount, type 'step amount'.");
         System.out.println("To modify cycle time, type 'time'.");
         System.out.println("To modify tags, type 'tag'.");
+    }
 
+    // MODIFIES: habit
+    // EFFECTS: Takes input and allows user to change something based on the input
+    private void modifyHabitTakeInput(Habit habit) {
         System.out.print("What do you want to do: ");
         String input = scanner.nextLine().strip().toLowerCase();
 
         if (input.equals("+")) {
             habit.progressByStepAmount();
         } else if (input.equals("title")) {
-            System.out.print("Title: ");
-            input = scanner.nextLine().strip();
-            habit.setTitle(input);
+            modifyHabitModifyTitle(habit);
         } else if (input.equals("current amount")) {
-            System.out.print("Current amount: ");
-            int incoming = scanner.nextInt();
-            habit.setCurrentAmountLogic(incoming);
-            scanner.nextLine();
+            modifyHabitModifyCurrentAmount(habit);
         } else if (input.equals("g")) {
-            System.out.print("Goal: ");
-            int incoming = scanner.nextInt();
-            habit.setGoal(incoming);
-            scanner.nextLine();
+            modifyHabitModifyGoal(habit);
         } else if (input.equals("starting amount")) {
-            System.out.print("Starting amount: ");
-            int incoming = scanner.nextInt();
-            habit.setStartingAmount(incoming);
-            scanner.nextLine();
+            modifyHabitModifyStartingAmount(habit);
         } else if (input.equals("step amount")) {
-            System.out.print("Step amount: ");
-            int incoming = scanner.nextInt();
-            habit.setStepAmount(incoming);
-            scanner.nextLine();
+            modifyHabitModifyStepAmount(habit);
         } else if (input.equals("time")) {
-            System.out.print("Hours: ");
-            int hours = scanner.nextInt();
-            System.out.print("Minutes: ");
-            int minutes = scanner.nextInt();
-            habit.setCycleTime(LocalTime.of(hours, minutes));
-            scanner.nextLine();
+            modifyHabitModifyTime(habit);
         } else if (input.equals("tag")) {
-            System.out.print("Tag title: ");
-            input = scanner.nextLine();
-            selectTag(habit, input);
+            modifyHabitModifyTag(habit);
         } else {
             System.out.println("Invalid input.");
         }
     }
 
-    // !!! too long
+    // MODIFIES: habit
+    // EFFECTS: Changes title to input
+    private void modifyHabitModifyTitle(Habit habit) {
+        System.out.print("Title: ");
+        String input = scanner.nextLine().strip();
+        habit.setTitle(input);
+    }
+
+    // MODIFIES: habit
+    // EFFECTS: Changes currentAmount to input
+    private void modifyHabitModifyCurrentAmount(Habit habit) {
+        System.out.print("Current amount: ");
+        int incoming = scanner.nextInt();
+        habit.setCurrentAmountLogic(incoming);
+        scanner.nextLine();
+    }
+
+    // MODIFIES: habit
+    // EFFECTS: Changes goal to input
+    private void modifyHabitModifyGoal(Habit habit) {
+        System.out.print("Goal: ");
+        int incoming = scanner.nextInt();
+        habit.setGoal(incoming);
+        scanner.nextLine();
+    }
+
+    // MODIFIES: habit
+    // EFFECTS: Changes startingAmount to input
+    private void modifyHabitModifyStartingAmount(Habit habit) {
+        System.out.print("Starting amount: ");
+        int incoming = scanner.nextInt();
+        habit.setStartingAmount(incoming);
+        scanner.nextLine();
+    }
+
+    // MODIFIES: habit
+    // EFFECTS: Changes stepAmount to input
+    private void modifyHabitModifyStepAmount(Habit habit) {
+        System.out.print("Step amount: ");
+        int incoming = scanner.nextInt();
+        habit.setStepAmount(incoming);
+        scanner.nextLine();
+    }
+
+    // MODIFIES: habit
+    // EFFECTS: Changes cycleTime to input
+    private void modifyHabitModifyTime(Habit habit) {
+        System.out.print("Hours: ");
+        int hours = scanner.nextInt();
+        System.out.print("Minutes: ");
+        int minutes = scanner.nextInt();
+        habit.setCycleTime(LocalTime.of(hours, minutes));
+        scanner.nextLine();
+    }
+
+    // MODIFIES: habit
+    // EFFECTS: Changes tag to input
+    private void modifyHabitModifyTag(Habit habit) {
+        System.out.print("Tag title: ");
+        String input = scanner.nextLine();
+        selectTag(habit, input);
+    }
+
     // EFFECTS: Prints stats of a habit
-    public void printHabit(Habit habit) {
+    private void printHabit(Habit habit) {
+        printHabitPrintData(habit);
+
+        if (habit.getTags().isEmpty()) {
+            System.out.println("No tags yet.");
+        } else {
+            System.out.println("TAGS:");
+            printTags(habit);
+        }
+    }
+
+    // EFFECTS: Prints out most of the data for habit
+    private void printHabitPrintData(Habit habit) {
         DateTimeFormatter format = DateTimeFormatter.ofPattern("H:mm");
 
         System.out.print("Title: ");
@@ -357,32 +464,25 @@ public class HabitTrackerApp {
         System.out.println(habit.getStepAmount());
         System.out.print("Cycle time: ");
         System.out.println(habit.getCycleTime().format(format));
-
-        if (habit.getTags().isEmpty()) {
-            System.out.println("No tags yet.");
-        } else {
-            System.out.println("TAGS:");
-            printTags(habit);
-        }
     }
 
     // MODIFIES: this
     // EFFECTS: Make a tag
-    public Tag makeTag() {
+    private Tag makeTag() {
         System.out.println("Title: ");
         String input = scanner.nextLine().strip();
         return new Tag(input);
     }
 
     // EFFECTS: Prints tags
-    public void printTags(Habit habit) {
+    private void printTags(Habit habit) {
         for (Tag tag : habit.getTags()) {
             System.out.println(tag.getTitle());
         }
     }
 
     // EFFECTS: Select tag
-    public void selectTag(Habit habit, String title) {
+    private void selectTag(Habit habit, String title) {
         for (Tag tag : habit.getTags()) {
             if (tag.getTitle().equals(title)) {
                 modifyTag(habit, tag);
@@ -394,10 +494,10 @@ public class HabitTrackerApp {
     }
 
     // EFFECTS: Modify tag
-    public void modifyTag(Habit habit, Tag tag) {
+    private void modifyTag(Habit habit, Tag tag) {
         System.out.println("To modify title, type 't'.");
         String input = scanner.nextLine();
- 
+
         if (input.equals("t")) {
             System.out.print("Title: ");
             input = scanner.nextLine();
@@ -408,15 +508,16 @@ public class HabitTrackerApp {
     }
 
     // EFFECTS: Make page
-    public void makePage() {
+    private void makePage() {
         System.out.print("Title: ");
         String input = scanner.nextLine();
 
         allGenericPagesPage.addToPages(new Page(input));
     }
 
-    // EFFECTS: Selects a type of page, prints it and asks if you want to select a page or a habit
-    public void pageTypeSelection() {
+    // EFFECTS: Selects a type of page, prints it and asks if you want to select a
+    // page or a habit
+    private void pageTypeSelection() {
         System.out.println("For favourite page, type 'f'.");
         System.out.println("For home page, type 'h'.");
         System.out.println("For all generic pages, type 'g'.");
@@ -426,60 +527,84 @@ public class HabitTrackerApp {
         String input = scanner.nextLine().strip().toLowerCase();
 
         if (input.equals("f")) {
-            printFavouritesPage();
-            System.out.print("Do you want to select a habit (y/n): ");
-            input = scanner.nextLine().strip().toLowerCase();
-
-            if (input.equals("y")) {
-                selectHabit();
-            } else if (input.equals("n")) {
-                return;
-            } else {
-                System.out.println("I guess not ...");
-            }
+            favouritePageMenu();
         } else if (input.equals("h")) {
-            printHomePage();
-            System.out.print("Do you want to select a habit (y/n): ");
-            input = scanner.nextLine().strip().toLowerCase();
-
-            if (input.equals("y")) {
-                selectHabit();
-            } else if (input.equals("n")) {
-                return;
-            } else {
-                System.out.println("I guess not ...");
-            }
+            homePageMenu();
         } else if (input.equals("g")) {
-            printAllGenericPages();
-            System.out.print("Do you want to select a page (y/n): ");
-            input = scanner.nextLine().strip().toLowerCase();
-
-            if (input.equals("y")) {
-                selectPage();
-            } else if (input.equals("n")) {
-                return;
-            } else {
-                System.out.println("I guess not ...");
-            }
+            allGenericPagesPageMenu();
         } else if (input.equals("t")) {
-            printAllTagPages();
-            System.out.print("Do you want to select a page (y/n): ");
-            input = scanner.nextLine().strip().toLowerCase();
-
-            if (input.equals("y")) {
-                selectPage();
-            } else if (input.equals("n")) {
-                return;
-            } else {
-                System.out.println("I guess not ...");
-            }
+            allTagPagesPageMenu();
         } else {
             System.out.println("Invalid input.");
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: User may change favouritesPage
+    private void favouritePageMenu() {
+        printFavouritesPage();
+        System.out.print("Do you want to select a habit (y/n): ");
+        String input = scanner.nextLine().strip().toLowerCase();
+
+        if (input.equals("y")) {
+            selectHabit();
+        } else if (input.equals("n")) {
+            return;
+        } else {
+            System.out.println("I guess not ...");
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: User may change homePage
+    private void homePageMenu() {
+        printHomePage();
+        System.out.print("Do you want to select a habit (y/n): ");
+        String input = scanner.nextLine().strip().toLowerCase();
+
+        if (input.equals("y")) {
+            selectHabit();
+        } else if (input.equals("n")) {
+            return;
+        } else {
+            System.out.println("I guess not ...");
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: User may change allGenericPagesPage
+    private void allGenericPagesPageMenu() {
+        printAllGenericPages();
+        System.out.print("Do you want to select a page (y/n): ");
+        String input = scanner.nextLine().strip().toLowerCase();
+
+        if (input.equals("y")) {
+            selectPage();
+        } else if (input.equals("n")) {
+            return;
+        } else {
+            System.out.println("I guess not ...");
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: User may change allTagPages
+    private void allTagPagesPageMenu() {
+        printAllTagPages();
+        System.out.print("Do you want to select a page (y/n): ");
+        String input = scanner.nextLine().strip().toLowerCase();
+
+        if (input.equals("y")) {
+            selectPage();
+        } else if (input.equals("n")) {
+            return;
+        } else {
+            System.out.println("I guess not ...");
+        }
+    }
+
     // EFFECTS: Print favourites page and asks if you want to select a habit
-    public void printFavouritesPage() {
+    private void printFavouritesPage() {
         for (Habit habit : favouritesPage.getHabits()) {
             System.out.println("-------------------------------------------");
             printHabit(habit);
@@ -499,7 +624,7 @@ public class HabitTrackerApp {
     }
 
     // EFFECTS: Print home page and asks if you want to select a habit
-    public void printHomePage() {
+    private void printHomePage() {
         for (Habit habit : homePage.getHabits()) {
             System.out.println("-------------------------------------------");
             printHabit(habit);
@@ -519,7 +644,7 @@ public class HabitTrackerApp {
     }
 
     // EFFECTS: Prints allGenericPagesPage and asks if you want to select a page
-    public void printAllGenericPages() {
+    private void printAllGenericPages() {
         for (Page page : allGenericPagesPage.getPages()) {
             System.out.println("-------------------------------");
             System.out.print("Title: ");
@@ -548,7 +673,7 @@ public class HabitTrackerApp {
     }
 
     // EFFECTS: Prints allTagPages
-    public void printAllTagPages() {
+    private void printAllTagPages() {
         for (TagPage page : allTagPagesPage.getTagPages()) {
             System.out.println("-------------------------------");
             System.out.print("Title: ");
@@ -565,8 +690,9 @@ public class HabitTrackerApp {
         }
     }
 
-    // EFFECTS: Selects a page and asks if you want to modify it or print its contents
-    public void selectPage() {
+    // EFFECTS: Selects a page and asks if you want to modify it or print its
+    // contents
+    private void selectPage() {
         System.out.print("Title (watch case and spacing): ");
         String input = scanner.nextLine();
 
@@ -590,48 +716,70 @@ public class HabitTrackerApp {
         System.out.println("Match not found.");
     }
 
-    // !!! too many lines
     // EFFECTS: Modify page
-    public void modifyPage(Page page) {
-        System.out.println("To change the title, type 't'.");
-        System.out.println("To change the order, type 'o'.");
-        System.out.println("To modify habits that appear, type 'h'.");
+    private void modifyPage(Page page) {
+        modifyPagePrintMenu();
 
         System.out.print("What do you want to do: ");
         String input = scanner.nextLine().strip().toLowerCase();
 
         if (input.equals("t")) {
-            System.out.print("New title: ");
-            input = scanner.nextLine().strip().toLowerCase();
-            page.setTitle(input);
+            modifyPageModifyTitle(page);
         } else if (input.equals("o")) {
-            System.out.print("Alphabetical or manual (a/m): ");
-            input = scanner.nextLine().strip().toLowerCase();
-            if (input.equals("a")) {
-                page.setOrder(Order.ALPHABETICAL);
-            } else if (input.equals("m")) {
-                page.setOrder(Order.MANUAL);
-            } else {
-                System.out.println("Invalid input.");
-            }
+            modifyPageModifyOrder(page);
         } else if (input.equals("h")) {
-            System.out.print("How many habits do you want to add: ");
-            int count = scanner.nextInt();
-
-            for (int i = 0; i < count; i++) {
-                System.out.print("Title: ");
-                input = scanner.nextLine().strip();
-                addHabit(page, input);
-            }
-
-            scanner.nextLine();
+            modifyPageModifyHabits(page);
         } else {
             System.out.println("Invalid input.");
         }
     }
 
+    // EFFECTS: Prints menu of options for modifying the page
+    private void modifyPagePrintMenu() {
+        System.out.println("To change the title, type 't'.");
+        System.out.println("To change the order, type 'o'.");
+        System.out.println("To modify habits that appear, type 'h'.");
+    }
+
+    // MODIFIES: this
+    // EFFECTS: User may change title
+    private void modifyPageModifyTitle(Page page) {
+        System.out.print("New title: ");
+        String input = scanner.nextLine().strip().toLowerCase();
+        page.setTitle(input);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: User may change order
+    private void modifyPageModifyOrder(Page page) {
+        System.out.print("Alphabetical or manual (a/m): ");
+        String input = scanner.nextLine().strip().toLowerCase();
+        if (input.equals("a")) {
+            page.setOrder(Order.ALPHABETICAL);
+        } else if (input.equals("m")) {
+            page.setOrder(Order.MANUAL);
+        } else {
+            System.out.println("Invalid input.");
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: User may change what habits are in the page
+    private void modifyPageModifyHabits(Page page) {
+        System.out.print("How many habits do you want to add: ");
+        int count = scanner.nextInt();
+
+        for (int i = 0; i < count; i++) {
+            System.out.print("Title: ");
+            String input = scanner.nextLine().strip();
+            addHabit(page, input);
+        }
+
+        scanner.nextLine();
+    }
+
     // EFFECTS: Can add habits to a page
-    public void addHabit(Page page, String title) {
+    private void addHabit(Page page, String title) {
         for (Habit habit : allHabitsPage.getHabits()) {
             if (habit.getTitle().equals(title)) {
                 page.addHabit(habit);
@@ -642,7 +790,7 @@ public class HabitTrackerApp {
     }
 
     // EFFECTS: Prints page and asks if you want to modify a ahbit
-    public void printPage(Page page) {
+    private void printPage(Page page) {
         for (Habit habit : page.getHabits()) {
             System.out.println("-------------------------------------------");
             printHabit(habit);
@@ -663,30 +811,36 @@ public class HabitTrackerApp {
 
     // MODIFIES: this
     // EFFECTS: Sets up fields for runHabitTrackerApp
-    public void setUp() {
+    private void setUp() {
         keepGoing = true;
         scanner = new Scanner(System.in);
     }
 
     // EFFECTS: Prints a greeting, introduction, and home page
-    public void greeting() {
+    private void greeting() {
         System.out.println("Hello!");
 
         StringBuilder intro = new StringBuilder();
 
-        intro.append("Welcome to your habit tracker!"); // !!!
+        intro.append("Welcome to your habit tracker!");
 
         System.out.println(intro);
     }
 
     // MODIFIES:
     // EFFECTS: Cleans up anything needed and prints a valediction
-    public void cleanUp() {
+    private void cleanUp() {
         scanner.close();
+
+        try {
+            lastTimeManager.writeToFile(LocalDateTime.now());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     // EFFECTS: Prints a farewell statement
-    public void valediction() {
+    private void valediction() {
         System.out.println("Thank you, farewell!");
     }
 }
