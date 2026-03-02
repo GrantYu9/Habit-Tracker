@@ -149,7 +149,7 @@ public class HabitTrackerApp {
         } else if (input.equals("p")) {
             makePage();
         } else if (input.equals("pages")) {
-            selectPage();
+            pageTypeSelection();
         } else {
             System.out.println("Invalid input.\n");
         }
@@ -551,11 +551,8 @@ public class HabitTrackerApp {
     // EFFECTS: Selects a type of page, prints it and asks if you want to select a
     // page or a habit
     private void pageTypeSelection() {
-        System.out.println("For favourite page, type 'f'.");
-        System.out.println("For home page, type 'h'.");
-        System.out.println("For all generic pages, type 'g'.");
-        System.out.println("For all tag pages, type 't'");
-
+        pageTypeSelectionPrintMenu();
+        
         System.out.print("What do you want to do: ");
         String input = scanner.nextLine().strip().toLowerCase();
 
@@ -570,6 +567,14 @@ public class HabitTrackerApp {
         } else {
             System.out.println("Invalid input.");
         }
+    }
+
+    // EFFECTS: Prints menu of types of pages
+    private void pageTypeSelectionPrintMenu() {
+        System.out.println("For favourite page, type 'f'.");
+        System.out.println("For home page, type 'h'.");
+        System.out.println("For all generic pages, type 'g'.");
+        System.out.println("For all tag pages, type 't'");
     }
 
     // MODIFIES: this
