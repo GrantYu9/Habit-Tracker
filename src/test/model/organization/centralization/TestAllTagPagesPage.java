@@ -8,9 +8,11 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
 import model.organization.Tag;
 import model.organization.specialpages.TagPage;
 
+@ExcludeFromJacocoGeneratedReport
 public class TestAllTagPagesPage {
     private AllTagPagesPage allTagPages;
 

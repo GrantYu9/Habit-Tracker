@@ -10,9 +10,11 @@ import java.time.LocalTime;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
 import model.habit.Habit.ProgressType;
 import model.organization.centralization.AllHabitsPage;
 
+@ExcludeFromJacocoGeneratedReport
 public class TestHabitIncrement {
     private AllHabitsPage testAllHabitsPage;
     private HabitCycleManager testHabitCycleManager;

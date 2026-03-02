@@ -6,10 +6,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
+
+import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
+
 import org.junit.jupiter.api.BeforeEach;
 
 import model.habit.Habit.ProgressType;
 
+@ExcludeFromJacocoGeneratedReport
 public class TestHabitSnaphot {
     private HabitSnapshot testHabitSnapshotA;
     private HabitSnapshot testHabitSnapshotB;

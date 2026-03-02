@@ -11,6 +11,7 @@ import java.time.LocalTime;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
 import model.exceptions.HabitNotFoundException;
 import model.habit.Habit;
 import model.habit.HabitCycleManager;
@@ -20,6 +21,7 @@ import model.organization.centralization.AllHabitsPage;
 import model.organization.tree.Page;
 import model.organization.tree.Page.Order;
 
+@ExcludeFromJacocoGeneratedReport
 public class TestAllGenericPagesPageDataManager {
     private String destinationEmpty;
     private String destinationGeneralRead;

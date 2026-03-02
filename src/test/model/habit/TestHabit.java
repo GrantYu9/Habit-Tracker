@@ -13,6 +13,7 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
 import model.habit.Habit.ProgressType;
 import model.habit.Habit.ViewMode;
 import model.organization.Tag;
@@ -21,6 +22,7 @@ import model.organization.centralization.AllTagPagesPage;
 import model.organization.specialpages.FavouritesPage;
 import model.organization.specialpages.HomePage;
 
+@ExcludeFromJacocoGeneratedReport
 // We use HabitIncrement as a way to test Habit
 public class TestHabit {
     // Fix naming consistency later !!!

@@ -8,6 +8,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Scanner;
 
+import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
 import model.exceptions.EmptyLastTimeFileException;
 import model.exceptions.HabitNotFoundException;
 import model.habit.Habit;
@@ -30,6 +31,7 @@ import persistence.LastTimeManager;
 /*
 Habit tracker
  */
+@ExcludeFromJacocoGeneratedReport
 public class HabitTrackerApp {
     private LocalDateTime lastTime;
 
@@ -552,7 +554,7 @@ public class HabitTrackerApp {
     // page or a habit
     private void pageTypeSelection() {
         pageTypeSelectionPrintMenu();
-        
+
         System.out.print("What do you want to do: ");
         String input = scanner.nextLine().strip().toLowerCase();
 

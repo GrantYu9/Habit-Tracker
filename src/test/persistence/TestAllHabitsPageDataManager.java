@@ -14,6 +14,7 @@ import java.util.Objects;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
 import model.habit.Habit;
 import model.habit.HabitCycleManager;
 import model.habit.HabitIncrement;
@@ -25,6 +26,7 @@ import model.organization.centralization.AllTagPagesPage;
 import model.organization.specialpages.FavouritesPage;
 import model.organization.specialpages.HomePage;
 
+@ExcludeFromJacocoGeneratedReport
 public class TestAllHabitsPageDataManager {
     private String destinationEmpty;
     private String destinationGeneralRead;

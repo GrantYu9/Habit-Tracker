@@ -6,8 +6,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
 import model.organization.Tag.TagType;
 
+@ExcludeFromJacocoGeneratedReport
 public class TestTag {
     private Tag tagA; // Normal title
     private Tag tagB; // Funky title

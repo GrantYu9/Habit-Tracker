@@ -8,8 +8,10 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
 import model.organization.tree.Page;
 
+@ExcludeFromJacocoGeneratedReport
 public class TestAllGenericPagesPage {
     private AllGenericPagesPage allGenericPagesPage;
 
