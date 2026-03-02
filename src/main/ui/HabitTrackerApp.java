@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import model.exceptions.EmptyLastTimeFileException;
+import model.exceptions.HabitNotFoundException;
 import model.habit.Habit;
 import model.habit.HabitCycleManager;
 import model.habit.HabitDecrement;
@@ -138,9 +139,9 @@ public class HabitTrackerApp {
     // EFFECTS: Handles the input
     private void handleMenuInput(String input) {
         if (input.equals("s")) {
-            // !!!
+            saveToFile();
         } else if (input.equals("l")) {
-            // !!!
+            loadFromFile();
         } else if (input.equals("h")) {
             makeHabit();
         } else if (input.equals("habits")) {
@@ -154,10 +155,40 @@ public class HabitTrackerApp {
         }
     }
 
-    // !!! save
-    // !!!
+    // MODIFIES: this
+    // EFFECTS: Saves state to file
+    private void saveToFile() {
+        System.out.println("Saving to file ...");
 
-    // !!! load
+        try {
+            allHabitsPageDataManager.writeToFile(allHabitsPage);
+            allGenericPagesPageDataManager.writeToFile();
+        } catch (IOException e) {
+            System.out.println("Failed to save!");
+            e.printStackTrace();
+        }
+
+        System.out.println("Save successful!");
+    }
+
+    // MODIFIES: this
+    // EFFECTS: Reconstructs state by loading from file
+    private void loadFromFile() {
+        System.out.println("Loading from file ...");
+
+        try {
+            allHabitsPageDataManager.readFromFile(homePage, favouritesPage, allTagPagesPage);
+            allGenericPagesPageDataManager.readFromFile(allHabitsPage);
+        } catch (IOException e) {
+            System.out.println("Failed to save!");
+            e.printStackTrace();
+        } catch (HabitNotFoundException e) {
+            System.out.println("Programmer error: incorrect dependencies");
+            e.printStackTrace();
+        }
+
+        System.out.println("Successfully loaded from file!");
+    }
 
     /*
      * REQUIRES:
@@ -203,6 +234,8 @@ public class HabitTrackerApp {
         setUpUnit(habit);
 
         setUpTag(habit);
+
+        allHabitsPage.addToAllHabitsPage(habit);
     }
 
     // MODIFIES: this
