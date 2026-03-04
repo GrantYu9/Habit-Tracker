@@ -160,7 +160,7 @@ public class AllGenericPagesPageDataManager {
         writer.close();
     }
 
-    // !!!
+    // EFFECTS: Returns allGenericPagesPage as a JSONObject
     private JSONObject convertAllGenericPagesPageToJson(AllGenericPagesPage allGenericPagesPage) {
         JSONObject allGenericPagesPageJson = new JSONObject();
 
@@ -169,7 +169,7 @@ public class AllGenericPagesPageDataManager {
         return allGenericPagesPageJson;
     }
 
-    // !!!
+    // EFFECTS: Returns pages as a JSONArray
     private JSONArray convertPagesToJson(List<Page> pages) {
         JSONArray pagesJson = new JSONArray();
 
@@ -180,7 +180,7 @@ public class AllGenericPagesPageDataManager {
         return pagesJson;
     }
 
-    // !!!
+    // EFFECTS: Returns page as a JSONObject
     private JSONObject convertPageToJson(Page page) {
         JSONObject pageJson = new JSONObject();
 
@@ -191,7 +191,7 @@ public class AllGenericPagesPageDataManager {
         return pageJson;
     }
 
-    // !!!
+    // EFFECTS: Returns habits as a JSONArray
     private JSONArray convertHabitsToJson(List<Habit> habits) {
         JSONArray habitsJson = new JSONArray();
 
