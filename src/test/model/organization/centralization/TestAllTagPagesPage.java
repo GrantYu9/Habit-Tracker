@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
 import model.organization.Tag;
+import model.organization.centralization.AllTagPagesPage;
 import model.organization.specialpages.TagPage;
 
 @ExcludeFromJacocoGeneratedReport

@@ -1,7 +1,7 @@
 package model.organization.specialpages;
 
-import model.organization.Tag;
 import model.habit.Habit;
+import model.organization.Tag;
 
 import java.util.ArrayList;
 import java.util.List;

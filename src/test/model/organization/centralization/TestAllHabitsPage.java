@@ -16,6 +16,7 @@ import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
 import model.habit.Habit;
 import model.habit.HabitCycleManager;
 import model.habit.HabitIncrement;
+import model.organization.centralization.AllHabitsPage;
 
 @ExcludeFromJacocoGeneratedReport
 public class TestAllHabitsPage {

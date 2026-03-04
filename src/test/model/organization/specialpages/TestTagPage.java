@@ -18,6 +18,7 @@ import model.habit.HabitCycleManager;
 import model.habit.HabitIncrement;
 import model.organization.Tag;
 import model.organization.centralization.AllHabitsPage;
+import model.organization.specialpages.TagPage;
 
 @ExcludeFromJacocoGeneratedReport
 public class TestTagPage {
