@@ -38,3 +38,10 @@ I picked this idea because all the habit trackers I have tried thus far have not
 - As a user, I want the choice to save my application to file.
 - As a user, I want the choice to load my application from file and update my habits as needed.
 
+### Phase 3
+- Display all Xs in Y: as a user, I want to be able to display all habits in a habit page.
+- Related action 1: as a user, I want a button to be able to remove a habit from a page.
+- Related action 2: as a user, I want to be able to search for the title of a habit and put it into a page.
+- Load and save: as a user, I want to be able to load and save the state of the application.
+- Visual component: as a user, I want to be able to see a heatmap of my progress for a habit.
+
