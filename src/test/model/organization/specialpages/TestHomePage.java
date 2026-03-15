@@ -17,7 +17,6 @@ import model.habit.Habit;
 import model.habit.HabitCycleManager;
 import model.habit.HabitIncrement;
 import model.organization.centralization.AllHabitsPage;
-import model.organization.specialpages.HomePage;
 
 @ExcludeFromJacocoGeneratedReport
 public class TestHomePage {

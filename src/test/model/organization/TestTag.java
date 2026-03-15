@@ -7,7 +7,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
-import model.organization.Tag;
 import model.organization.Tag.TagType;
 
 @ExcludeFromJacocoGeneratedReport

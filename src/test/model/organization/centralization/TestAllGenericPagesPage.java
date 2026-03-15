@@ -9,7 +9,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
-import model.organization.centralization.AllGenericPagesPage;
 import model.organization.tree.Page;
 
 @ExcludeFromJacocoGeneratedReport
