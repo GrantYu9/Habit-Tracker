@@ -4,7 +4,7 @@ import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
 
 // Where a list of habits will be displayed
 @ExcludeFromJacocoGeneratedReport
-public class Page {
+public class Habits {
     // Constructor !!!
 
     // !!! display habits

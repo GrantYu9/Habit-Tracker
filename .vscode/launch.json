@@ -8,6 +8,13 @@
             "type": "java",
             "name": "Main",
             "request": "launch",
+            "mainClass": "gui.Main",
+            "projectName": "HabitTracker_5df3c595"
+        },
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
             "mainClass": "ui.Main",
             "projectName": "ProjectStarter_d420a7d1"
         },

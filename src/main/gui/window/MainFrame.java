@@ -27,7 +27,7 @@ public class MainFrame extends JFrame {
      */
     private void setUpConfigurations() {
         this.setTitle("Habit Tracker");
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         this.setResizable(false);
         this.setSize(1_000, 1_000); // !!! play with size
         this.setLocationRelativeTo(null); // !!! test this works, centering
