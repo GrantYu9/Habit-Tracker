@@ -84,22 +84,56 @@ public class Taskbar extends JPanel {
         JButton button = new JButton("Make habit");
         button.addActionListener(actionEvent -> {
             display.makeHabit();
+            titlebar.displayTitle("Habit instantiation");
         });
         this.add(button);
     }
 
-    // !!!
+    /*
+    MODIFIES:
+    this
+    EFFECTS:
+    Instantiates a button named "Make page"
+    On click, shows page instantiation page
+     */
     private void makePageButton() {
-        // !!!
+        JButton button = new JButton("Make page");
+        button.addActionListener(actionEvent -> {
+            display.makePage();
+            titlebar.displayTitle("Page instantiation");
+        });
+        this.add(button);
     }
 
-    // !!!
+    /*
+    MODIFIES:
+    this
+    EFFECTS:
+    Instantiates a button named "Show all habits"
+    On click, shows all habits
+     */
     private void showAllHabitsButton() {
-        // !!!
+        JButton button = new JButton("Show all habits");
+        button.addActionListener(actionEvent -> {
+            display.showHabits(habitTrackerController.getAllHabitsPage().getHabits());
+            titlebar.displayTitle("All habits");
+        });
+        this.add(button);
     }
 
-    // !!!
+    /*
+    MODIFIES:
+    this
+    EFFECTS:
+    Instantiates a button named "Show all pages"
+    On click, shows all pages
+     */
     private void showAllPagesButton() {
-        // !!!
+        JButton button = new JButton("Show all pages");
+        button.addActionListener(actionEvent -> {
+            display.showPages(habitTrackerController.getAllGenericPagesPage().getPages());
+            titlebar.displayTitle("All pages");
+        });
+        this.add(button);
     }
 }
