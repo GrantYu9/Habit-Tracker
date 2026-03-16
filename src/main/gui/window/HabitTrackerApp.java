@@ -1,16 +1,22 @@
 package gui.window;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.BorderLayout;
+
 import javax.swing.JFrame;
 
 import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
+import gui.HabitTrackerController;
 
 // The overarching window of which all content will be displayed. Also where all the GUI action will be hosted
 @ExcludeFromJacocoGeneratedReport
-public class MainFrame extends JFrame {
+public class HabitTrackerApp extends JFrame {
+    private HabitTrackerController habitTrackerController;
+
     // EFFECTS: Instantiates the JFrame by configuring the default settings,
-    // applying the visual components, and making it visible
-    public MainFrame() {
+    // applying the visual components, and making it visible !!!
+    public HabitTrackerApp() {
         setUpConfigurations();
         setUpComponents();
         this.setVisible(true);
@@ -26,12 +32,21 @@ public class MainFrame extends JFrame {
      * Uses BorderLayout
      */
     private void setUpConfigurations() {
+        habitTrackerController = new HabitTrackerController();
+
         this.setTitle("Habit Tracker");
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         this.setResizable(false);
         this.setSize(1_000, 1_000); // !!! play with size
         this.setLocationRelativeTo(null); // !!! test this works, centering
         this.setLayout(new BorderLayout());
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent event) {
+                habitTrackerController.saveTime();
+                System.exit(0);
+            }
+        });
     }
 
     /*
@@ -44,8 +59,11 @@ public class MainFrame extends JFrame {
      * Titlebar
      */
     private void setUpComponents() {
-        this.add(new Taskbar(), BorderLayout.WEST);
-        this.add(new Display(), BorderLayout.CENTER);
-        this.add(new Titlebar(), BorderLayout.NORTH);
+        Display display = new Display();
+        Titlebar titlebar = new Titlebar();
+
+        this.add(display, BorderLayout.CENTER);
+        this.add(titlebar, BorderLayout.NORTH);
+        this.add(new Taskbar(habitTrackerController, display, titlebar), BorderLayout.WEST);
     }
 }

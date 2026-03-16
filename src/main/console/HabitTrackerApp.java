@@ -1,4 +1,4 @@
-package ui;
+package console;
 
 import java.io.IOException;
 import java.time.LocalDate;
