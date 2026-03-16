@@ -2,12 +2,14 @@ package gui.window.display;
 
 import java.util.List;
 
+import javax.swing.JPanel;
+
 import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
 import model.habit.Habit;
 
 // Where a list of habits will be displayed
 @ExcludeFromJacocoGeneratedReport
-public class Habits {
+public class Habits extends JPanel {
     private List<Habit> habits; // !!!
 
     // Constructor !!!
