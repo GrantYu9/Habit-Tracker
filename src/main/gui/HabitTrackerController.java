@@ -122,13 +122,16 @@ public class HabitTrackerController {
 
     // MODIFIES: this
     // EFFECTS: Creates a habit
-    public void makeHabit(int goal, int startingAmount, int stepAmount, String title, String unit, LocalTime cycleTime, boolean isIncrement) {
+    public void makeHabit(int goal, int startingAmount, int stepAmount, String title, String unit, LocalTime cycleTime,
+            boolean isIncrement) {
         Habit habit = null;
 
         if (isIncrement) {
-            habit = new HabitIncrement(goal, startingAmount, stepAmount, title, cycleTime, LocalDate.now(), LocalDateTime.now(), habitCycleManager);
+            habit = new HabitIncrement(goal, startingAmount, stepAmount, title, cycleTime, LocalDate.now(),
+                    LocalDateTime.now(), habitCycleManager);
         } else {
-            habit = new HabitDecrement(goal, startingAmount, stepAmount, title, cycleTime, LocalDate.now(), LocalDateTime.now(), habitCycleManager);
+            habit = new HabitDecrement(goal, startingAmount, stepAmount, title, cycleTime, LocalDate.now(),
+                    LocalDateTime.now(), habitCycleManager);
         }
 
         allHabitsPage.addToAllHabitsPage(habit);

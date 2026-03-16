@@ -37,7 +37,7 @@ public class HabitTrackerApp extends JFrame {
         this.setTitle("Habit Tracker");
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         this.setResizable(false);
-        this.setSize(1_000, 1_000); // !!! play with size
+        this.setSize(1_250, 1_000); // !!! play with size
         this.setLocationRelativeTo(null); // !!! test this works, centering
         this.setLayout(new BorderLayout());
         this.addWindowListener(new WindowAdapter() {

@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
 import gui.window.display.Habits;
 import gui.window.display.Pages;
+import gui.window.display.instantiation.HabitInstantiation;
 import model.habit.Habit;
 import model.organization.tree.Page;
 
@@ -26,10 +27,19 @@ public class Display extends JPanel {
         this.setBackground(Color.DARK_GRAY); // !!! default for now
     }
 
-    // show pages !!!
-    public void showPages(List<Page> pages) {
-        wipeDisplay();
-        new Pages(pages);
+    // wipe state !!!
+    private void wipeDisplay() {
+        // !!!
+    }
+
+    // !!!
+    public void makeHabit() {
+        // !!!
+    }
+
+    // !!!
+    public void makePage() {
+        // !!!
     }
 
     // show habits !!!
@@ -38,8 +48,9 @@ public class Display extends JPanel {
         new Habits(habits);
     }
 
-    // wipe state !!!
-    private void wipeDisplay() {
-        // !!!
+    // show pages !!!
+    public void showPages(List<Page> pages) {
+        wipeDisplay();
+        new Pages(pages);
     }
 }
