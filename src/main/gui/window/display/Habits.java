@@ -10,7 +10,7 @@ import model.habit.Habit;
 // Where a list of habits will be displayed
 @ExcludeFromJacocoGeneratedReport
 public class Habits extends JPanel {
-    private List<Habit> habits; // !!!
+    private List<Habit> habits;
 
     // Constructor !!!
     public Habits(List<Habit> habits) {

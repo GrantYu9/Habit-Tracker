@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.util.List;
 
-import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
 import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
@@ -52,16 +51,16 @@ public class Display extends JPanel {
     }
 
     // MODIFIES: this
-    // EFFECTS: Shows all habits
+    // EFFECTS: Shows habits
     public void showHabits(List<Habit> habits) {
         wipeDisplay();
         this.add(new Habits(habits), BorderLayout.CENTER);
     }
 
     // MODIFIES: this
-    // EFFECTS: Shows all pages
-    public void showPages(List<Page> pages) {
+    // EFFECTS: Shows pages
+    public void showPages(List<Page> pages, Display display) {
         wipeDisplay();
-        this.add(new Pages(pages), BorderLayout.CENTER);
+        this.add(new Pages(pages, this), BorderLayout.CENTER);
     }
 }

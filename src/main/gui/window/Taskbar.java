@@ -131,7 +131,7 @@ public class Taskbar extends JPanel {
     private void showAllPagesButton() {
         JButton button = new JButton("Show all pages");
         button.addActionListener(actionEvent -> {
-            display.showPages(habitTrackerController.getAllGenericPagesPage().getPages());
+            display.showPages(habitTrackerController.getAllGenericPagesPage().getPages(), display);
             titlebar.displayTitle("All pages");
         });
         this.add(button);
