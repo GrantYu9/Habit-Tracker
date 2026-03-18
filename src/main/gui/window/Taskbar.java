@@ -12,9 +12,9 @@ import gui.HabitTrackerController;
 // A sidebar on the left that will be quite slim but span the full vertical space, housing our controls will reside
 @ExcludeFromJacocoGeneratedReport
 public class Taskbar extends JPanel {
-    private HabitTrackerController habitTrackerController; // !!!
-    private Display display; // !!!
-    private Titlebar titlebar; // !!!
+    private HabitTrackerController habitTrackerController; // Access to the backend logic of the app
+    private Display display; // Access to the main GUI display of the app
+    private Titlebar titlebar; // The titlebar
 
     /*
      * EFFECTS:
