@@ -10,7 +10,7 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import model.exceptions.HabitNotFoundException;
+import exceptions.HabitNotFoundException;
 import model.habit.Habit;
 import model.organization.centralization.AllGenericPagesPage;
 import model.organization.centralization.AllHabitsPage;

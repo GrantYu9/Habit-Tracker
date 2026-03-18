@@ -12,7 +12,7 @@ import gui.HabitTrackerController;
 // The overarching window of which all content will be displayed. Also where all the GUI action will be hosted
 @ExcludeFromJacocoGeneratedReport
 public class HabitTrackerApp extends JFrame {
-    private HabitTrackerController habitTrackerController;
+    private HabitTrackerController habitTrackerController; // !!!
 
     // EFFECTS: Instantiates the JFrame by configuring the default settings,
     // applying the visual components, and making it visible

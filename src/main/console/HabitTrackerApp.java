@@ -9,8 +9,8 @@ import java.util.List;
 import java.util.Scanner;
 
 import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
-import model.exceptions.EmptyLastTimeFileException;
-import model.exceptions.HabitNotFoundException;
+import exceptions.EmptyLastTimeFileException;
+import exceptions.HabitNotFoundException;
 import model.habit.Habit;
 import model.habit.HabitCycleManager;
 import model.habit.HabitDecrement;

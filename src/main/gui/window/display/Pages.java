@@ -13,9 +13,9 @@ import model.organization.tree.Page;
 // Where a list of pages will be displayed
 @ExcludeFromJacocoGeneratedReport
 public class Pages extends JPanel {
-    private List<Page> pages;
+    private List<Page> pages; // !!!
 
-    private Display display;
+    private Display display; // !!!
 
     // !!! scrollpane
 

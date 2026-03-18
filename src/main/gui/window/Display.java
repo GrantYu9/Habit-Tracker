@@ -18,7 +18,8 @@ import model.organization.tree.Page;
 // The space that will be everything but the TaskBar, where habits and pages will be displayed
 @ExcludeFromJacocoGeneratedReport
 public class Display extends JPanel {
-    private HabitTrackerController habitTrackerController;
+    private HabitTrackerController habitTrackerController; // !!!
+    
     /*
     EFFECTS: 
     Instantiates Display such that
@@ -59,7 +60,7 @@ public class Display extends JPanel {
     // EFFECTS: Shows page instantiation page
     public void makePage() {
         wipeDisplay();
-        this.add(new PageInstantiation(this), BorderLayout.CENTER);
+        this.add(new PageInstantiation(this, habitTrackerController), BorderLayout.CENTER);
         refresh();
     }
 

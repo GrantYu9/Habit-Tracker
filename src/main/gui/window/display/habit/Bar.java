@@ -9,8 +9,6 @@ import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
 public class Bar extends JButton {
     // Constructor !!!
 
-    // Tags !!!
-
     // 4 circles
         // currentAmount !!!
         // goal !!!

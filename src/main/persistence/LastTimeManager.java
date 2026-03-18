@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 
 import org.json.JSONObject;
 
-import model.exceptions.EmptyLastTimeFileException;
+import exceptions.EmptyLastTimeFileException;
 
 // Manages the last time the app was open
 public class LastTimeManager {

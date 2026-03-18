@@ -6,8 +6,8 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
-import model.exceptions.EmptyLastTimeFileException;
-import model.exceptions.HabitNotFoundException;
+import exceptions.EmptyLastTimeFileException;
+import exceptions.HabitNotFoundException;
 import model.habit.Habit;
 import model.habit.HabitCycleManager;
 import model.habit.HabitDecrement;
@@ -24,22 +24,22 @@ import persistence.LastTimeManager;
 
 // Provides core functionality of the app for GUI aspects
 public class HabitTrackerController {
-    private LocalDateTime lastTime;
+    private LocalDateTime lastTime; // !!!
 
-    private String destinationAllGenericPagesPage;
-    private String destinationAllHabitsPage;
-    private String destinationLastTime;
+    private String destinationAllGenericPagesPage; // !!!
+    private String destinationAllHabitsPage; // !!!
+    private String destinationLastTime; // !!!
 
-    private AllGenericPagesPage allGenericPagesPage;
-    private AllHabitsPage allHabitsPage;
-    private AllTagPagesPage allTagPagesPage;
-    private FavouritesPage favouritesPage;
-    private HomePage homePage;
-    private HabitCycleManager habitCycleManager;
+    private AllGenericPagesPage allGenericPagesPage; // !!!
+    private AllHabitsPage allHabitsPage; // !!!
+    private AllTagPagesPage allTagPagesPage; // !!!
+    private FavouritesPage favouritesPage; // !!!
+    private HomePage homePage; // !!!
+    private HabitCycleManager habitCycleManager; // !!!
 
-    private AllGenericPagesPageDataManager allGenericPagesPageDataManager;
-    private AllHabitsPageDataManager allHabitsPageDataManager;
-    private LastTimeManager lastTimeManager;
+    private AllGenericPagesPageDataManager allGenericPagesPageDataManager; // !!!
+    private AllHabitsPageDataManager allHabitsPageDataManager; // !!!
+    private LastTimeManager lastTimeManager; // !!!
 
     // EFFECTS: Initializes HabitTrackerController such that required classes are
     // initialized and habits are refreshed as needed
@@ -146,6 +146,17 @@ public class HabitTrackerController {
         for (Habit habit : habits) {
             page.addHabit(habit);
         }
+    }
+
+    // EFFECTS: Tries to find habit in allHabitsPage with title "title". Else, throws HabitNotFoundException
+    public Habit findHabit(String title) throws HabitNotFoundException {
+        for (Habit habit : allHabitsPage.getHabits()) {
+            if (habit.getTitle().equals(title)) {
+                return habit;
+            }
+        }
+
+        throw new HabitNotFoundException();
     }
 
     // GETTERS

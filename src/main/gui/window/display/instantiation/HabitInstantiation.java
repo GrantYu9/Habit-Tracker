@@ -15,17 +15,17 @@ import gui.window.Display;
 
 // The habit instantiation page
 public class HabitInstantiation extends JPanel {
-    private JToggleButton isIncrementToggle;
-    private JTextField goalField;
-    private JTextField startingAmountField;
-    private JTextField stepAmountField;
-    private JTextField titleField;
-    private JTextField unitField;
-    private JTextField hourField;
-    private JTextField minuteField;
+    private JToggleButton isIncrementToggle; // !!!
+    private JTextField goalField; // !!!
+    private JTextField startingAmountField; // !!!
+    private JTextField stepAmountField; // !!!
+    private JTextField titleField; // !!!
+    private JTextField unitField; // !!!
+    private JTextField hourField; // !!!
+    private JTextField minuteField; // !!!
 
-    private Display display;
-    private HabitTrackerController habitTrackerController;
+    private Display display; // !!!
+    private HabitTrackerController habitTrackerController; // !!!
 
     /*
      * EFFECTS:
@@ -92,13 +92,15 @@ public class HabitInstantiation extends JPanel {
 
     /*
      * REQUIRES:
-     * Each field must have a value valid for its corresponding data type
+     * Each field can not be empty and must have a value valid for its corresponding
+     * data type
      * hourField must have a nonnegative integer less than 24
      * minuteField must have a nonnegative integer less than 60
      * MODIFIES:
      * this
+     * EFFECTS:
      * Instantiates button named "Done" and on click, creates the habit from values
-     * from the fields and wipes the display
+     * from the fields, and wipes and refreshes the display
      */
     private void makeDoneButton() {
         JButton button = new JButton("Done");
@@ -112,7 +114,9 @@ public class HabitInstantiation extends JPanel {
             int minute = Integer.parseInt(minuteField.getText());
             LocalTime cycleTime = LocalTime.of(hour, minute);
             boolean isIncrement = !isIncrementToggle.isSelected();
+
             habitTrackerController.makeHabit(goal, startingAmount, stepAmount, title, unit, cycleTime, isIncrement);
+
             display.wipeDisplay();
             display.refresh();
         });

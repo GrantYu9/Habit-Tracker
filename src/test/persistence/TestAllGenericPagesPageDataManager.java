@@ -12,7 +12,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
-import model.exceptions.HabitNotFoundException;
+import exceptions.HabitNotFoundException;
 import model.habit.Habit;
 import model.habit.HabitCycleManager;
 import model.habit.HabitIncrement;
