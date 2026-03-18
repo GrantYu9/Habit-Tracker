@@ -15,7 +15,6 @@ import org.junit.jupiter.api.Test;
 
 import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
 import model.habit.Habit.ProgressType;
-import model.habit.Habit.ViewMode;
 import model.organization.Tag;
 import model.organization.centralization.AllHabitsPage;
 import model.organization.centralization.AllTagPagesPage;
@@ -112,7 +111,6 @@ public class TestHabit {
 
         assertTrue(testHabitA.getCurrentAmount() == testHabitA.getStartingAmount());
         assertEquals(0, testHabitA.getOverloadAmount());
-        assertEquals(ViewMode.BAR, testHabitA.getViewMode());
         assertEquals(ProgressType.UNDERDONE, testHabitA.getProgressType());
         assertEquals("", testHabitA.getUnit());
         assertTrue(testHabitA.getHistory().isEmpty());
@@ -134,7 +132,6 @@ public class TestHabit {
 
         assertTrue(testHabitD.getCurrentAmount() == testHabitD.getStartingAmount());
         assertEquals(0, testHabitD.getOverloadAmount());
-        assertEquals(ViewMode.BAR, testHabitD.getViewMode());
         assertEquals(ProgressType.UNDERDONE, testHabitD.getProgressType());
         assertEquals("", testHabitA.getUnit());
         assertTrue(testHabitD.getHistory().isEmpty());

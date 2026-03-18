@@ -1,4 +1,4 @@
-package gui.window;
+package gui;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -7,7 +7,9 @@ import java.awt.BorderLayout;
 import javax.swing.JFrame;
 
 import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
-import gui.HabitTrackerController;
+import gui.mainframe.Taskbar;
+import gui.mainframe.Titlebar;
+import gui.mainframe.display.Display;
 
 // The overarching window of which all content will be displayed. Also where all the GUI action will be hosted
 @ExcludeFromJacocoGeneratedReport

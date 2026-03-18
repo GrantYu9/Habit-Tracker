@@ -51,13 +51,6 @@ public abstract class Habit {
         OVERLOADED
     }
 
-    private ViewMode viewMode; // How one can view the habit
-
-    public enum ViewMode {
-        BAR, // The default way to view a habit and how one can interact with it
-        HEATMAP // The heatmap to view history
-    }
-
     private String title; // A title for the habit
     private String unit; // Type of units. E.g. mL or steps
 
@@ -114,7 +107,6 @@ public abstract class Habit {
         this.currentAmount = this.startingAmount;
         overloadAmount = 0;
         progressPercentage = 0;
-        viewMode = ViewMode.BAR;
         progressType = ProgressType.UNDERDONE;
         unit = "";
 
@@ -273,9 +265,7 @@ public abstract class Habit {
         this.progressType = progressType;
     }
 
-    public void setViewMode(ViewMode viewMode) {
-        this.viewMode = viewMode;
-    }
+
 
     public void setCycleTime(LocalTime cycleTime) {
         this.cycleTime = cycleTime;
@@ -317,9 +307,7 @@ public abstract class Habit {
         return progressType;
     }
 
-    public ViewMode getViewMode() {
-        return viewMode;
-    }
+
 
     public String getTitle() {
         return title;

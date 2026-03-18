@@ -1,4 +1,4 @@
-package gui.window.display.instantiation;
+package gui.mainframe.display.instantiation;
 
 import java.awt.FlowLayout;
 import java.util.ArrayList;
@@ -13,7 +13,7 @@ import javax.swing.JTextField;
 
 import exceptions.HabitNotFoundException;
 import gui.HabitTrackerController;
-import gui.window.Display;
+import gui.mainframe.display.Display;
 import model.habit.Habit;
 
 // The page instantiation page

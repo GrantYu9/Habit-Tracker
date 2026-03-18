@@ -1,4 +1,4 @@
-package gui.window;
+package gui.mainframe;
 
 import java.awt.Color;
 import java.awt.GridLayout;
@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 
 import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
 import gui.HabitTrackerController;
+import gui.mainframe.display.Display;
 
 // A sidebar on the left that will be quite slim but span the full vertical space, housing our controls will reside
 @ExcludeFromJacocoGeneratedReport

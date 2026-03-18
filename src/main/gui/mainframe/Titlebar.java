@@ -1,4 +1,4 @@
-package gui.window;
+package gui.mainframe;
 
 import java.awt.Color;
 import java.awt.FlowLayout;

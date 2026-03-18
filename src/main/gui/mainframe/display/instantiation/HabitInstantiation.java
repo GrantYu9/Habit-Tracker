@@ -1,4 +1,4 @@
-package gui.window.display.instantiation;
+package gui.mainframe.display.instantiation;
 
 import java.awt.FlowLayout;
 import java.time.LocalTime;
@@ -11,7 +11,7 @@ import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 
 import gui.HabitTrackerController;
-import gui.window.Display;
+import gui.mainframe.display.Display;
 
 // The habit instantiation page
 public class HabitInstantiation extends JPanel {

@@ -1,4 +1,4 @@
-package gui.window;
+package gui.mainframe.display;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -8,10 +8,10 @@ import javax.swing.JPanel;
 
 import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
 import gui.HabitTrackerController;
-import gui.window.display.Habits;
-import gui.window.display.Pages;
-import gui.window.display.instantiation.HabitInstantiation;
-import gui.window.display.instantiation.PageInstantiation;
+import gui.mainframe.display.instantiation.HabitInstantiation;
+import gui.mainframe.display.instantiation.PageInstantiation;
+import gui.mainframe.display.lists.Habits;
+import gui.mainframe.display.lists.Pages;
 import model.habit.Habit;
 import model.organization.tree.Page;
 

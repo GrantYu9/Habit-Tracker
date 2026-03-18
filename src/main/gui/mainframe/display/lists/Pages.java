@@ -1,4 +1,4 @@
-package gui.window.display;
+package gui.mainframe.display.lists;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
-import gui.window.Display;
+import gui.mainframe.display.Display;
 import model.organization.tree.Page;
 
 // Where a list of pages will be displayed
