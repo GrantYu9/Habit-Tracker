@@ -5,6 +5,7 @@ import java.util.List;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
 import gui.mainframe.display.Display;
@@ -16,8 +17,6 @@ public class Pages extends JPanel {
     private List<Page> pages; // !!!
 
     private Display display; // !!!
-
-    // !!! scrollpane
 
     /*
     Instantiates Pages such that
@@ -40,9 +39,13 @@ public class Pages extends JPanel {
     // MODIFIES: this
     // EFFECTS: For each page in pages, makes a pageButton
     private void displayPages() {
+        JPanel innerPanel = new JPanel();
+        innerPanel.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         for (Page page : pages) {
-            makePageButton(page);
+            innerPanel.add(makePageButton(page));
         }
+        JScrollPane scrollPane = new JScrollPane(innerPanel);
+        this.add(scrollPane);
     }
 
     /*
@@ -52,10 +55,11 @@ public class Pages extends JPanel {
     Creates a button with title page.getTitle()
     On click, shows the habits in that page
      */
-    private void makePageButton(Page page) {
+    private JButton makePageButton(Page page) {
         JButton button = new JButton(page.getTitle());
         button.addActionListener(actionEvent -> {
             display.showHabits(page.getHabits());
         });
+        return button;
     }
 }
