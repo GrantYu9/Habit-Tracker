@@ -14,9 +14,9 @@ import model.organization.tree.Page;
 // Where a list of pages will be displayed
 @ExcludeFromJacocoGeneratedReport
 public class Pages extends JPanel {
-    private List<Page> pages; // !!!
+    private List<Page> pages; // Pages this will display
 
-    private Display display; // !!!
+    private Display display; // Access to showHabits() method
 
     /*
     Instantiates Pages such that
