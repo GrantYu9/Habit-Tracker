@@ -13,20 +13,85 @@ public class Bar extends JPanel {
 
     private HabitGUI habitGUI; // Access to swapToHeatMap() method
 
-    // Constructor !!!
+    /*
+     * EFFECTS:
+     * Instantiates Bar such that
+     * this.habit = habit;
+     * this.habitGUI = habitGUI;
+     * 
+     * The layout is !!!
+     * 
+     * Stats are shown
+     * Buttons are made
+     */
     public Bar(Habit habit, HabitGUI habitGUI) {
         this.habit = habit;
         this.habitGUI = habitGUI;
+
+        // !!! layout
+
+        makeDisplays();
+        makeButtons();
+    }
+
+    // EFFECTS: Makes displays for stats
+    private void makeDisplays() {
+        showGoal();
+        showCurrentAmount();
+        showOverloadAmount();
+        showPercentage();
+        showUnit();
+    }
+
+    // !!!
+    private void showGoal() {
         // !!!
     }
 
-    // 4 circles
-        // currentAmount !!!
-        // goal !!!
-        // percentage !!!
-        // overload amount !!!
-    
-    // step corner
-        // button to increment !!!
-        // unit !!!
+    // !!!
+    private void showCurrentAmount() {
+        // !!!
+    }
+
+    // !!!
+    private void showOverloadAmount() {
+        // !!!
+    }
+
+    // !!!
+    private void showPercentage() {
+        // !!!
+    }
+
+    // !!!
+    private void showUnit() {
+        // !!!
+    }
+
+    // MODIFIES: this
+    // EFFECTS: Makes buttons
+    private void makeButtons() {
+        makeProgressButton();
+        makeSwapButton();
+    }
+
+    // MODIFIES: this
+    // EFFECTS: Progresses the habit by a step amount
+    private void makeProgressButton() {
+        JButton button = new JButton("+");
+        button.addActionListener(actionEvent -> {
+            habit.progressByStepAmount();
+        });
+        this.add(button);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: Swaps to heatmap view
+    private void makeSwapButton() {
+        JButton button = new JButton("Swap");
+        button.addActionListener(actionEvent -> {
+            habitGUI.swapToHeatmap();
+        });
+        this.add(button);
+    }
 }

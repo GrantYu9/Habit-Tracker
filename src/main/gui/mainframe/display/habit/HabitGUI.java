@@ -40,6 +40,7 @@ public class HabitGUI extends JPanel {
         refresh();
     }
 
+    // MODIFIES: this
     // EFFECTS: Shows heatmap of habit
     private void showHeatmap(HabitGUI habitGUI) {
         wipe();
@@ -47,11 +48,13 @@ public class HabitGUI extends JPanel {
         refresh();
     }
 
+    // MODIFIES: this
     // EFFECTS: Shows habit as a bar
     public void swapToBar() {
         showBar(this);
     }
 
+    // MODIFIES: this
     // EFFETS: Shows habit as heatmap
     public void swapToHeatmap() {
         showHeatmap(this);

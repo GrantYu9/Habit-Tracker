@@ -61,6 +61,8 @@ public class PageInstantiation extends JPanel {
         row.add(label);
         row.add(textField);
 
+        this.add(row);
+
         return textField;
     }
 
