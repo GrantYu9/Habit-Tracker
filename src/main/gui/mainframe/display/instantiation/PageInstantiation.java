@@ -86,6 +86,7 @@ public class PageInstantiation extends JPanel {
             display.wipeDisplay();
             display.refresh();
         });
+        this.add(button);
     }
 
     // EFFECTS: Parses input and for each title, tries to find a habit and adds it
