@@ -15,17 +15,19 @@ import gui.window.Display;
 
 // The habit instantiation page
 public class HabitInstantiation extends JPanel {
-    private JToggleButton isIncrementToggle; // !!!
-    private JTextField goalField; // !!!
-    private JTextField startingAmountField; // !!!
-    private JTextField stepAmountField; // !!!
-    private JTextField titleField; // !!!
-    private JTextField unitField; // !!!
-    private JTextField hourField; // !!!
-    private JTextField minuteField; // !!!
+    private JToggleButton isIncrementToggle; // Toggle button for the user to choose if they want an incrementing or a
+                                             // decrementing habit
 
-    private Display display; // !!!
-    private HabitTrackerController habitTrackerController; // !!!
+    private JTextField goalField; // Field to set the goal
+    private JTextField startingAmountField; // Field to set the startingAmount
+    private JTextField stepAmountField; // Field to set the stepAmount
+    private JTextField titleField; // Field to set the title
+    private JTextField unitField; // Field to set the unit
+    private JTextField hourField; // Field to set the hour
+    private JTextField minuteField; // Field to set the minute
+
+    private Display display; // Access to the main GUI display of the app
+    private HabitTrackerController habitTrackerController; // Access to the backend logic of the app
 
     /*
      * EFFECTS:
