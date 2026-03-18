@@ -1,8 +1,9 @@
 package gui.mainframe.display.habit;
 
+import java.awt.BorderLayout;
+
 import javax.swing.JPanel;
 
-import gui.mainframe.display.lists.Habits;
 import model.habit.Habit;
 
 public class HabitGUI extends JPanel {
@@ -10,30 +11,49 @@ public class HabitGUI extends JPanel {
 
     /*
      * Instantiates HabitGUI such that
-     * !!!
+     * this.habit = habit;
+     * The layout is BorderLayout
      */
     public HabitGUI(Habit habit) {
         this.habit = habit;
-        // !!! layout
+        this.setLayout(new BorderLayout());
     }
 
-    // !!! display habit
-    private void showBar(Habit habit, Habits habits) {
-        // !!!
+    // MODIFIES: this
+    // EFFECTS: Wipes display
+    private void wipe() {
+        this.removeAll();
     }
 
-    // !!! display habit
-    private void showHeatmap(Habit habit, Habits habits) {
-        // !!!
+    // MODIFIES: this
+    // EFFECTS: Recalculates hierarchies
+    private void refresh() {
+        this.revalidate();
+        this.repaint();
     }
 
-    // !!!
-    public void swapToBar(Habit habit, Habits habits) {
-        // !!!
+    // MODIFIES: this
+    // EFFECTS: Shows habit as a bar widget and user can interact with it
+    private void showBar(HabitGUI habitGUI) {
+        wipe();
+        this.add(new Bar(habit, habitGUI));
+        refresh();
     }
 
-    // !!!
-    public void swapToHeatmap(Habit habit, Habits habits) {
-        // !!!
+    // EFFECTS: Shows heatmap of habit
+    private void showHeatmap(HabitGUI habitGUI) {
+        wipe();
+        this.add(new Heatmap(habit, habitGUI));
+        refresh();
+    }
+
+    // EFFECTS: Shows habit as a bar
+    public void swapToBar() {
+        showBar(this);
+    }
+
+    // EFFETS: Shows habit as heatmap
+    public void swapToHeatmap() {
+        showHeatmap(this);
     }
 }

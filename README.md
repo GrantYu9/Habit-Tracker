@@ -45,3 +45,6 @@ I picked this idea because all the habit trackers I have tried thus far have not
 - Load and save: as a user, I want to be able to load and save the state of the application.
 - Visual component: as a user, I want to be able to see a heatmap of my progress for a habit.
 
+## Phase 3 Instructions for User
+- !!!
+
