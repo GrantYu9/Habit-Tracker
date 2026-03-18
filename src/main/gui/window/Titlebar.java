@@ -21,7 +21,10 @@ public class Titlebar extends JPanel {
 
     // EFFECTS: Displays title
     public void displayTitle(String title) {
+        this.removeAll();
         JLabel label = new JLabel(title);
         this.add(label);
+        this.revalidate();
+        this.repaint();
     }
 }

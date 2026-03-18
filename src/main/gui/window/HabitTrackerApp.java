@@ -15,7 +15,7 @@ public class HabitTrackerApp extends JFrame {
     private HabitTrackerController habitTrackerController;
 
     // EFFECTS: Instantiates the JFrame by configuring the default settings,
-    // applying the visual components, and making it visible !!!
+    // applying the visual components, and making it visible
     public HabitTrackerApp() {
         setUpConfigurations();
         setUpComponents();
@@ -37,8 +37,8 @@ public class HabitTrackerApp extends JFrame {
         this.setTitle("Habit Tracker");
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         this.setResizable(false);
-        this.setSize(1_250, 1_000); // !!! play with size
-        this.setLocationRelativeTo(null); // !!! test this works, centering
+        this.setSize(1_250, 1_000);
+        this.setLocationRelativeTo(null);
         this.setLayout(new BorderLayout());
         this.addWindowListener(new WindowAdapter() {
             @Override
@@ -59,7 +59,7 @@ public class HabitTrackerApp extends JFrame {
      * Titlebar
      */
     private void setUpComponents() {
-        Display display = new Display();
+        Display display = new Display(habitTrackerController);
         Titlebar titlebar = new Titlebar();
 
         this.add(display, BorderLayout.CENTER);

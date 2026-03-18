@@ -7,6 +7,7 @@ import java.util.List;
 import javax.swing.JPanel;
 
 import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
+import gui.HabitTrackerController;
 import gui.window.display.Habits;
 import gui.window.display.Pages;
 import gui.window.display.instantiation.HabitInstantiation;
@@ -17,21 +18,31 @@ import model.organization.tree.Page;
 // The space that will be everything but the TaskBar, where habits and pages will be displayed
 @ExcludeFromJacocoGeneratedReport
 public class Display extends JPanel {
+    private HabitTrackerController habitTrackerController;
     /*
     EFFECTS: 
     Instantiates Display such that
+    this.habitTrackerController = habitTrackerController;
+
     The layout is BoxLayout, vertically aligned
     The background is dark grey
      */
-    public Display() {
+    public Display(HabitTrackerController habitTrackerController) {
+        this.habitTrackerController = habitTrackerController;
+
         this.setLayout(new BorderLayout());
         this.setBackground(Color.DARK_GRAY);
     }
 
     // MODIFIES: this
     // EFFECTS: Wipes display so only the default colour shows
-    private void wipeDisplay() {
+    public void wipeDisplay() {
         this.removeAll();
+    }
+
+    // MODIFIES: this
+    // EFFECTS: Recalculates hierarchies
+    public void refresh() {
         this.revalidate();
         this.repaint();
     }
@@ -40,7 +51,8 @@ public class Display extends JPanel {
     // EFFECTS: Shows habit instantiation page
     public void makeHabit() {
         wipeDisplay();
-        this.add(new HabitInstantiation(this), BorderLayout.CENTER);
+        this.add(new HabitInstantiation(this, habitTrackerController), BorderLayout.CENTER);
+        refresh();
     }
 
     // MODIFIES: this
@@ -48,6 +60,7 @@ public class Display extends JPanel {
     public void makePage() {
         wipeDisplay();
         this.add(new PageInstantiation(this), BorderLayout.CENTER);
+        refresh();
     }
 
     // MODIFIES: this
@@ -55,6 +68,7 @@ public class Display extends JPanel {
     public void showHabits(List<Habit> habits) {
         wipeDisplay();
         this.add(new Habits(habits), BorderLayout.CENTER);
+        refresh();
     }
 
     // MODIFIES: this
@@ -62,5 +76,6 @@ public class Display extends JPanel {
     public void showPages(List<Page> pages, Display display) {
         wipeDisplay();
         this.add(new Pages(pages, this), BorderLayout.CENTER);
+        refresh();
     }
 }

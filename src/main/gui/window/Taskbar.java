@@ -26,10 +26,13 @@ public class Taskbar extends JPanel {
      */
     public Taskbar(HabitTrackerController habitTrackerController, Display display, Titlebar titlebar) {
         this.habitTrackerController = habitTrackerController;
+        this.display = display;
+        this.titlebar = titlebar;
 
         this.setLayout(new GridLayout(6, 1));
         this.setBackground(Color.GRAY);
         makeButtons();
+        
     }
 
     // MODIFES: this

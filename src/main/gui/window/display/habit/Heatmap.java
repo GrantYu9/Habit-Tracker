@@ -1,4 +1,4 @@
-package gui.window.display.habits;
+package gui.window.display.habit;
 
 import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
 
