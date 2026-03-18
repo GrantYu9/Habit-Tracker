@@ -18,11 +18,11 @@ import model.habit.Habit;
 
 // The page instantiation page
 public class PageInstantiation extends JPanel {
-    private JTextField titleField; // !!!
-    private JTextField habitsField; // !!!
+    private JTextField titleField; // Field to set the title
+    private JTextField habitsField; // Field to set which habits the user wants in the page
 
-    private Display display; // !!!
-    private HabitTrackerController habitTrackerController; // !!!
+    private Display display; // Access to the main GUI display of the app
+    private HabitTrackerController habitTrackerController; // Access to the backend logic of the app
 
     /*
      * EFFECTS:
