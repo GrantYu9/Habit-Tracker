@@ -24,22 +24,22 @@ import persistence.LastTimeManager;
 
 // Provides core functionality of the app for GUI aspects
 public class HabitTrackerController {
-    private LocalDateTime lastTime; // !!!
+    private LocalDateTime lastTime; // When the program last closed
 
-    private String destinationAllGenericPagesPage; // !!!
-    private String destinationAllHabitsPage; // !!!
-    private String destinationLastTime; // !!!
+    private String destinationAllGenericPagesPage; // Where the state of all the pages will be written to
+    private String destinationAllHabitsPage; // Where the state of all the habits will be written to
+    private String destinationLastTime; // Where lastTime will be written to
 
-    private AllGenericPagesPage allGenericPagesPage; // !!!
-    private AllHabitsPage allHabitsPage; // !!!
-    private AllTagPagesPage allTagPagesPage; // !!!
-    private FavouritesPage favouritesPage; // !!!
-    private HomePage homePage; // !!!
-    private HabitCycleManager habitCycleManager; // !!!
+    private AllGenericPagesPage allGenericPagesPage; // All the generic, customizable pages
+    private AllHabitsPage allHabitsPage; // All the habits
+    private AllTagPagesPage allTagPagesPage; // All the tag pages
+    private FavouritesPage favouritesPage; // All the habits with "Favourite" tag
+    private HomePage homePage; // All the habits with "Home" tag
+    private HabitCycleManager habitCycleManager; // What manages the habits cycling
 
-    private AllGenericPagesPageDataManager allGenericPagesPageDataManager; // !!!
-    private AllHabitsPageDataManager allHabitsPageDataManager; // !!!
-    private LastTimeManager lastTimeManager; // !!!
+    private AllGenericPagesPageDataManager allGenericPagesPageDataManager; // Data persistence manager for allGenericPages
+    private AllHabitsPageDataManager allHabitsPageDataManager; // Data persistence manager for all habits
+    private LastTimeManager lastTimeManager; // Data persistence manager for the last time
 
     // EFFECTS: Initializes HabitTrackerController such that required classes are
     // initialized and habits are refreshed as needed
@@ -148,7 +148,8 @@ public class HabitTrackerController {
         }
     }
 
-    // EFFECTS: Tries to find habit in allHabitsPage with title "title". Else, throws HabitNotFoundException
+    // EFFECTS: Tries to find habit in allHabitsPage with title "title". Else,
+    // throws HabitNotFoundException
     public Habit findHabit(String title) throws HabitNotFoundException {
         for (Habit habit : allHabitsPage.getHabits()) {
             if (habit.getTitle().equals(title)) {
