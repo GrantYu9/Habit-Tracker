@@ -18,7 +18,7 @@ import model.organization.tree.Page;
 // The space that will be everything but the TaskBar, where habits and pages will be displayed
 @ExcludeFromJacocoGeneratedReport
 public class Display extends JPanel {
-    private HabitTrackerController habitTrackerController; // !!!
+    private HabitTrackerController habitTrackerController; // Access to the backend logic of the app
     
     /*
     EFFECTS: 
