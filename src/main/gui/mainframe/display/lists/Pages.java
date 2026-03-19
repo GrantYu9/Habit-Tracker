@@ -40,7 +40,7 @@ public class Pages extends JPanel {
     // EFFECTS: For each page in pages, makes a pageButton
     private void displayPages() {
         JPanel innerPanel = new JPanel();
-        innerPanel.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        innerPanel.setLayout(new BoxLayout(innerPanel, BoxLayout.Y_AXIS));
         for (Page page : pages) {
             innerPanel.add(makePageButton(page));
         }

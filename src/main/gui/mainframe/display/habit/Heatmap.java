@@ -25,7 +25,7 @@ public class Heatmap extends JPanel {
         this.habit = habit;
         this.habitGUI = habitGUI;
 
-        // !!! layout
+        // !!! layout gridlayout
         
         makeCalendar();
         makeSwapButton();
