@@ -37,7 +37,8 @@ public class HabitTrackerController {
     private HomePage homePage; // All the habits with "Home" tag
     private HabitCycleManager habitCycleManager; // What manages the habits cycling
 
-    private AllGenericPagesPageDataManager allGenericPagesPageDataManager; // Data persistence manager for allGenericPages
+    private AllGenericPagesPageDataManager allGenericPagesPageDataManager; // Data persistence manager for
+                                                                           // allGenericPages
     private AllHabitsPageDataManager allHabitsPageDataManager; // Data persistence manager for all habits
     private LastTimeManager lastTimeManager; // Data persistence manager for the last time
 
