@@ -13,10 +13,12 @@ public class HabitGUI extends JPanel {
      * Instantiates HabitGUI such that
      * this.habit = habit;
      * The layout is BorderLayout
+     * Shows habit as bar by default
      */
     public HabitGUI(Habit habit) {
         this.habit = habit;
         this.setLayout(new BorderLayout());
+        showBar(this);
     }
 
     // MODIFIES: this
