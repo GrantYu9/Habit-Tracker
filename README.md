@@ -43,7 +43,7 @@ I picked this idea because all the habit trackers I have tried thus far have not
 - Related action 1: as a user, I want a button to be able to remove a habit from a page.
 - Related action 2: as a user, I want to be able to search for the title of a habit and put it into a page.
 - Load and save: as a user, I want to be able to load and save the state of the application.
-- Visual component: as a user, I want to be able to see a heatmap of my progress for a habit.
+- Visual component: as a user, I want to be congratulated for completing a habit with a "good job" image.
 
 ## Phase 3 Instructions for User
 - !!!

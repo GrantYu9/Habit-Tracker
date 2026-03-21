@@ -43,10 +43,9 @@ public class HabitTrackerController {
     private LastTimeManager lastTimeManager; // Data persistence manager for the last time
 
     // EFFECTS: Initializes HabitTrackerController such that required classes are
-    // initialized and habits are refreshed as needed
+    // initialized
     public HabitTrackerController() {
         initBackend();
-        refreshSystem();
     }
 
     // MODIFIES: this
@@ -84,7 +83,6 @@ public class HabitTrackerController {
     private void refreshSystem() {
         habitCycleManager.cycleAllHabitsAtStartup(LocalDateTime.now());
         habitCycleManager.scheduleAllHabits(LocalDateTime.now());
-
     }
 
     // MODIFIES: this
@@ -109,7 +107,7 @@ public class HabitTrackerController {
     }
 
     // MODIFIES: this
-    // EFFECTS: Loads state from file
+    // EFFECTS: Loads state from file and refreshes habits as needed
     public void loadFromFile() {
         try {
             allHabitsPageDataManager.readFromFile(homePage, favouritesPage, allTagPagesPage);
@@ -119,6 +117,8 @@ public class HabitTrackerController {
         } catch (HabitNotFoundException e) { // This would be a programmer error; incorrect dependencies
             e.printStackTrace();
         }
+
+        refreshSystem();
     }
 
     // MODIFIES: this
