@@ -12,6 +12,7 @@ import java.util.concurrent.TimeUnit;
 import model.habit.Habit.ProgressType;
 import model.organization.centralization.AllHabitsPage;
 
+// !!! logic issues with habitsnapshots
 // Manages when the habits need to cycle
 public class HabitCycleManager {
     private final ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);

@@ -20,6 +20,7 @@ import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
 import model.habit.Habit.ProgressType;
 import model.organization.centralization.AllHabitsPage;
 
+// !!! logic issues with habit snapshot
 @ExcludeFromJacocoGeneratedReport
 public class TestHabitCycleManager {
     private List<Habit> whatShouldBeHabits;
