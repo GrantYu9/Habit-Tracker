@@ -67,6 +67,7 @@ public class Bar extends JPanel {
         gridBagConstraints.fill = GridBagConstraints.BOTH;
     }
 
+    // MODIFIES: this
     // EFFECTS: Makes displays for stats
     private void makeDisplays() {
         showTitle();
@@ -80,6 +81,7 @@ public class Bar extends JPanel {
         showStepAmount();
     }
 
+    // MODIFIES: this
     // EFFECTS: Displays the title
     private void showTitle() {
         JLabel label = new JLabel("Title: " + habit.getTitle());
@@ -89,6 +91,7 @@ public class Bar extends JPanel {
         this.add(label, gridBagConstraints);
     }
 
+    // MODIFIES: this
     // EFFECTS: Displays the cycle time
     private void showCycleTime() {
         JLabel label = new JLabel("Cycle time: " + habit.getCycleTime());
@@ -98,6 +101,7 @@ public class Bar extends JPanel {
         this.add(label, gridBagConstraints);
     }
 
+    // MODIFIES: this
     // EFFECTS: Displays the goal
     private void showGoal() {
         JLabel label = new JLabel("Goal: " + habit.getGoal());
@@ -107,6 +111,7 @@ public class Bar extends JPanel {
         this.add(label, gridBagConstraints);
     }
 
+    // MODIFIES: this
     // EFFECTS: Displays the currentAmount
     private void showCurrentAmount() {
         JLabel label = new JLabel("Current amount: " + habit.getCurrentAmount());
@@ -116,6 +121,7 @@ public class Bar extends JPanel {
         this.add(label, gridBagConstraints);
     }
 
+    // MODIFIES: this
     // EFFECTS: Displays the overload amount
     private void showOverloadAmount() {
         JLabel label = new JLabel("Overload amount: " + habit.getOverloadAmount());
@@ -125,6 +131,7 @@ public class Bar extends JPanel {
         this.add(label, gridBagConstraints);
     }
 
+    // MODIFIES: this
     // EFFECTS: Displays the percentage
     private void showPercentage() {
         JLabel label = new JLabel("Percentage: " + habit.getProgressPercentage() + "%");
@@ -134,6 +141,7 @@ public class Bar extends JPanel {
         this.add(label, gridBagConstraints);
     }
 
+    // MODIFIES: this
     // EFFECTS: Displays the progress type
     private void showProgressType() {
         ProgressType progressType = habit.getProgressType();
@@ -157,6 +165,7 @@ public class Bar extends JPanel {
         this.add(label, gridBagConstraints);
     }
 
+    // MODIFIES: this
     // EFFECTS: Displays the step amount
     private void showStepAmount() {
         JLabel label = new JLabel("Step amount: " + habit.getStepAmount());
@@ -167,6 +176,7 @@ public class Bar extends JPanel {
     }
 
     // REQUIRES: unit is not null
+    // MODIFIES: this
     // EFFECTS: Displays the unit
     private void showUnit() {
         JLabel label = new JLabel("Unit: " + habit.getUnit());
