@@ -7,11 +7,13 @@ import javax.swing.JPanel;
 
 // Custom version of JPanel with custom paintComponent behaviour
 public class DayTile extends JPanel {
-    private int customHeight;
+    private int percentage;
 
-    // EFFECTS: Calls super to instantiate DayTile
+    // EFFECTS: Calls super to instantiate DayTile and sets percentage to 0
     public DayTile() {
         super();
+
+        percentage = 0;
     }
 
     // MODIFIES: this
@@ -21,18 +23,21 @@ public class DayTile extends JPanel {
     protected void paintComponent(Graphics graphic) {
         super.paintComponent(graphic);
         graphic.setColor(Color.GREEN);
-        graphic.fillRect(0, getHeight() - customHeight, getWidth(), customHeight);
+        int fillHeight = (int) (getHeight() * ((double) percentage / 100));
+        graphic.fillRect(0, getHeight() - fillHeight, getWidth(), fillHeight);
     }
 
     // SETTERS
 
-    public void setCustomHeight(int customHeight) {
-        this.customHeight = customHeight;
+    public void setPercentage(int percentage) {
+        this.percentage = percentage;
+        this.revalidate();
+        this.repaint();
     }
 
     // GETTERS
 
-    public int getCustomHeight() {
-        return customHeight;
+    public int getPercentage() {
+        return percentage;
     }
 }

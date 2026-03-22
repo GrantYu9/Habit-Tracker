@@ -77,7 +77,7 @@ public class Heatmap extends JPanel {
     }
 
     // MODIFIES: this
-    // EFFECTS: Adds labels for data for dayTile
+    // EFFECTS: Adds labels for data for dayTile and paints dayTile based on habit.getProgressPercentage
     private void superMakeTodaysTile(JPanel dayTile) {
         addDayToTodaysTile(dayTile);
         addToTodaysTile(Integer.toString(habit.getGoal()), dayTile);
@@ -85,7 +85,7 @@ public class Heatmap extends JPanel {
         addToTodaysTile(Integer.toString(habit.getProgressPercentage()), dayTile);
         addToTodaysTile(Integer.toString(habit.getOverloadAmount()), dayTile);
         addToTodaysTile(habit.getProgressType().toString(), dayTile);
-        setColourForTodaysTile(dayTile);
+        ((DayTile) dayTile).setPercentage(habit.getProgressPercentage());
     }
 
     // MODIFIES: this
@@ -105,14 +105,6 @@ public class Heatmap extends JPanel {
     private void addToTodaysTile(String label, JPanel dayTile) {
         JLabel jlabel = new JLabel(label);
         dayTile.add(jlabel);
-    }
-
-    // MODIFIES: this
-    // EFFECTS: Paints the tile up to habit.getProgresPercentage() %, from the bottom
-    private void setColourForTodaysTile(JPanel dayTile) {
-        double fillHeightDouble = dayTile.getHeight() * ((double) habit.getProgressPercentage() / 100);
-        int fillHeight = (int) fillHeightDouble;
-        ((DayTile) dayTile).setCustomHeight(fillHeight);
     }
 
     // MODIFIES: this
@@ -161,7 +153,7 @@ public class Heatmap extends JPanel {
         addToDayTile(Integer.toString(habitSnapshot.getProgressPercentage()), dayTile);
         addToDayTile(Integer.toString(habitSnapshot.getOverloadAmount()), dayTile);
         addToDayTile(habitSnapshot.getProgressType().toString(), dayTile);
-        setColourDayTile(dayTile, habitSnapshot);
+        ((DayTile) dayTile).setPercentage(habitSnapshot.getProgressPercentage());
     }
 
     // MODIFIES: this
@@ -181,14 +173,6 @@ public class Heatmap extends JPanel {
     private void addToDayTile(String label, JPanel dayTile) {
         JLabel jlabel = new JLabel(label);
         dayTile.add(jlabel);
-    }
-
-    // MODIFIES: this
-    // EFFECTS: Paints the tile up to habitSnapshot.getProgresPercentage() %, from the bottom
-    private void setColourDayTile(JPanel dayTile, HabitSnapshot habitSnapshot) {
-        double fillHeightDouble = dayTile.getHeight() * ((double) habitSnapshot.getProgressPercentage() / 100);
-        int fillHeight = (int) fillHeightDouble;
-        ((DayTile) dayTile).setCustomHeight(fillHeight);
     }
 
     // MODIFIES: this
