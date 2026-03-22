@@ -4,11 +4,14 @@ import java.awt.BorderLayout;
 
 import javax.swing.JPanel;
 
+import gui.mainframe.display.Display;
 import gui.mainframe.display.habit.heatmap.Heatmap;
 import model.habit.Habit;
 
 public class HabitGUI extends JPanel {
-    Habit habit; // The habit this represents
+    private Habit habit; // The habit this represents
+
+    private Display display; // Bar needs this
 
     /*
      * Instantiates HabitGUI such that
@@ -16,8 +19,9 @@ public class HabitGUI extends JPanel {
      * The layout is BorderLayout
      * Shows habit as bar by default
      */
-    public HabitGUI(Habit habit) {
+    public HabitGUI(Habit habit, Display display) {
         this.habit = habit;
+        this.display = display;
         this.setLayout(new BorderLayout());
         showBar(this);
     }
@@ -39,7 +43,7 @@ public class HabitGUI extends JPanel {
     // EFFECTS: Shows habit as a bar widget and user can interact with it
     private void showBar(HabitGUI habitGUI) {
         wipe();
-        this.add(new Bar(habit, habitGUI));
+        this.add(new Bar(habit, habitGUI, display));
         refresh();
     }
 

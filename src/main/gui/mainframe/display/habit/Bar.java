@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
+import gui.mainframe.display.Display;
 import model.habit.Habit;
 import model.habit.Habit.ProgressType;
 
@@ -22,6 +23,7 @@ public class Bar extends JPanel {
     private Habit habit; // The habit this represents
 
     private HabitGUI habitGUI; // Access to swapToHeatMap() method
+    private Display display; // Access to the flashImage() method
 
     /*
      * EFFECTS:
@@ -34,9 +36,10 @@ public class Bar extends JPanel {
      * Stats are shown
      * Buttons are made
      */
-    public Bar(Habit habit, HabitGUI habitGUI) {
+    public Bar(Habit habit, HabitGUI habitGUI, Display display) {
         this.habit = habit;
         this.habitGUI = habitGUI;
+        this.display = display;
 
         setUpLayout();
 
@@ -188,6 +191,9 @@ public class Bar extends JPanel {
         button.addActionListener(actionEvent -> {
             habit.progressByStepAmount();
             habitGUI.swapToBar();
+            if (habit.getProgressType().equals(ProgressType.DONE)) {
+                display.flashImage();
+            }
         });
 
         gridBagConstraints.gridx = 3;

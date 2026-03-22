@@ -4,7 +4,11 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.util.List;
 
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+import javax.swing.Timer;
 
 import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
 import gui.HabitTrackerController;
@@ -18,6 +22,8 @@ import model.organization.tree.Page;
 // The space that will be everything but the TaskBar, where habits and pages will be displayed
 @ExcludeFromJacocoGeneratedReport
 public class Display extends JPanel {
+    private ImageIcon goodJobImage = (new ImageIcon("lib/images/nice_work.jpg"));
+
     private HabitTrackerController habitTrackerController; // Access to the backend logic of the app
     
     /*
@@ -68,7 +74,7 @@ public class Display extends JPanel {
     // EFFECTS: Shows habits
     public void showHabits(List<Habit> habits) {
         wipeDisplay();
-        this.add(new Habits(habits), BorderLayout.CENTER);
+        this.add(new Habits(habits, this), BorderLayout.CENTER);
         refresh();
     }
 
@@ -78,5 +84,25 @@ public class Display extends JPanel {
         wipeDisplay();
         this.add(new Pages(pages, this), BorderLayout.CENTER);
         refresh();
+    }
+
+    // MODIFIES: this
+    // EFFECTS: Shows a good job image for 3 seconds
+    public void flashImage() {
+        JPanel overlay = (JPanel) SwingUtilities.getRootPane(this).getGlassPane();
+        JLabel image = new JLabel(goodJobImage);
+
+        overlay.setLayout(new BorderLayout());
+        overlay.add(image);
+        overlay.setVisible(true);
+        overlay.revalidate();
+        overlay.repaint();
+
+        Timer timer = new Timer(3_000, event -> {
+            overlay.setVisible(false);
+            overlay.removeAll();
+        });
+        timer.setRepeats(false);
+        timer.start();
     }
 }

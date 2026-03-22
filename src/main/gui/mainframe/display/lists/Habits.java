@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
+import gui.mainframe.display.Display;
 import gui.mainframe.display.habit.HabitGUI;
 import model.habit.Habit;
 
@@ -15,6 +16,7 @@ import model.habit.Habit;
 @ExcludeFromJacocoGeneratedReport
 public class Habits extends JPanel {
     private List<Habit> habits; // Habits that Habits will display
+    private Display display;
 
     /*
      * EFFECTS:
@@ -25,8 +27,9 @@ public class Habits extends JPanel {
      * 
      * Shows all habits in habits
      */
-    public Habits(List<Habit> habits) {
+    public Habits(List<Habit> habits, Display display) {
         this.habits = habits;
+        this.display = display;
 
         this.setLayout(new BorderLayout());
 
@@ -40,7 +43,7 @@ public class Habits extends JPanel {
         innerPanel.setLayout(new BoxLayout(innerPanel, BoxLayout.Y_AXIS));
 
         for (Habit habit : habits) {
-            innerPanel.add(new HabitGUI(habit));
+            innerPanel.add(new HabitGUI(habit, display));
         }
 
         JScrollPane scrollPane = new JScrollPane(innerPanel);

@@ -118,10 +118,10 @@
     },
     {
         "nextCycleTime": "2026-03-23T02:30",
-        "progressType": "UNDERDONE",
+        "progressType": "DONE",
         "goal": 1,
         "cycleTime": "02:30",
-        "currentAmount": 0,
+        "currentAmount": 1,
         "stepAmount": 1,
         "history": [
             {
@@ -152,15 +152,15 @@
         "unit": "string",
         "currentDay": "2026-03-22",
         "overloadAmount": 0,
-        "progressPercentage": 0,
+        "progressPercentage": 100,
         "startingAmount": 0
     },
     {
         "nextCycleTime": "2026-03-22T14:00",
-        "progressType": "UNDERDONE",
+        "progressType": "OVERLOADED",
         "goal": 1,
         "cycleTime": "14:00",
-        "currentAmount": 0,
+        "currentAmount": 3,
         "stepAmount": 1,
         "history": [
             {
@@ -190,16 +190,16 @@
         "tags": [],
         "unit": "more",
         "currentDay": "2026-03-22",
-        "overloadAmount": 0,
-        "progressPercentage": 0,
+        "overloadAmount": 2,
+        "progressPercentage": 100,
         "startingAmount": 0
     },
     {
         "nextCycleTime": "2026-03-23T00:00",
-        "progressType": "UNDERDONE",
+        "progressType": "OVERLOADED",
         "goal": 1,
         "cycleTime": "00:00",
-        "currentAmount": 0,
+        "currentAmount": 2,
         "stepAmount": 1,
         "history": [
             {
@@ -229,16 +229,16 @@
         "tags": [],
         "unit": "idk",
         "currentDay": "2026-03-22",
-        "overloadAmount": 0,
-        "progressPercentage": 0,
+        "overloadAmount": 1,
+        "progressPercentage": 100,
         "startingAmount": 0
     },
     {
         "nextCycleTime": "2026-03-23T00:00",
-        "progressType": "UNDERDONE",
+        "progressType": "DONE",
         "goal": 1,
         "cycleTime": "00:00",
-        "currentAmount": 0,
+        "currentAmount": 1,
         "stepAmount": 1,
         "history": [
             {
@@ -269,7 +269,7 @@
         "unit": "limit",
         "currentDay": "2026-03-22",
         "overloadAmount": 0,
-        "progressPercentage": 0,
+        "progressPercentage": 100,
         "startingAmount": 0
     },
     {
