@@ -40,8 +40,8 @@ I picked this idea because all the habit trackers I have tried thus far have not
 
 ### Phase 3
 - Display all Xs in Y: as a user, I want to be able to display all habits in a habit page.
-- Related action 1: as a user, I want a button to be able to remove a habit from a page.
-- Related action 2: as a user, I want to be able to search for the title of a habit and put it into a page.
+- Related action 1: as a user, I want a button to be able to make a habit.
+- Related action 2: as a user, I want a button to be able to make a page.
 - Load and save: as a user, I want to be able to load and save the state of the application.
 - Visual component: as a user, I want to be congratulated for completing a habit with a "good job" image.
 
