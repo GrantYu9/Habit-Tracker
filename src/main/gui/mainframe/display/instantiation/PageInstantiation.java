@@ -93,7 +93,7 @@ public class PageInstantiation extends JPanel {
 
     // EFFECTS: Parses input and for each title, tries to find a habit and adds it
     // to the list to be returned
-    private List<Habit> parseHabitsField(String input) { // !!! pleaseee test this thoroughly
+    private List<Habit> parseHabitsField(String input) {
         List<String> habitTitles = new ArrayList<>(Arrays.asList(input.split(",\\s")));
 
         List<Habit> result = new ArrayList<>();
@@ -101,7 +101,7 @@ public class PageInstantiation extends JPanel {
         if (habitTitles.size() == 1 && habitTitles.get(0).isBlank()) {
             return result;
         }
-        
+
         for (String title : habitTitles) {
             Habit habit = null;
 
