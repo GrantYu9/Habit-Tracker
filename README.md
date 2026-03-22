@@ -45,6 +45,24 @@ I picked this idea because all the habit trackers I have tried thus far have not
 - Load and save: as a user, I want to be able to load and save the state of the application.
 - Visual component: as a user, I want to be congratulated for completing a habit with a "good job" image.
 
-## Phase 3 Instructions for User
-- !!!
+### Instructions for End User
+
+#### Viewing All Xs in Y
+Click the "Show all habits" button on the bottom left. If you have no habits, it will be blank.
+
+#### Related Action 1: Adding a Habit
+To add a habit, click on the "Make habit" button on the left. There are some requirements on the fields:
+- All entries must have something in them.
+- Goal, starting amount, and step amount: must all be integers.
+- Cycle time hour: must be a nonnegative integer below 24.
+- Cycle time minute: must be a nonnegative integer below 60.
+
+### Related Action 2: Adding a Page
+To add a page, click on the "Make page" button on the left. It must have something in the title field. It does not require a habit. Habits must be given by their title with exact casing. Separate habits with a comma and a space. E.g. "<habit_1>, <habit_2>, etc."
+
+### Visual Component
+Make a habit, view all habits, click "Progress" until you are done the habit. An image of a thumbs up emoji should pop up.
+
+### Save & Load
+Click the save and load buttons on the top left, respectively.
 

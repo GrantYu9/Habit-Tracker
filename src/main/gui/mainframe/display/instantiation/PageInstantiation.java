@@ -98,6 +98,10 @@ public class PageInstantiation extends JPanel {
 
         List<Habit> result = new ArrayList<>();
 
+        if (habitTitles.size() == 1 && habitTitles.get(0).isBlank()) {
+            return result;
+        }
+        
         for (String title : habitTitles) {
             Habit habit = null;
 
