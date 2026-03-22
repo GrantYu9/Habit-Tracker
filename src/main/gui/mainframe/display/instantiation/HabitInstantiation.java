@@ -10,10 +10,12 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 
+import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
 import gui.HabitTrackerController;
 import gui.mainframe.display.Display;
 
 // The habit instantiation page
+@ExcludeFromJacocoGeneratedReport
 public class HabitInstantiation extends JPanel {
     private JToggleButton isIncrementToggle; // Toggle button for the user to choose if they want an incrementing or a
                                              // decrementing habit

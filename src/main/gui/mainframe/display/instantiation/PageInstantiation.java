@@ -11,12 +11,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
 import exceptions.HabitNotFoundException;
 import gui.HabitTrackerController;
 import gui.mainframe.display.Display;
 import model.habit.Habit;
 
 // The page instantiation page
+@ExcludeFromJacocoGeneratedReport
 public class PageInstantiation extends JPanel {
     private JTextField titleField; // Field to set the title
     private JTextField habitsField; // Field to set which habits the user wants in the page

@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
+import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
 import exceptions.EmptyLastTimeFileException;
 import exceptions.HabitNotFoundException;
 import model.habit.Habit;
@@ -23,6 +24,7 @@ import persistence.AllHabitsPageDataManager;
 import persistence.LastTimeManager;
 
 // Provides core functionality of the app for GUI aspects
+@ExcludeFromJacocoGeneratedReport
 public class HabitTrackerController {
     private LocalDateTime lastTime; // When the program last closed
 

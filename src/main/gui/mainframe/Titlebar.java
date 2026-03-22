@@ -6,7 +6,10 @@ import java.awt.FlowLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
+
 // Shows where the user is in the app
+@ExcludeFromJacocoGeneratedReport
 public class Titlebar extends JPanel {
     /*
     EFFECTS:

@@ -4,10 +4,13 @@ import java.awt.BorderLayout;
 
 import javax.swing.JPanel;
 
+import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
 import gui.mainframe.display.Display;
 import gui.mainframe.display.habit.heatmap.Heatmap;
 import model.habit.Habit;
 
+// Higher level form of each habit that allows switching between Bar and Heatmap form
+@ExcludeFromJacocoGeneratedReport
 public class HabitGUI extends JPanel {
     private Habit habit; // The habit this represents
 

@@ -5,7 +5,10 @@ import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
+import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
+
 // Custom version of JPanel with custom paintComponent behaviour
+@ExcludeFromJacocoGeneratedReport
 public class DayTile extends JPanel {
     private int percentage;
 
