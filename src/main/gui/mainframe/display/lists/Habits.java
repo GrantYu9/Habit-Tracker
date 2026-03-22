@@ -44,6 +44,7 @@ public class Habits extends JPanel {
         }
 
         JScrollPane scrollPane = new JScrollPane(innerPanel);
+        scrollPane.getVerticalScrollBar().setUnitIncrement(12);
         this.add(scrollPane);
     }
 }

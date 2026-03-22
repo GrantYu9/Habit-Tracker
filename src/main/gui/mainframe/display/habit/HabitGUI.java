@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 
 import javax.swing.JPanel;
 
+import gui.mainframe.display.habit.heatmap.Heatmap;
 import model.habit.Habit;
 
 public class HabitGUI extends JPanel {

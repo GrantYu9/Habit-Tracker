@@ -24,7 +24,6 @@ import model.organization.specialpages.HomePage;
 @ExcludeFromJacocoGeneratedReport
 // We use HabitIncrement as a way to test Habit
 public class TestHabit {
-    // Fix naming consistency later !!!
     private AllHabitsPage testAllHabitsPage;
     private SpyHabitCycleManager spyHabitCycleManagerA;
     private SpyHabitCycleManager spyHabitCycleManagerB;

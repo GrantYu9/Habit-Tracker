@@ -22,7 +22,6 @@ public class AllGenericPagesPage {
     }
 
     @Override
-    // !!!
     public boolean equals(Object object) {
         if (object == null) {
             return false;
