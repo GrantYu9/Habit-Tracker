@@ -9,6 +9,7 @@ import java.util.List;
 import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
 import exceptions.EmptyLastTimeFileException;
 import exceptions.HabitNotFoundException;
+import logging.EventLog;
 import model.habit.Habit;
 import model.habit.HabitCycleManager;
 import model.habit.HabitDecrement;
@@ -137,7 +138,7 @@ public class HabitTrackerController {
                     LocalDateTime.now(), habitCycleManager);
         }
 
-        allHabitsPage.addToAllHabitsPage(habit);
+        allHabitsPage.addToAllHabitsPage(habit, EventLog.getInstance());
         habit.setUnit(unit);
     }
 
@@ -145,7 +146,7 @@ public class HabitTrackerController {
     // EFFECTS: Creates a page
     public void makePage(String title, List<Habit> habits) {
         Page page = new Page(title);
-        allGenericPagesPage.addToPages(page);
+        allGenericPagesPage.addToPages(page, EventLog.getInstance());
         for (Habit habit : habits) {
             page.addHabit(habit);
         }

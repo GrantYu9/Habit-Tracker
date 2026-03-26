@@ -14,7 +14,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
-import logging.Event;
 import logging.EventLog;
 import model.habit.Habit.ProgressType;
 import model.organization.Tag;
