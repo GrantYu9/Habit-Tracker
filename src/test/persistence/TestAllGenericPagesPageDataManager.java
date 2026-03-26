@@ -204,5 +204,3 @@ public class TestAllGenericPagesPageDataManager {
         assertTrue(allGenericPagesPageGeneralWrite.equals(whatShouldBeAllGenericPagesPage));
     }
 }
-
-// !!! test

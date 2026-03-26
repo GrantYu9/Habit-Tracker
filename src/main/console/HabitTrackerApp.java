@@ -11,6 +11,7 @@ import java.util.Scanner;
 import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
 import exceptions.EmptyLastTimeFileException;
 import exceptions.HabitNotFoundException;
+import logging.EventLog;
 import model.habit.Habit;
 import model.habit.HabitCycleManager;
 import model.habit.HabitDecrement;
@@ -237,7 +238,7 @@ public class HabitTrackerApp {
 
         setUpTag(habit);
 
-        allHabitsPage.addToAllHabitsPage(habit);
+        allHabitsPage.addToAllHabitsPage(habit, EventLog.getInstance());
     }
 
     // MODIFIES: this
@@ -547,7 +548,7 @@ public class HabitTrackerApp {
         System.out.print("Title: ");
         String input = scanner.nextLine();
 
-        allGenericPagesPage.addToPages(new Page(input));
+        allGenericPagesPage.addToPages(new Page(input), EventLog.getInstance());
     }
 
     // EFFECTS: Selects a type of page, prints it and asks if you want to select a
