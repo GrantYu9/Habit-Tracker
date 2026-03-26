@@ -13,6 +13,7 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import logging.EventLog;
 import model.habit.Habit;
 import model.habit.HabitCycleManager;
 import model.habit.HabitIncrement;
@@ -102,7 +103,7 @@ public class AllHabitsPageDataManager {
         buildHistory(habitJson, habit);
         buildTags(habitJson, habit, homePage, favouritesPage, allTagPagesPage);
 
-        allHabitsPage.addToAllHabitsPage(habit);
+        allHabitsPage.addToAllHabitsPage(habit, EventLog.getInstance());
     }
 
     // MODIFIES: habit

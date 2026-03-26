@@ -7,7 +7,7 @@ import model.organization.specialpages.TagPage;
 
 // Where all the tag pages will be located
 public class AllTagPagesPage {
-    List<TagPage> tagPages;
+    private List<TagPage> tagPages;
 
     // EFFECTS: Instantiates AllTagPages such that tagPages = new ArrayList
     public AllTagPagesPage() {

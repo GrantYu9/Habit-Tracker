@@ -14,6 +14,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
+import logging.Event;
+import logging.EventLog;
 import model.habit.Habit.ProgressType;
 import model.organization.Tag;
 import model.organization.centralization.AllHabitsPage;
@@ -138,7 +140,7 @@ public class TestHabit {
 
         assertTrue(testHabitD.getNextCycleTime().isEqual(LocalDateTime.of(dayA, cycleTimeD)));
 
-        testAllHabitsPage.addToAllHabitsPage(testHabitD);
+        testAllHabitsPage.addToAllHabitsPage(testHabitD, EventLog.getInstance());
         
         assertEquals(1, spyHabitCycleManagerD.scheduleHabitCallCount);
     }

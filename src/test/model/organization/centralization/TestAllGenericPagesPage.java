@@ -9,6 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
+import logging.EventLog;
 import model.organization.tree.Page;
 
 @ExcludeFromJacocoGeneratedReport
@@ -39,12 +40,14 @@ public class TestAllGenericPagesPage {
     void testAddToPages() {
         allGenericPagesPage.getPages().clear();
         
-        allGenericPagesPage.addToPages(pageA);
+        allGenericPagesPage.addToPages(pageA, EventLog.getInstance());
         whatShouldBePage.add(pageA);
         assertEquals(whatShouldBePage, allGenericPagesPage.getPages());
 
-        allGenericPagesPage.addToPages(pageB);
+        allGenericPagesPage.addToPages(pageB, EventLog.getInstance());
         whatShouldBePage.add(pageB);
         assertEquals(whatShouldBePage, allGenericPagesPage.getPages());
     }
 }
+
+// !!! test logging

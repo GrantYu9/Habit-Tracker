@@ -11,6 +11,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import exceptions.HabitNotFoundException;
+import logging.EventLog;
 import model.habit.Habit;
 import model.organization.centralization.AllGenericPagesPage;
 import model.organization.centralization.AllHabitsPage;
@@ -85,7 +86,7 @@ public class AllGenericPagesPageDataManager {
         buildOrder(pageJson, page);
         buildHabits(pageJson, allHabitsPage, page);
 
-        allGenericPagesPage.addToPages(page);
+        allGenericPagesPage.addToPages(page, EventLog.getInstance());
     }
 
     // MODIFIES: page

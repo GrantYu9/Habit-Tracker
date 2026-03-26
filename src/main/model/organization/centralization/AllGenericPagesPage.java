@@ -3,6 +3,7 @@ package model.organization.centralization;
 import java.util.ArrayList;
 import java.util.List;
 
+import logging.EventLog;
 import model.organization.tree.Page;
 
 // Where all the pages will be located
@@ -16,9 +17,10 @@ public class AllGenericPagesPage {
 
     // REQUIRES: page not already in pages
     // MODIFIES: this
-    // EFFECTS: Adds page to pages
-    public void addToPages(Page page) {
+    // EFFECTS: Adds page to pages and !!!
+    public void addToPages(Page page, EventLog eventLog) {
         pages.add(page);
+        // !!! handle logging
     }
 
     @Override

@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
 import exceptions.HabitNotFoundException;
+import logging.EventLog;
 import model.habit.Habit;
 import model.habit.HabitCycleManager;
 import model.habit.HabitIncrement;
@@ -87,12 +88,12 @@ public class TestAllGenericPagesPageDataManager {
         allGenericPagesPageDataManagerGeneralRead = new AllGenericPagesPageDataManager(destinationGeneralRead, allGenericPagesPageEmpty);
         allGenericPagesPageDataManagerGeneralWrite = new AllGenericPagesPageDataManager(destinationGeneralWrite, allGenericPagesPageGeneralWrite);
 
-        allHabitsPage.addToAllHabitsPage(habitRockClimbing);
-        allHabitsPage.addToAllHabitsPage(habitCardio);
-        allHabitsPage.addToAllHabitsPage(habitWateringPlants);
-        allHabitsPage.addToAllHabitsPage(habitPullingWeeds);
-        allHabitsPage.addToAllHabitsPage(habitFlashcards);
-        allHabitsPage.addToAllHabitsPage(habitGrindingQuestions);
+        allHabitsPage.addToAllHabitsPage(habitRockClimbing, EventLog.getInstance());
+        allHabitsPage.addToAllHabitsPage(habitCardio, EventLog.getInstance());
+        allHabitsPage.addToAllHabitsPage(habitWateringPlants, EventLog.getInstance());
+        allHabitsPage.addToAllHabitsPage(habitPullingWeeds, EventLog.getInstance());
+        allHabitsPage.addToAllHabitsPage(habitFlashcards, EventLog.getInstance());
+        allHabitsPage.addToAllHabitsPage(habitGrindingQuestions, EventLog.getInstance());
 
         pageExercise.addHabit(habitRockClimbing);
         pageExercise.addHabit(habitCardio);
@@ -154,8 +155,8 @@ public class TestAllGenericPagesPageDataManager {
     @Test
     public void testReadFromFileGeneral() {
         whatShouldBeAllGenericPagesPage = new AllGenericPagesPage();
-        whatShouldBeAllGenericPagesPage.addToPages(pageExercise);
-        whatShouldBeAllGenericPagesPage.addToPages(pageGardening);
+        whatShouldBeAllGenericPagesPage.addToPages(pageExercise, EventLog.getInstance());
+        whatShouldBeAllGenericPagesPage.addToPages(pageGardening, EventLog.getInstance());
 
         try {
             allGenericPagesPageDataManagerGeneralRead.readFromFile(allHabitsPage);
@@ -184,12 +185,12 @@ public class TestAllGenericPagesPageDataManager {
 
     @Test
     public void testWriteToFileGeneral() {
-        allGenericPagesPageGeneralWrite.addToPages(pageGardening);
-        allGenericPagesPageGeneralWrite.addToPages(pageStudying);
+        allGenericPagesPageGeneralWrite.addToPages(pageGardening, EventLog.getInstance());
+        allGenericPagesPageGeneralWrite.addToPages(pageStudying, EventLog.getInstance());
 
         whatShouldBeAllGenericPagesPage = new AllGenericPagesPage();
-        whatShouldBeAllGenericPagesPage.addToPages(pageGardening);
-        whatShouldBeAllGenericPagesPage.addToPages(pageStudying);
+        whatShouldBeAllGenericPagesPage.addToPages(pageGardening, EventLog.getInstance());
+        whatShouldBeAllGenericPagesPage.addToPages(pageStudying, EventLog.getInstance());
 
         try {
             allGenericPagesPageDataManagerGeneralWrite.writeToFile();

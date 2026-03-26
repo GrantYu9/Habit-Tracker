@@ -15,6 +15,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
+import logging.EventLog;
 import model.habit.Habit;
 import model.habit.HabitCycleManager;
 import model.habit.HabitIncrement;
@@ -101,8 +102,8 @@ public class TestAllHabitsPageDataManager {
         habitB.progressByStepAmount();
         habitC = new HabitIncrement(1, 0, 1, "Leetcode", localTime, localDate, localDateTime, habitCycleManager);
 
-        allHabitsPageGeneralWrite.addToAllHabitsPage(habitB);
-        allHabitsPageGeneralWrite.addToAllHabitsPage(habitC);
+        allHabitsPageGeneralWrite.addToAllHabitsPage(habitB, EventLog.getInstance());
+        allHabitsPageGeneralWrite.addToAllHabitsPage(habitC, EventLog.getInstance());
 
         allHabitsPageDataManagerEmpty = new AllHabitsPageDataManager(allHabitsPageEmpty, destinationEmpty);
         allHabitsPageDataManagerGeneralRead = new AllHabitsPageDataManager(allHabitsPageEmpty, destinationGeneralRead);
@@ -154,8 +155,8 @@ public class TestAllHabitsPageDataManager {
 
     @Test
     public void testReadFromFileGeneral() {
-        whatShouldBeAllHabitsPage.addToAllHabitsPage(habitA);
-        whatShouldBeAllHabitsPage.addToAllHabitsPage(habitB);
+        whatShouldBeAllHabitsPage.addToAllHabitsPage(habitA, EventLog.getInstance());
+        whatShouldBeAllHabitsPage.addToAllHabitsPage(habitB, EventLog.getInstance());
 
         try {
             allHabitsPageDataManagerGeneralRead.readFromFile(homePage, favouritesPage, allTagPagesPage);
@@ -180,8 +181,8 @@ public class TestAllHabitsPageDataManager {
 
     @Test
     public void testWriteToFileGeneral() {
-        whatShouldBeAllHabitsPage.addToAllHabitsPage(habitB);
-        whatShouldBeAllHabitsPage.addToAllHabitsPage(habitC);
+        whatShouldBeAllHabitsPage.addToAllHabitsPage(habitB, EventLog.getInstance());
+        whatShouldBeAllHabitsPage.addToAllHabitsPage(habitC, EventLog.getInstance());
 
         try {
             allHabitsPageDataManagerGeneralWrite.writeToFile(allHabitsPageGeneralWrite);

@@ -17,6 +17,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
+import logging.EventLog;
 import model.habit.Habit.ProgressType;
 import model.organization.centralization.AllHabitsPage;
 
@@ -99,11 +100,11 @@ public class TestHabitCycleManager {
         testHabit2330Late = new HabitIncrement(1, 0, 1, "Workout", cycleTime2330, 
             lastTimeLate.toLocalDate(), rightNow, testHabitCycleManagerLate);
 
-        testAllHabitsPageRecent.addToAllHabitsPage(testHabitMidnightRecent);
-        testAllHabitsPageRecent.addToAllHabitsPage(testHabit2330Recent);
+        testAllHabitsPageRecent.addToAllHabitsPage(testHabitMidnightRecent, EventLog.getInstance());
+        testAllHabitsPageRecent.addToAllHabitsPage(testHabit2330Recent, EventLog.getInstance());
 
-        testAllHabitsPageLate.addToAllHabitsPage(testHabitMidnightLate);
-        testAllHabitsPageLate.addToAllHabitsPage(testHabit2330Late);
+        testAllHabitsPageLate.addToAllHabitsPage(testHabitMidnightLate, EventLog.getInstance());
+        testAllHabitsPageLate.addToAllHabitsPage(testHabit2330Late, EventLog.getInstance());
 
         testHabitSnapshotRecentNoChange = new HabitSnapshot(0, 1, 0, 0, 0, 1, ProgressType.UNDERDONE, 
             lastTimeRecent.toLocalDate(), "");

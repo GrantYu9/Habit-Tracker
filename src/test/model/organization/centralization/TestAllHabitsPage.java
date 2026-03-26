@@ -13,6 +13,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
+import logging.EventLog;
 import model.habit.Habit;
 import model.habit.HabitCycleManager;
 import model.habit.HabitIncrement;
@@ -57,12 +58,14 @@ public class TestAllHabitsPage {
 
     @Test
     void testAddToAllHabitsPage() {
-        testAllHabitsPage.addToAllHabitsPage(testHabitA);
+        testAllHabitsPage.addToAllHabitsPage(testHabitA, EventLog.getInstance());
         whatShouldBeHabit.add(testHabitA);
         assertEquals(whatShouldBeHabit, testAllHabitsPage.getHabits());
 
-        testAllHabitsPage.addToAllHabitsPage(testHabitB);
+        testAllHabitsPage.addToAllHabitsPage(testHabitB, EventLog.getInstance());
         whatShouldBeHabit.add(testHabitB);
         assertEquals(whatShouldBeHabit, testAllHabitsPage.getHabits());
     }
 }
+
+// !!! test logging
