@@ -51,4 +51,6 @@ public class AllHabitsPage {
 
         return true;
     }
+
+    // !!! handle logging method
 }

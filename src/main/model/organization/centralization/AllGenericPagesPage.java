@@ -49,4 +49,6 @@ public class AllGenericPagesPage {
     public List<Page> getPages() {
         return pages;
     }
+
+    // !!! handle logging method
 }
