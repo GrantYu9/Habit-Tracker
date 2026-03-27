@@ -67,5 +67,32 @@ Make a habit, view all habits, click "Progress" until you are done the habit. An
 Click the save and load buttons on the top left, respectively.
 
 ### Phase 4
-- !!!
+
+#### Task 2 - Sample of Events
+Thu Mar 26 23:50:10 PDT 2026
+Habit of title "test" added.
+Thu Mar 26 23:50:10 PDT 2026
+Habit of title "another" added.
+Thu Mar 26 23:50:10 PDT 2026
+Habit of title "hex" added.
+Thu Mar 26 23:50:10 PDT 2026
+Habit of title "binary" added.
+Thu Mar 26 23:50:10 PDT 2026
+Habit of title "INeedMore" added.
+Thu Mar 26 23:50:10 PDT 2026
+Habit of title "moreeeee" added.
+Thu Mar 26 23:50:10 PDT 2026
+Habit of title "pushTheLimit" added.
+Thu Mar 26 23:50:10 PDT 2026
+Habit of title "epsilon" added.
+Thu Mar 26 23:50:10 PDT 2026
+Habit of title "idk" added.
+Thu Mar 26 23:50:10 PDT 2026
+Habit of title "whenscroll" added.
+Thu Mar 26 23:50:10 PDT 2026
+Habit of title "pleaseScroll" added.
+Thu Mar 26 23:50:10 PDT 2026
+Habit of title "ILoveOpenSets" added.
+Thu Mar 26 23:50:10 PDT 2026
+Page of title "hmmm" added.
 
