@@ -46,7 +46,7 @@ public class HabitTrackerApp extends JFrame {
             @Override
             public void windowClosing(WindowEvent event) {
                 habitTrackerController.saveTime();
-                // !!! print logs to console
+                habitTrackerController.printLogs();
                 System.exit(0);
             }
         });

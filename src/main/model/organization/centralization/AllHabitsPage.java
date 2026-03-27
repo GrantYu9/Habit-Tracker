@@ -22,7 +22,7 @@ public class AllHabitsPage {
     // EFFECTS: appends habit to habits and logs the event in logEvent
     public void addToAllHabitsPage(Habit habit, EventLog eventLog) {
         habits.add(habit);
-        eventLog.logEvent(new Event("Habit of title " + habit.getTitle() + " added."));
+        eventLog.logEvent(new Event("Habit of title \"" + habit.getTitle() + "\" added."));
     }
 
     public List<Habit> getHabits() {

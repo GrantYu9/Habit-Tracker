@@ -21,7 +21,7 @@ public class AllGenericPagesPage {
     // EFFECTS: Adds page to pages and logs the event in eventLog
     public void addToPages(Page page, EventLog eventLog) {
         pages.add(page);
-        eventLog.logEvent(new Event("Page of title " + page.getTitle() + " added."));
+        eventLog.logEvent(new Event("Page of title \"" + page.getTitle() + "\" added."));
     }
 
     @Override

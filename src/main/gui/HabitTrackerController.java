@@ -9,6 +9,7 @@ import java.util.List;
 import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
 import exceptions.EmptyLastTimeFileException;
 import exceptions.HabitNotFoundException;
+import logging.Event;
 import logging.EventLog;
 import model.habit.Habit;
 import model.habit.HabitCycleManager;
@@ -45,6 +46,8 @@ public class HabitTrackerController {
     private AllHabitsPageDataManager allHabitsPageDataManager; // Data persistence manager for all habits
     private LastTimeManager lastTimeManager; // Data persistence manager for the last time
 
+    private EventLog eventLog; // The event logger
+
     // EFFECTS: Initializes HabitTrackerController such that required classes are
     // initialized
     public HabitTrackerController() {
@@ -69,6 +72,8 @@ public class HabitTrackerController {
                 allGenericPagesPage);
         allHabitsPageDataManager = new AllHabitsPageDataManager(allHabitsPage, destinationAllHabitsPage);
         lastTimeManager = new LastTimeManager(destinationLastTime);
+
+        eventLog = EventLog.getInstance();
 
         try {
             lastTime = lastTimeManager.readFromFile();
@@ -164,7 +169,15 @@ public class HabitTrackerController {
         throw new HabitNotFoundException();
     }
 
-    // !!! make a spit logs method
+    // CITATION: For loop structure referenced from
+    // src/main/ca/ubc/cpsc210/alarm/model/ScreenPrinter.java from
+    // https://github.students.cs.ubc.ca/CPSC210/AlarmSystem
+    // EFFECTS: Prints the events in eventLog to the console
+    public void printLogs() {
+        for (Event event : eventLog) {
+            System.out.println(event.toString());
+        }
+    }
 
     // GETTERS
 
