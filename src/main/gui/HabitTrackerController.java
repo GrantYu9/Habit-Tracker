@@ -164,6 +164,8 @@ public class HabitTrackerController {
         throw new HabitNotFoundException();
     }
 
+    // !!! make a spit logs method
+
     // GETTERS
 
     public AllHabitsPage getAllHabitsPage() {
@@ -173,6 +175,4 @@ public class HabitTrackerController {
     public AllGenericPagesPage getAllGenericPagesPage() {
         return allGenericPagesPage;
     }
-
-    // !!! make a spit logs method
 }

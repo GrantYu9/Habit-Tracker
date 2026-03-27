@@ -5,6 +5,7 @@ import model.habit.Habit;
 import java.util.ArrayList;
 import java.util.List;
 
+import logging.Event;
 import logging.EventLog;
 
 // A page for all habits
@@ -18,10 +19,10 @@ public class AllHabitsPage {
 
     // REQUIRES: habit is not already in habits
     // MODIFIES: this
-    // EFFECTS: appends habit to habits and !!!
+    // EFFECTS: appends habit to habits and logs the event in logEvent
     public void addToAllHabitsPage(Habit habit, EventLog eventLog) {
         habits.add(habit);
-        // !!! handle logging
+        eventLog.logEvent(new Event("Habit of title " + habit.getTitle() + " added."));
     }
 
     public List<Habit> getHabits() {
