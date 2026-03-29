@@ -32,6 +32,10 @@ public class HabitTrackerApp extends JFrame {
      * Fixes size to 1,000 by 1,000 pixels
      * Centers the window
      * Uses BorderLayout
+     * 
+     * Upon terminating the application:
+     * We save the time
+     * And we print logs to the console
      */
     private void setUpConfigurations() {
         habitTrackerController = new HabitTrackerController();

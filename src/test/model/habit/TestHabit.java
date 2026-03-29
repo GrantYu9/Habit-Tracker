@@ -206,7 +206,7 @@ public class TestHabit {
 
     // Spy class to check if scheduleHabit is called
     public class SpyHabitCycleManager extends HabitCycleManager {
-        public int scheduleHabitCallCount = 0;
+        private int scheduleHabitCallCount = 0;
 
         public SpyHabitCycleManager(AllHabitsPage allHabitsPage, LocalDateTime lastTime) {
             super(allHabitsPage, lastTime);

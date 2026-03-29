@@ -3,8 +3,7 @@ package model.organization.centralization;
 import java.util.ArrayList;
 import java.util.List;
 
-import logging.Event;
-import logging.EventLog;
+import logging.*;
 import model.organization.tree.Page;
 
 // Where all the pages will be located

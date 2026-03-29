@@ -7,23 +7,14 @@ import java.time.LocalTime;
 import java.util.List;
 
 import ca.ubc.cs.ExcludeFromJacocoGeneratedReport;
-import exceptions.EmptyLastTimeFileException;
-import exceptions.HabitNotFoundException;
-import logging.Event;
-import logging.EventLog;
-import model.habit.Habit;
-import model.habit.HabitCycleManager;
-import model.habit.HabitDecrement;
-import model.habit.HabitIncrement;
-import model.organization.centralization.AllGenericPagesPage;
-import model.organization.centralization.AllHabitsPage;
-import model.organization.centralization.AllTagPagesPage;
-import model.organization.specialpages.FavouritesPage;
-import model.organization.specialpages.HomePage;
+
+import exceptions.*;
+import logging.*;
+import model.habit.*;
+import model.organization.centralization.*;
+import model.organization.specialpages.*;
 import model.organization.tree.Page;
-import persistence.AllGenericPagesPageDataManager;
-import persistence.AllHabitsPageDataManager;
-import persistence.LastTimeManager;
+import persistence.*;
 
 // Provides core functionality of the app for GUI aspects
 @ExcludeFromJacocoGeneratedReport

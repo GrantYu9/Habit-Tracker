@@ -16,9 +16,9 @@ import model.organization.centralization.AllHabitsPage;
 // Manages when the habits need to cycle
 public class HabitCycleManager {
     private final ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
-    List<Habit> habits; // List of habits to manage
+    private List<Habit> habits; // List of habits to manage
 
-    LocalDateTime lastTime; // Last time program was up
+    private LocalDateTime lastTime; // Last time program was up
 
     /*
      * EFFECTS:

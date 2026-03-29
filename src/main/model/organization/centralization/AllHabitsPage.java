@@ -5,8 +5,7 @@ import model.habit.Habit;
 import java.util.ArrayList;
 import java.util.List;
 
-import logging.Event;
-import logging.EventLog;
+import logging.*;
 
 // A page for all habits
 public class AllHabitsPage {
