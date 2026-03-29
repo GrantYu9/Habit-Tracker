@@ -96,3 +96,8 @@ Habit of title "ILoveOpenSets" added.
 Thu Mar 26 23:50:10 PDT 2026
 Page of title "hmmm" added.
 
+#### Task 3 - Reflection
+A general theme would be adding more abstract classes interface to implement off of to reduce duplicated code. For example, making a general "DataManager" interface for all data managers to implement off of, and I can simply override the read and write methods in the interface and still use my private methods in the three of my persistence classes. Another one would be making general PagesPage and HabitsPage interfaces, so that AllGenericPagesPage and AllTagPagesPage could implement the PagesPage interface, and AllHabitsPage, FavouritesPage, HomePage, TagPage, and Page, which would be renamed to GenericPage, could all implement the HabitsPage interface. This would solve a frequent problem I had when testing and building user interfaces, where I had to duplicate a lot of code and handle each case separately, which took up a lot of extra resources and increased the number of opportunities to make mistakes.
+
+Another thing I should have done was make a getter method in HabitGUI to get the Habit it represents, instead of passing it to Bar and Heatmap, as their main responsibility is to render, and the backend information should reside in HabitGUI.
+
