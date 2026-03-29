@@ -71,54 +71,30 @@ Click the save and load buttons on the top left, respectively.
 #### Task 2 - Sample of Events
 
 Thu Mar 26 23:50:10 PDT 2026<br>
-Habit of title "test" added.
-
-Thu Mar 26 23:50:10 PDT 2026
-
-Habit of title "another" added.
-
-Thu Mar 26 23:50:10 PDT 2026
-
-Habit of title "hex" added.
-
-Thu Mar 26 23:50:10 PDT 2026
-
-Habit of title "binary" added.
-
-Thu Mar 26 23:50:10 PDT 2026
-
-Habit of title "INeedMore" added.
-
-Thu Mar 26 23:50:10 PDT 2026
-
-Habit of title "moreeeee" added.
-
-Thu Mar 26 23:50:10 PDT 2026
-
-Habit of title "pushTheLimit" added.
-
-Thu Mar 26 23:50:10 PDT 2026
-
-Habit of title "epsilon" added.
-
-Thu Mar 26 23:50:10 PDT 2026
-
-Habit of title "idk" added.
-
-Thu Mar 26 23:50:10 PDT 2026
-
-Habit of title "whenscroll" added.
-
-Thu Mar 26 23:50:10 PDT 2026
-
-Habit of title "pleaseScroll" added.
-
-Thu Mar 26 23:50:10 PDT 2026
-
-Habit of title "ILoveOpenSets" added.
-
-Thu Mar 26 23:50:10 PDT 2026
-
+Habit of title "test" added.<br>
+Thu Mar 26 23:50:10 PDT 2026<br>
+Habit of title "another" added.<br>
+Thu Mar 26 23:50:10 PDT 2026<br>
+Habit of title "hex" added.<br>
+Thu Mar 26 23:50:10 PDT 2026<br>
+Habit of title "binary" added.<br>
+Thu Mar 26 23:50:10 PDT 2026<br>
+Habit of title "INeedMore" added.<br>
+Thu Mar 26 23:50:10 PDT 2026<br>
+Habit of title "moreeeee" added.<br>
+Thu Mar 26 23:50:10 PDT 2026<br>
+Habit of title "pushTheLimit" added.<br>
+Thu Mar 26 23:50:10 PDT 2026<br>
+Habit of title "epsilon" added.<br>
+Thu Mar 26 23:50:10 PDT 2026<br>
+Habit of title "idk" added.<br>
+Thu Mar 26 23:50:10 PDT 2026<br>
+Habit of title "whenscroll" added.<br>
+Thu Mar 26 23:50:10 PDT 2026<br>
+Habit of title "pleaseScroll" added.<br>
+Thu Mar 26 23:50:10 PDT 2026<br>
+Habit of title "ILoveOpenSets" added.<br>
+Thu Mar 26 23:50:10 PDT 2026<br>
 Page of title "hmmm" added.
 
 #### Task 3 - Reflection
