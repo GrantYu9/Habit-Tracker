@@ -16,7 +16,8 @@ import model.habit.Habit;
 @ExcludeFromJacocoGeneratedReport
 public class Habits extends JPanel {
     private List<Habit> habits; // Habits that Habits will display
-    private Display display;
+    
+    private Display display; // Dependency that is needed later on
 
     /*
      * EFFECTS:

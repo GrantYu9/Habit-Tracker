@@ -8,7 +8,7 @@ import model.organization.tree.Page;
 
 // Where all the pages will be located
 public class AllGenericPagesPage {
-    List<Page> pages;
+    private List<Page> pages;
     
     // EFFECTS: Instantiates allGenericPages such that pages = new ArrayList
     public AllGenericPagesPage() {
