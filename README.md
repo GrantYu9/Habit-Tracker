@@ -71,7 +71,6 @@ Click the save and load buttons on the top left, respectively.
 #### Task 2 - Sample of Events
 
 Thu Mar 26 23:50:10 PDT 2026
-
 Habit of title "test" added.
 
 Thu Mar 26 23:50:10 PDT 2026
