@@ -1,2 +1,8 @@
+/.vscode/
+
+/bin/
+
+/.DS_Store
+
 *.class
 

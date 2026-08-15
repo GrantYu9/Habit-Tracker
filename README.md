@@ -1,7 +1,5 @@
 # My Habit Tracker
 
-My habit tracker for the required project from CPSC 210 at UBC. I did not achieve as much functionality as I wished but it was still greatly educational.
-
 ## Abstract
 
 ### What Will It Do?
